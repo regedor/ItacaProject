@@ -1,0 +1,28 @@
+<% url  = "#{@path_controller}/new?"              %>
+<% url += "resource2_checked_ids=#{@resource2_checked_ids}"       %>
+<% url += "&resource1_id=#{@id}"          if @id  %>
+<% url += "&association=#{@association}"          %>
+<% url += "&extra_fields=#{@extra_fields}"          %>
+<% url += "&resource2=#{@resource2}"              %>
+<% url += "&resource1=#{@resource1}"              %>
+
+function <%= "add_#{@association}_button_init" %>() {
+  eAnchor = $('<a href="#">Add Events</a>');
+  eAnchor.click(<%= "get_#{@association}_list" %>);
+  $("<%= "##{@association}" %>").html(eAnchor);
+  return false;
+}
+
+function <%= "get_#{@association}_list" %>() {
+  $("<%= "##{@association}" %>").html("LOADING")
+
+  $("<%= "##{@association}" %>").load("<%= url %>", function (responseText, textStatus, XMLHttpRequest) {
+	  eAnchor = $('<a href="#">Remove all Events</a>');
+	  eAnchor.click(<%= "add_#{@association}_button_init" %>);
+	  div = $('<div></div>').html(eAnchor);
+	  $("<%= "##{@association}" %>").append(div);
+	});
+	return false;
+}
+
+

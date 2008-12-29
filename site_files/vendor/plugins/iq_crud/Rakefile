@@ -1,0 +1,62 @@
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+require 'rcov/rcovtask'
+
+desc 'Default: run unit tests.'
+task :default => :test
+
+desc 'Test the IQ::Crud plugin.'
+Rake::TestTask.new(:test) do |t|
+  t.libs << 'lib'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = true
+end
+
+desc 'Generate documentation for the IQ::Crud plugin.'
+Rake::RDocTask.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title    = 'IQ::Crud'
+  rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.rdoc_files.include('README')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+desc 'Output test coverage of the IQ::Crud plugin.'
+Rcov::RcovTask.new(:rcov) do |rcov|
+  rcov.pattern    = 'test/**/*_test.rb'
+  rcov.output_dir = 'rcov'
+  rcov.verbose    = true
+end
+
+namespace :test do
+  desc 'Output RSpec style spec listings from normal test files'
+  task :spec do
+    Dir.glob('test/**/*_test.rb').each do |filename|
+      klass = []
+      path = filename.chomp('_test.rb').split('/')
+      while (segment = path.pop) && segment !~ /test|models|controllers|views|helpers/
+        klass.unshift(segment.split('_').map { |word| word == 'iq' ? 'IQ' : word[0..0].upcase + word[1..-1] }.join)
+      end
+      klass = klass.join('::')
+      puts "\n#{klass}"
+      puts '=' * klass.size
+    
+      File.open(filename, "r") do |infile|
+        while line = infile.gets
+          if match = /\ *class\ +[a-zA-Z:]+::([a-zA-Z]+)Test\ +\<\ +Test::Unit::TestCase/.match(line)
+            method = match[1].sub(/Bool$/, '?').sub(/Bang/, '!').sub(/Setter/, '=').gsub(
+              /([A-Z]+)([A-Z][a-z])/,'\1_\2'
+            ).gsub(
+              /([a-z\d])([A-Z])/,'\1_\2'
+            ).tr("-", "_").downcase.sub(/^self_/, 'self.')
+            puts "\n" + method
+          elsif match = /\ *def\ +test_([a-z0-9_]+)/.match(line)
+            puts "- #{match[1].gsub('_', ' ')}"
+          end
+        end
+      end
+      puts
+    end
+  end
+end

@@ -1,0 +1,5 @@
+IQ::Crud
+
+Allows fast creation of CRUD controllers by the use of a +crudify+ class method, for basic usage, see IQ::Crud::Extensions::ActionController::ClassMethods.
+
+Copyright (c) 2007 Jamie Hill, SonicIQ Limited, all rights reserved.

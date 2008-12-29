@@ -1,0 +1,19 @@
+<h1><%= resource_plural.humanize %></h1>
+
+<p><%= link_to "New #{resource_singular}".humanize, new_member_path %></p>
+
+<table cellspacing="0" id="crudify-table">
+  <thead>
+    <tr>
+<% ((!resource_class.respond_to?(:default_format) || resource_class.default_format.nil?) ? resource_class.content_columns : resource_class.columns_for(resource_class.default_format)).each do |column| -%>
+      <th><%= column.respond_to?(:label) ? column.label : column.human_name %></th><% # will become label_for(column or symbol) or similar %>
+<% end -%>
+      <th class="actions">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= render :partial => 'member', :collection => current_collection -%>
+  </tbody>
+</table>
+
+<p><%= link_to "New #{resource_singular}".humanize, new_member_path %></p>

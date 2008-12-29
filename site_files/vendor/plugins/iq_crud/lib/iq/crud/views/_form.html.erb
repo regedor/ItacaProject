@@ -1,0 +1,7 @@
+<%= f.error_messages %>
+<%= f.persist_fields %>
+<dl>
+<% f.columns.each do |column| -%>
+<%= f.render column %>
+<% end -%>
+</dl>
