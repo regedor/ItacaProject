@@ -1,0 +1,22 @@
+<h1>Listing locals</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Contry</th>
+  </tr>
+
+<% for local in @locals %>
+  <tr>
+    <td><%=h local.name %></td>
+    <td><%=h local.contry_id %></td>
+    <td><%= link_to 'Show', local %></td>
+    <td><%= link_to 'Edit', edit_local_path(local) %></td>
+    <td><%= link_to 'Destroy', local, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New local', new_local_path %>

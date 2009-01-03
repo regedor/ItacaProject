@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Admin :: <%=h yield(:title) || resource_plural.humanize %></title>
+<meta name="author" content="Miguel Regedor" />
+<%= stylesheet_link_tag '/admin/css/master', :media => 'screen, projection', :rel => 'stylesheet' %>
+<%= stylesheet_link_tag '/flexigrid/flexigrid.css', :media => 'screen, projection', :rel => 'stylesheet' %>
+<%= javascript_include_tag '/flexigrid/flexigrid.pack.js' %>
+<%= javascript_include_tag '/admin/js/application.js' %>
+</head>
+<body>
+  
+<div id="wrapper">
+
+<div id="header">
+  <h1 id="logo">Admin / <%=h yield(:title) || resource_plural.humanize %></h1>
+</div>
+
+<hr />
+
+<div id="nav" class="nav">
+  <ul>
+<% ( ['users','anuncios','messages','questions','categorias','subcategorias']).each do |resource| %>
+<%= nav_item "<span><span>#{resource.humanize}</span></span>", send("admin_#{resource}_path") -%>
+<% end %>
+  </ul>
+</div>
+
+<hr />
+
+<div id="content">
+
+<div id="maincol">
+<%= yield %>
+</div> <!-- end #maincol -->
+
+</div> <!-- end #content -->
+
+<hr />
+
+<div id="footer">
+  <p>
+    Copyright &copy; 2008-<%= Time.now.year %>
+    <a href="http://www.regedor.com" title="Regedor - Website Development">Miguel Regedoor</a>,
+    all rights reserved.
+    <a href="http://validator.w3.org/check/referer" title="Validates this page">XHTML</a>,
+    <a href="http://jigsaw.w3.org/css-validator/check/referer?warning=no&amp;profile=css2" title="Validates the CSS on this page.">CSS</a>.
+  </p>
+</div>
+
+</div> <!-- end #wrapper -->
+
+</body>
+
+</html>

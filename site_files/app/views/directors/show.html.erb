@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @director.name %>
+</p>
+
+<p>
+  <b>Biography:</b>
+  <%=h @director.biography %>
+</p>
+
+<p>
+  <b>First work:</b>
+  <%=h @director.first_work %>
+</p>
+
+
+<%= link_to 'Edit', edit_director_path(@director) %> |
+<%= link_to 'Back', directors_path %>

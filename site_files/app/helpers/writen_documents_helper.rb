@@ -1,0 +1,2 @@
+module WritenDocumentsHelper
+end

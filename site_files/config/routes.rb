@@ -1,4 +1,30 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :writen_documents
+
+  map.resources :photos
+
+  map.resources :photos
+
+  map.resources :sound_documents
+
+  map.resources :movies
+
+  map.resources :locals
+
+  map.resources :contries
+
+  map.resources :document_types
+
+  map.resources :categories
+
+  map.resources :genres
+
+  map.resources :prizes
+
+  map.resources :directors
+
+  map.resources :authors
+
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'

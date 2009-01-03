@@ -1,0 +1,20 @@
+<h1>Listing contries</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for contry in @contries %>
+  <tr>
+    <td><%=h contry.name %></td>
+    <td><%= link_to 'Show', contry %></td>
+    <td><%= link_to 'Edit', edit_contry_path(contry) %></td>
+    <td><%= link_to 'Destroy', contry, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New contry', new_contry_path %>

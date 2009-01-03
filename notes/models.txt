@@ -1,0 +1,71 @@
+User:
+restful,
+
+Authors:
+ruby script/generate scaffold Author name:string biography:text first_work:string
+
+Directors:
+ruby script/generate scaffold Director name:string biography:text first_work:string
+
+Prizes:
+ruby script/generate scaffold Prize title:string description:text
+
+Genres:
+ruby script/generate scaffold Genre name:string
+
+Categories:
+ruby script/generate scaffold Category name:string
+
+Document_Types:
+ruby script/generate scaffold DocumentType name:string
+
+Countries:
+ruby script/generate scaffold Contry name:string
+
+Locals:
+ruby script/generate scaffold Local name:string contry_id:integer
+
+
+
+Movies: (1genre, 1author,1local)
+ruby script/generate scaffold Movie title:string genre_id:integer synopsis:text author_id:integer director_id:integer producer:string production_year:integer release_date:integer local_id:integer comments:text production_context:text distributor:string duration:integer format:string category_id:integer category_id1:integer category_id2:integer category_id3:integer category_id4:integer free:boolean rights:string
+
+Sound_Documents
+ruby script/generate scaffold SoundDocument title:string synopsis:text author_id:integer director_id:integer producer:string production_year:integer release_date:integer local_id:integer comments:text production_context:text distributor:string duration:integer format:string category_id:integer category_id1:integer category_id2:integer category_id3:integer category_id4:integer free:boolean rights:string
+
+Writen_Documents:
+ruby script/generate scaffold WritenDocument title:string document_type_id:integer synopsis:text author_id:integer editor:string production_year:integer local_id:integer comments:text production_context:text distributor:string format:string category_id:integer category_id1:integer category_id2:integer category_id3:integer category_id4:integer free:boolean rights:string
+
+Photos: 
+ruby script/generate scaffold Photo title:string synopsis:text author_id:integer editor:string production_year:integer local_id:integer comments:text production_context:text distributor:string format:string category_id:integer category_id1:integer category_id2:integer category_id3:integer category_id4:integer free:boolean rights:string
+
+
+Movie_Sound_Documents
+ruby script/generate scaffold MovieSoundDocument movie_id:integer sound_document_id:integer
+
+Movie_Writen_Documents
+ruby script/generate scaffold MovieSoundDocument movie_id:integer writen_document_id:integer
+
+Movie_Photos
+ruby script/generate scaffold MovieSoundDocument movie_id:integer photo_id:integer
+
+Movie_Prizes
+ruby script/generate scaffold MovieSoundDocument movie_id:integer prize_id:integer
+--
+Sound_Document_Writen_Documents
+ruby script/generate scaffold MovieSoundDocument sound_document_id:integer writen_document_id:integer
+
+Sound_Document_Photos
+ruby script/generate scaffold MovieSoundDocument sound_document_id:integer photo_id:integer
+
+Sound_Document_Prizes
+ruby script/generate scaffold MovieSoundDocument sound_document_id:integer prize_id:integer
+--
+Writen_Document_Photos
+ruby script/generate scaffold MovieSoundDocument writen_document_id:integer photo_id:integet
+
+Sound_Document_Prizes
+ruby script/generate scaffold MovieSoundDocument writen_document_id:integer prize_id:integer
+--
+Photo_Prizes
+ruby script/generate scaffold MovieSoundDocument photo_id:integer prize_id:integer
