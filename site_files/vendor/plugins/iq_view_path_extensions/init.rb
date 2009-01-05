@@ -1,0 +1,1 @@
+require 'iq/view_path_extensions'

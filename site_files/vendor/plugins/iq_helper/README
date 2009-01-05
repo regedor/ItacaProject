@@ -1,0 +1,6 @@
+IQ::Helpers
+===========
+A series of helpers and a FormBuilder to assist with common tasks and automate via ActiveRecord's Column object meta data.
+
+
+Copyright (c) 2007 Jamie Hill, SonicIQ Limited, all rights reserved.

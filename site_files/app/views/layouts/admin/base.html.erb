@@ -21,7 +21,7 @@
 
 <div id="nav" class="nav">
   <ul>
-<% ( ['users','anuncios','messages','questions','categorias','subcategorias']).each do |resource| %>
+<% ( ['movies','sound_documents','writen_documents','photos','authors','directors','contries','locals','document_types','genres','prizes','users','categories']).each do |resource| %>
 <%= nav_item "<span><span>#{resource.humanize}</span></span>", send("admin_#{resource}_path") -%>
 <% end %>
   </ul>

@@ -1,37 +1,32 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :writen_documents
+  # ==========================================================================
+  # map Admin resources
+  # ==========================================================================
+  map.namespace :admin do |admin|
+    admin.resources :writen_documents,  :member => { :delete => :get }
+    admin.resources :photos,            :member => { :delete => :get }
+    admin.resources :sound_documents,   :member => { :delete => :get }
+    admin.resources :movies,            :member => { :delete => :get }
+    admin.resources :locals,            :member => { :delete => :get }
+    admin.resources :contries,          :member => { :delete => :get }
+    admin.resources :document_types,    :member => { :delete => :get }
+    admin.resources :categories,        :member => { :delete => :get }
+    admin.resources :genres,            :member => { :delete => :get }
+    admin.resources :prizes,            :member => { :delete => :get }
+    admin.resources :directors,         :member => { :delete => :get }
+    admin.resources :authors,           :member => { :delete => :get }
+    admin.resources :users,             :member => { :delete => :get }
+  end
 
-  map.resources :photos
-
-  map.resources :photos
-
-  map.resources :sound_documents
-
-  map.resources :movies
-
-  map.resources :locals
-
-  map.resources :contries
-
-  map.resources :document_types
-
-  map.resources :categories
-
-  map.resources :genres
-
-  map.resources :prizes
-
-  map.resources :directors
-
-  map.resources :authors
-
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.register '/register', :controller => 'users', :action => 'create'
-  map.signup '/signup', :controller => 'users', :action => 'new'
-  map.resources :users
-
+  # ==========================================================================
+  # sessions controller
+  # ==========================================================================
   map.resource :session
+  map.logout   '/logout',   :controller => 'sessions', :action => 'destroy'
+  map.login    '/login',    :controller => 'sessions', :action => 'new'
+  map.register '/register', :controller => 'users',    :action => 'create'
+  map.signup   '/signup',   :controller => 'users',    :action => 'new'
+  map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -72,6 +67,6 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
 end

@@ -1,0 +1,342 @@
+/*
+--------------------------------------------------
+IQ::Admin - Screen base styles
+Author: Jamie Hill, SonicIQ - [soniciq.com]
+Copyright(c) 2006-2007
+-------------------------------------------------- */
+
+body {
+  font-family: "Lucida Grande", Verdana, Ariel;
+  font-size: small; 
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* = Misc
+-------------------------------------------------- */
+p, form, h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-bottom: .8em;
+  line-height: 1.3em;
+}
+p {
+  margin-bottom: 1.4em;
+}
+h1 { font-size: 150%; }
+h2 { font-size: 140%; }
+h3 { font-size: 130%; }
+h4 { font-size: 120%; }
+h5 { font-size: 110%; }
+h6 { font-size: 105%; }
+
+hr { display: none; }
+
+input, textarea, select {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 100%;
+  padding: 2px 3px;
+  margin: 2px 0 0 0;
+}
+select { border-width: 1px; }
+
+/* Note: IE 6 and under will ignore attribute selectors */
+input[type="text"],
+input[type="password"],
+textarea {
+  border: 1px solid #c3c3c3;
+  border-top-color: #7c7c7c;
+  border-bottom-color: #ddd;
+  background: #fff url(/images/bg_input.gif) 0 0 repeat-x;
+}
+
+h1 { color: #999; }
+
+
+/* = Header
+-------------------------------------------------- */
+#header {
+  background: #666 url(/admin/images/bg_header.gif) repeat-x 0 50%;
+}
+#header h1 {
+  margin: 0;
+  padding: 1em 20px;
+  font-size: 110%;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* = Structure
+-------------------------------------------------- */
+#content {
+  padding: 24px;
+  font-size: 85%;
+  clear: both;
+  line-height: 1.4em;
+}
+
+
+/* = Nav
+-------------------------------------------------- */
+.nav {
+  font-size: 85%;
+  float: left;
+  background: #eee url(/admin/images/bg_nav.gif) repeat-x 0 50%;
+  border-top: 1px solid #f5f5f5;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: .2em 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.nav li {
+  display: block;
+  float: left;
+  margin: 0 1px;
+  padding: 0;
+}
+.nav li a, li strong {
+  display: block;
+  color: #666;
+  text-decoration: none;
+}
+.nav li span {
+  display: block;
+  padding-left: 8px;
+}
+.nav li span span {
+  display: block;
+  font-style: normal;
+  padding: .2em 12px .2em 4px;
+}
+
+/* = Hover state -------------------- */
+.nav li:hover {
+  background: url(/admin/images/over_bottom_left.gif) no-repeat 0 100%;
+}
+.nav li:hover span {
+  background: url(/admin/images/over_bottom_right.gif) no-repeat 100% 100%;
+}
+.nav li:hover span span {
+  background: url(/admin/images/over_top.gif) no-repeat 100% 0;
+}
+.nav li:hover a {
+  color: #fff;
+  background: url(/admin/images/over_top.gif) no-repeat 0 0;
+}
+
+/* = Current state -------------------- */
+.nav .current {
+  background: url(/admin/images/current_bottom_left.gif) no-repeat 0 100%;
+}
+.nav .current span {
+  background: url(/admin/images/current_bottom_right.gif) no-repeat 100% 100%;
+}
+.nav .current span span {
+  background: url(/admin/images/current_top.gif) no-repeat 100% 0;
+}
+.nav .current a, .nav .current strong {
+  color: #fff;
+  background: url(/admin/images/current_top.gif) no-repeat 0 0;
+}
+
+/* = Current strong state -------------------- */
+.nav li.current:hover {
+  background-image: url(/admin/images/current_bottom_left.gif);
+}
+.nav li.current:hover span {
+  background-image: url(/admin/images/current_bottom_right.gif);
+}
+.nav li.current:hover span span {
+  background-image: url(/admin/images/current_top.gif);
+}
+.nav li.current:hover a {
+  color: #fff;
+  background-image: url(/admin/images/current_top.gif);
+}
+
+/* = Tables
+-------------------------------------------------- 
+table {
+  color: #333;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  margin-bottom: 12px;
+}
+
+table tr th, table tr td {
+  padding: 4px 6px;
+  vertical-align: top;
+  text-align: left;
+  border-right: 1px solid #ccc;
+}
+
+table tr th {
+  background: #d0d0d0;
+  font-weight: normal;
+  border-bottom: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+}
+
+table tr.alt th {
+  background: #dfdfdf;
+  font-weight: normal; 
+}
+
+table tr td {
+  background-color: #f0f0f0;
+}
+table tr.alt td {
+  background-color: #fff;
+}
+
+table tr:hover td {
+  background-color: #c3e0ff;
+}
+*/
+
+
+/* = Error handling
+-------------------------------------------------- */
+.fieldWithErrors {
+  background-color: red;
+  margin: 0;
+  padding: 0;
+  display: table;
+}
+.fieldWithErrors label {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+.fieldWithErrors input {
+  margin: 2px;
+}
+
+#errorExplanation {
+  border-style: solid;
+  border-width: 2px 0;
+  border-color: #e00;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  background-color: #ffe2e2;
+}
+#errorExplanation h2 {
+  color: #e00;
+  font-size: 120%;
+}
+#errorExplanation p {
+  color: #333;
+}
+#errorExplanation ul {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+#errorExplanation ul li {
+  color: #333;
+}
+
+/* = Forms
+-------------------------------------------------- */
+.form-panel {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 16px 18px;
+  margin: 0 0 1em;
+}
+form dl {
+  margin: 0 0 .5em 0;
+  padding: 0;
+}
+form dl dt {
+  display: block;
+  margin: 0;
+  padding: 0 0 .2em;
+}
+form dl dd {
+  display: block;
+  margin: 0;
+  padding: 0 0 .8em;
+}
+textarea {
+  width: 100%;
+}
+form dl dt small,
+form dl dd small {
+  color: #777;
+  font-size: 95%;
+  font-style: italic;
+}
+
+form dl dl {
+  padding: .7em 1.1em;
+  border: 1px solid #ccc;
+}
+form dl dt h3 {
+  padding: .5em 0 0 0;
+  margin: 0 0 .2em 0;
+}
+
+form dl dd button {
+  margin: 0 0 1em 0;
+}
+form dl dd dl dd button {
+  margin: 0 0 0 0;
+}
+
+/* = Footer
+-------------------------------------------------- */
+#footer {
+  clear: both;
+  padding-top: 0;
+  border-bottom: 1px solid #fff;
+  font-size: 84%;
+  line-height: 1.4em;
+}
+#footer p {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 8px 20px;
+  border-top: 1px solid #ddd;
+  color: #777;
+}
+/* Fix IE-Win but hide from IE5-Mac \*/
+* html #footer p { height:1%; }
+/* Resume IE5-Mac */
+#footer a, #footer a:visited {
+  color: #666;
+  border-color: #444;
+}
+#footer a:hover {
+  color: #933;
+  border-color: #b55;
+}
+
+/* = Self-clearing floats
+-------------------------------------------------- */
+#content:after,
+.nav:after,
+.nav ul:after {
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;
+}
+* html #content,
+* html .nav,
+* html .nav ul {
+  height: 1%;
+}
