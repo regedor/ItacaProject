@@ -1,0 +1,18 @@
+<p>
+  <b>Movie:</b>
+  <%=h @movie_locals.movie_id %>
+</p>
+
+<p>
+  <b>Local:</b>
+  <%=h @movie_locals.local_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @movie_locals.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_movie_locals_path(@movie_locals) %> |
+<%= link_to 'Back', movie_locals_path %>

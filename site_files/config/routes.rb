@@ -1,8 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+#  map.default '', :controller => '--'
+
   # ==========================================================================
   # map Admin resources
   # ==========================================================================
   map.namespace :admin do |admin|
+    admin.default    '', :controller => 'movies'
+    admin.resources :associations
     admin.resources :writen_documents,  :member => { :delete => :get }
     admin.resources :photos,            :member => { :delete => :get }
     admin.resources :sound_documents,   :member => { :delete => :get }

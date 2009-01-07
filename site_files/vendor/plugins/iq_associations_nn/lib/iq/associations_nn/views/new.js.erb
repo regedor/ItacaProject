@@ -1,28 +1,29 @@
-<% url  = "#{@path_controller}/new?"              %>
-<% url += "resource2_checked_ids=#{@resource2_checked_ids}"       %>
-<% url += "&resource1_id=#{@id}"          if @id  %>
-<% url += "&association=#{@association}"          %>
-<% url += "&extra_fields=#{@extra_fields}"          %>
-<% url += "&resource2=#{@resource2}"              %>
-<% url += "&resource1=#{@resource1}"              %>
+<% url  = "#{@registry[:path_controller]
+}/new?"              %>
+<% url += "resource2_checked_ids=#{@registry[:VALUE][:resource2_checked_ids]}"       %>
+<% url += "&resource1_id=#{@registry[:VALUE][:resource1_id]}"                if @registry[:VALUE][:resource1_id] %>
+<% url += "&association=#{@registry[:association]}"          %>
+<% url += "&extra_fields=#{@registry[:extra_fields]}"          %>
+<% url += "&resource2=#{@registry[:resource2]}"              %>
+<% url += "&resource1=#{@registry[:resource1]}"              %>
+<% url += "&show_field=#{@registry[:show_field]}"              %>
 
-function <%= "add_#{@association}_button_init" %>() {
-  eAnchor = $('<a href="#">Add Events</a>');
-  eAnchor.click(<%= "get_#{@association}_list" %>);
-  $("<%= "##{@association}" %>").html(eAnchor);
+function <%= "add_#{@registry[:association]}_button_init" %>() {
+  eAnchor = $('<a href="#"><%= "Add_#{@registry[:resource2].pluralize}".humanize %></a>');
+  eAnchor.click(<%= "get_#{@registry[:association]}_list" %>);
+  $("<%= "##{@registry[:association]}" %>").html(eAnchor);
   return false;
 }
 
-function <%= "get_#{@association}_list" %>() {
-  $("<%= "##{@association}" %>").html("LOADING")
+function <%= "get_#{@registry[:association]}_list" %>() {
+  $("<%= "##{@registry[:association]}" %>").html('<%= image_tag '/iq/associations_nn/images/load.gif'%>')
 
-  $("<%= "##{@association}" %>").load("<%= url %>", function (responseText, textStatus, XMLHttpRequest) {
-	  eAnchor = $('<a href="#">Remove all Events</a>');
-	  eAnchor.click(<%= "add_#{@association}_button_init" %>);
+  $("<%= "##{@registry[:association]}" %>").load("<%= url %>", function (responseText, textStatus, XMLHttpRequest) {
+	  eAnchor = $('<a href="#"><%= "Remove all #{@registry[:resource2].pluralize}".humanize %></a>');
+	  eAnchor.click(<%= "add_#{@registry[:association]}_button_init" %>);
 	  div = $('<div></div>').html(eAnchor);
-	  $("<%= "##{@association}" %>").append(div);
+	  $("<%= "##{@registry[:association]}" %>").append(div);
 	});
 	return false;
 }
-
 

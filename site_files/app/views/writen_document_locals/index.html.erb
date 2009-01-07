@@ -1,0 +1,24 @@
+<h1>Listing writen_document_locals</h1>
+
+<table>
+  <tr>
+    <th>Writen document</th>
+    <th>Local</th>
+    <th>Description</th>
+  </tr>
+
+<% for writen_document_locals in @writen_document_locals %>
+  <tr>
+    <td><%=h writen_document_locals.writen_document_id %></td>
+    <td><%=h writen_document_locals.local_id %></td>
+    <td><%=h writen_document_locals.description %></td>
+    <td><%= link_to 'Show', writen_document_locals %></td>
+    <td><%= link_to 'Edit', edit_writen_document_locals_path(writen_document_locals) %></td>
+    <td><%= link_to 'Destroy', writen_document_locals, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New writen_document_locals', new_writen_document_locals_path %>

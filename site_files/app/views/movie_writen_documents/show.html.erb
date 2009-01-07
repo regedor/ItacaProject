@@ -1,0 +1,13 @@
+<p>
+  <b>Movie:</b>
+  <%=h @movie_writen_document.movie_id %>
+</p>
+
+<p>
+  <b>Writen document:</b>
+  <%=h @movie_writen_document.writen_document_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_movie_writen_document_path(@movie_writen_document) %> |
+<%= link_to 'Back', movie_writen_documents_path %>

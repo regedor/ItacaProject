@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  prize_id: 1
+  local_id: 1
+  description: MyString
+
+two:
+  prize_id: 1
+  local_id: 1
+  description: MyString

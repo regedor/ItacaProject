@@ -9,7 +9,7 @@ module IQ::AssociationsNn::Extensions::ActiveRecord
       raise "Too many parameters" unless args.size == 2
       resource1_name   = args[0]
       resource2_name   = args[1]
-      associations_name = "#{resource1_name}_#{resource2_name}s"
+      associations_name = "#{resource1_name}_#{resource2_name}".pluralize
       
       
       after_update ("save_" + associations_name).to_sym

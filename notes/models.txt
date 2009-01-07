@@ -44,28 +44,28 @@ Movie_Sound_Documents
 ruby script/generate scaffold MovieSoundDocument movie_id:integer sound_document_id:integer
 
 Movie_Writen_Documents
-ruby script/generate scaffold MovieSoundDocument movie_id:integer writen_document_id:integer
+ruby script/generate scaffold MovieWritenDocument movie_id:integer writen_document_id:integer
 
 Movie_Photos
-ruby script/generate scaffold MovieSoundDocument movie_id:integer photo_id:integer
+ruby script/generate scaffold MoviePhoto movie_id:integer photo_id:integer
 
 Movie_Prizes
-ruby script/generate scaffold MovieSoundDocument movie_id:integer prize_id:integer
+ruby script/generate scaffold MoviePrize movie_id:integer prize_id:integer description:string
 --
 Sound_Document_Writen_Documents
-ruby script/generate scaffold MovieSoundDocument sound_document_id:integer writen_document_id:integer
+ruby script/generate scaffold SoundDocumentWritenDocument sound_document_id:integer writen_document_id:integer
 
 Sound_Document_Photos
-ruby script/generate scaffold MovieSoundDocument sound_document_id:integer photo_id:integer
+ruby script/generate scaffold SoundDocumentPhoto sound_document_id:integer photo_id:integer
 
 Sound_Document_Prizes
-ruby script/generate scaffold MovieSoundDocument sound_document_id:integer prize_id:integer
+ruby script/generate scaffold SoundDocumentPrize sound_document_id:integer prize_id:integer description:string
 --
 Writen_Document_Photos
-ruby script/generate scaffold MovieSoundDocument writen_document_id:integer photo_id:integet
+ruby script/generate scaffold WritenDocumentPhoto writen_document_id:integer photo_id:integer
 
-Sound_Document_Prizes
-ruby script/generate scaffold MovieSoundDocument writen_document_id:integer prize_id:integer
+Writen_Document_Prizes
+ruby script/generate scaffold WritenDocumentPrize writen_document_id:integer prize_id:integer description:string
 --
 Photo_Prizes
-ruby script/generate scaffold MovieSoundDocument photo_id:integer prize_id:integer
+ruby script/generate scaffold PhotoPrize photo_id:integer prize_id:integer description:string

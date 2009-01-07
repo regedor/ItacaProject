@@ -1,0 +1,22 @@
+<h1>Listing movie_photos</h1>
+
+<table>
+  <tr>
+    <th>Movie</th>
+    <th>Photo</th>
+  </tr>
+
+<% for movie_photo in @movie_photos %>
+  <tr>
+    <td><%=h movie_photo.movie_id %></td>
+    <td><%=h movie_photo.photo_id %></td>
+    <td><%= link_to 'Show', movie_photo %></td>
+    <td><%= link_to 'Edit', edit_movie_photo_path(movie_photo) %></td>
+    <td><%= link_to 'Destroy', movie_photo, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New movie_photo', new_movie_photo_path %>

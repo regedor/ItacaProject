@@ -1,0 +1,18 @@
+<p>
+  <b>Prize:</b>
+  <%=h @prize_locals.prize_id %>
+</p>
+
+<p>
+  <b>Local:</b>
+  <%=h @prize_locals.local_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @prize_locals.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_prize_locals_path(@prize_locals) %> |
+<%= link_to 'Back', prize_locals_path %>

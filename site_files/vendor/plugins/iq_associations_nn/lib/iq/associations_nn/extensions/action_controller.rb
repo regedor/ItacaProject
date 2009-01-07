@@ -11,13 +11,7 @@ module IQ::AssociationsNn::Extensions::ActionController # :nodoc:
       define_method "new" do
         respond_to do |format|
           format.js  {
-            @resource2_checked_ids = registry[:VALUE][:resource2_checked_ids]#.split '/'
-            @id                    = registry[:VALUE][:resource1_id]
-            @resource1             = registry[:resource1]
-            @resource2             = registry[:resource2]
-            @association           = registry[:association]
-            @path_controller       = registry[:path_controller]
-            @extra_fields          = registry[:extra_fields]
+            @registry = registry
           }
             
           format.html  { 
@@ -26,7 +20,7 @@ module IQ::AssociationsNn::Extensions::ActionController # :nodoc:
 
             @associations = registry[:CLASS][:Resource2].find(:all).map do | resource2 | 
              registry[:CLASS][:Association].new(
-               :event_id => resource2.id, 
+               registry[:resource2_id] => resource2.id, 
                :association_should_exist => ((ids.include? resource2.id.to_s)? "1" : "0")
              )
             end
@@ -88,9 +82,10 @@ module IQ::AssociationsNn::Extensions::ActionController # :nodoc:
           :resource2         => params[:resource2],
           :resource2_id      => "#{params[:resource2]}_id",
           :association       => params[:association],
-          :associations      => "#{params[:association]}s",
+          :associations      => "#{params[:association]}".pluralize,
           :path_controller   => params[:path_controller],
           :extra_fields      => params[:extra_fields],
+          :show_field        => params[:show_field],
           :VALUE => {
             :resource2_checked_ids      => params[:resource2_checked_ids],#.split '/'
             :resource1_id               => params[:resource1_id]
@@ -99,5 +94,4 @@ module IQ::AssociationsNn::Extensions::ActionController # :nodoc:
       end
     end
   end
-  
 end

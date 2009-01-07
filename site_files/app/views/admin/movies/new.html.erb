@@ -1,0 +1,13 @@
+<h1>New <%= resource_singular.humanize.downcase %></h1>
+
+<% form_for current_member, :html => { :multipart => true } do |f| %>
+
+  <%= render :partial => 'form', :locals => { :f => f } %>
+
+
+<p class="form-actions">
+  <%= submit_tag "Create #{resource_singular.humanize.downcase}" %> <span>or</span>
+  <%= link_to 'cancel', collection_path, :title => "Back to #{resource_singular.humanize.downcase} list" %>
+</p>
+
+<% end %>

@@ -1,0 +1,57 @@
+<%= f.error_messages %>
+<%= f.persist_fields %>
+
+
+<dl>
+  <% (f.columns.first f.columns.size-2 ).each do |column| -%>
+    <%= f.render column %>
+  <% end -%>
+  <%= field_selector f, "author"                            %>
+  <%= field_selector f, "director"                          %>
+  <%= field_selector f, "genre"                             %>
+  <%= field_selector f, "category"                          %>
+  <%= field_selector f, "category_1_id", Category           %>
+  <%= field_selector f, "category_2_id", Category           %>
+  <%= field_selector f, "category_3_id", Category           %>
+  <%= field_selector f, "category_4_id", Category           %>
+  <%= association_javascript({
+       :resource1       => "movie",
+       :resource2       => "sound_document",
+       :association     => "movie_sound_document",
+       :path_controller => "/admin/associations",
+       :checked_ids     => f.object.sound_documents.map(&:id),
+       :resource1_id    => f.object.id,
+       :extra_fields    => [],
+       :show_field      => "title"
+  }) %>
+  <%= association_javascript({
+       :resource1       => "movie",
+       :resource2       => "writen_document",
+       :association     => "movie_writen_document",
+       :path_controller => "/admin/associations",
+       :checked_ids     => f.object.writen_documents.map(&:id),
+       :resource1_id    => f.object.id,
+       :extra_fields    => [],
+       :show_field      => "title"
+  }) %>
+  <%= association_javascript({
+       :resource1       => "movie",
+       :resource2       => "photo",
+       :association     => "movie_photo",
+       :path_controller => "/admin/associations",
+       :checked_ids     => f.object.photos.map(&:id),
+       :resource1_id    => f.object.id,
+       :extra_fields    => [],
+       :show_field      => "title"
+  }) %>
+  <%= association_javascript({
+       :resource1       => "movie",
+       :resource2       => "local",
+       :association     => "movie_local",
+       :path_controller => "/admin/associations",
+       :checked_ids     => f.object.locals.map(&:id),
+       :resource1_id    => f.object.id,
+       :extra_fields    => [],
+       :show_field      => "name"
+  }) %>
+</dl>

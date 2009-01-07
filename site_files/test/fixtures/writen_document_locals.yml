@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  writen_document_id: 1
+  local_id: 1
+  description: MyString
+
+two:
+  writen_document_id: 1
+  local_id: 1
+  description: MyString

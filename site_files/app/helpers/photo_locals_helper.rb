@@ -1,0 +1,2 @@
+module PhotoLocalsHelper
+end

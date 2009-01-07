@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Imagens das Migrações: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'default' %>
+</head>
+
+<body>
+  <div id="site">
+
+    <div id="site_top">
+
+    </div>
+
+    <div id="site_body">
+      <div class="flash_text">
+        <div style="color: green"><%= flash[:notice] %> </div>
+        <div style="color: red"><%= flash[:error] %> </div>
+      </div>
+
+      <div class="content">
+        <%= yield  %>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="footer">
+    Wep Application developed by
+    <%= link_to 'Miguel Regedor', 'http://www.regedor.com/'%>.<br/>
+  </div>
+
+</body>
+
+</html>

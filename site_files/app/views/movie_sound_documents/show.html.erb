@@ -1,0 +1,13 @@
+<p>
+  <b>Movie:</b>
+  <%=h @movie_sound_document.movie_id %>
+</p>
+
+<p>
+  <b>Sound document:</b>
+  <%=h @movie_sound_document.sound_document_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_movie_sound_document_path(@movie_sound_document) %> |
+<%= link_to 'Back', movie_sound_documents_path %>

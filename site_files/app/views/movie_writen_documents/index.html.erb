@@ -1,0 +1,22 @@
+<h1>Listing movie_writen_documents</h1>
+
+<table>
+  <tr>
+    <th>Movie</th>
+    <th>Writen document</th>
+  </tr>
+
+<% for movie_writen_document in @movie_writen_documents %>
+  <tr>
+    <td><%=h movie_writen_document.movie_id %></td>
+    <td><%=h movie_writen_document.writen_document_id %></td>
+    <td><%= link_to 'Show', movie_writen_document %></td>
+    <td><%= link_to 'Edit', edit_movie_writen_document_path(movie_writen_document) %></td>
+    <td><%= link_to 'Destroy', movie_writen_document, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New movie_writen_document', new_movie_writen_document_path %>

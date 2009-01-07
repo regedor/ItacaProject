@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sound_document_id: 1
+  local_id: 1
+  description: MyString
+
+two:
+  sound_document_id: 1
+  local_id: 1
+  description: MyString

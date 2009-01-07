@@ -1,0 +1,24 @@
+<h1>Listing movie_locals</h1>
+
+<table>
+  <tr>
+    <th>Movie</th>
+    <th>Local</th>
+    <th>Description</th>
+  </tr>
+
+<% for movie_locals in @movie_locals %>
+  <tr>
+    <td><%=h movie_locals.movie_id %></td>
+    <td><%=h movie_locals.local_id %></td>
+    <td><%=h movie_locals.description %></td>
+    <td><%= link_to 'Show', movie_locals %></td>
+    <td><%= link_to 'Edit', edit_movie_locals_path(movie_locals) %></td>
+    <td><%= link_to 'Destroy', movie_locals, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New movie_locals', new_movie_locals_path %>

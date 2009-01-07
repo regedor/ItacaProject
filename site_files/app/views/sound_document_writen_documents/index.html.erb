@@ -1,0 +1,22 @@
+<h1>Listing sound_document_writen_documents</h1>
+
+<table>
+  <tr>
+    <th>Sound document</th>
+    <th>Writen document</th>
+  </tr>
+
+<% for sound_document_writen_document in @sound_document_writen_documents %>
+  <tr>
+    <td><%=h sound_document_writen_document.sound_document_id %></td>
+    <td><%=h sound_document_writen_document.writen_document_id %></td>
+    <td><%= link_to 'Show', sound_document_writen_document %></td>
+    <td><%= link_to 'Edit', edit_sound_document_writen_document_path(sound_document_writen_document) %></td>
+    <td><%= link_to 'Destroy', sound_document_writen_document, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New sound_document_writen_document', new_sound_document_writen_document_path %>

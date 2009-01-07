@@ -1,0 +1,2 @@
+module WritenDocumentLocalsHelper
+end

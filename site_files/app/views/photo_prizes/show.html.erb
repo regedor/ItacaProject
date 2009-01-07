@@ -1,0 +1,18 @@
+<p>
+  <b>Photo:</b>
+  <%=h @photo_prize.photo_id %>
+</p>
+
+<p>
+  <b>Prize:</b>
+  <%=h @photo_prize.prize_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @photo_prize.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_photo_prize_path(@photo_prize) %> |
+<%= link_to 'Back', photo_prizes_path %>

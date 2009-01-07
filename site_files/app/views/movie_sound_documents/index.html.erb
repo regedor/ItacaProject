@@ -1,0 +1,22 @@
+<h1>Listing movie_sound_documents</h1>
+
+<table>
+  <tr>
+    <th>Movie</th>
+    <th>Sound document</th>
+  </tr>
+
+<% for movie_sound_document in @movie_sound_documents %>
+  <tr>
+    <td><%=h movie_sound_document.movie_id %></td>
+    <td><%=h movie_sound_document.sound_document_id %></td>
+    <td><%= link_to 'Show', movie_sound_document %></td>
+    <td><%= link_to 'Edit', edit_movie_sound_document_path(movie_sound_document) %></td>
+    <td><%= link_to 'Destroy', movie_sound_document, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New movie_sound_document', new_movie_sound_document_path %>

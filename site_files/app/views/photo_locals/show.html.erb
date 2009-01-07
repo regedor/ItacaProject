@@ -1,0 +1,18 @@
+<p>
+  <b>Photo:</b>
+  <%=h @photo_locals.photo_id %>
+</p>
+
+<p>
+  <b>Local:</b>
+  <%=h @photo_locals.local_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @photo_locals.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_photo_locals_path(@photo_locals) %> |
+<%= link_to 'Back', photo_locals_path %>

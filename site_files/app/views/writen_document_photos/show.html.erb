@@ -1,0 +1,13 @@
+<p>
+  <b>Writen document:</b>
+  <%=h @writen_document_photo.writen_document_id %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%=h @writen_document_photo.photo_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_writen_document_photo_path(@writen_document_photo) %> |
+<%= link_to 'Back', writen_document_photos_path %>

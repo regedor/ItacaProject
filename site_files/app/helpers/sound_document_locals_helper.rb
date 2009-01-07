@@ -1,0 +1,2 @@
+module SoundDocumentLocalsHelper
+end

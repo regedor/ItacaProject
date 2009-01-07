@@ -12,4 +12,12 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+  #
+
+  def admin_required
+    return true if (logged_in?  && current_user.role <= User::ADMIN)
+    session[:return_to] = request.request_uri
+    redirect_to(login_path) and flash[:notice] = 'Não autorizado.' and return false
+  end
+
 end

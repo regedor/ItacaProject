@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090103182623) do
+ActiveRecord::Schema.define(:version => 20090106205411) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,43 @@ ActiveRecord::Schema.define(:version => 20090103182623) do
     t.datetime "updated_at"
   end
 
+  create_table "movie_locals", :force => true do |t|
+    t.integer  "movie_id"
+    t.integer  "local_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "movie_photos", :force => true do |t|
+    t.integer  "movie_id"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "movie_prizes", :force => true do |t|
+    t.integer  "movie_id"
+    t.integer  "prize_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "movie_sound_documents", :force => true do |t|
+    t.integer  "movie_id"
+    t.integer  "sound_document_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "movie_writen_documents", :force => true do |t|
+    t.integer  "movie_id"
+    t.integer  "writen_document_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "movies", :force => true do |t|
     t.string   "title"
     t.integer  "genre_id"
@@ -67,19 +104,35 @@ ActiveRecord::Schema.define(:version => 20090103182623) do
     t.string   "producer"
     t.integer  "production_year"
     t.integer  "release_date"
-    t.integer  "local_id"
     t.text     "comments"
     t.text     "production_context"
     t.string   "distributor"
     t.integer  "duration"
     t.string   "format"
     t.integer  "category_id"
-    t.integer  "category_id1"
-    t.integer  "category_id2"
-    t.integer  "category_id3"
-    t.integer  "category_id4"
+    t.integer  "category_1_id"
+    t.integer  "category_2_id"
+    t.integer  "category_3_id"
+    t.integer  "category_4_id"
     t.boolean  "free"
     t.string   "rights"
+    t.string   "youtube_link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photo_locals", :force => true do |t|
+    t.integer  "photo_id"
+    t.integer  "local_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photo_prizes", :force => true do |t|
+    t.integer  "photo_id"
+    t.integer  "prize_id"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -106,9 +159,47 @@ ActiveRecord::Schema.define(:version => 20090103182623) do
     t.datetime "updated_at"
   end
 
+  create_table "prize_locals", :force => true do |t|
+    t.integer  "prize_id"
+    t.integer  "local_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "prizes", :force => true do |t|
     t.string   "title"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sound_document_locals", :force => true do |t|
+    t.integer  "sound_document_id"
+    t.integer  "local_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sound_document_photos", :force => true do |t|
+    t.integer  "sound_document_id"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sound_document_prizes", :force => true do |t|
+    t.integer  "sound_document_id"
+    t.integer  "prize_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sound_document_writen_documents", :force => true do |t|
+    t.integer  "sound_document_id"
+    t.integer  "writen_document_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -156,6 +247,21 @@ ActiveRecord::Schema.define(:version => 20090103182623) do
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+
+  create_table "writen_document_locals", :force => true do |t|
+    t.integer  "writen_document_id"
+    t.integer  "local_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "writen_document_photos", :force => true do |t|
+    t.integer  "writen_document_id"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "writen_documents", :force => true do |t|
     t.string   "title"

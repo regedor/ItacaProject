@@ -6,8 +6,10 @@
 <meta name="author" content="Miguel Regedor" />
 <%= stylesheet_link_tag '/admin/css/master', :media => 'screen, projection', :rel => 'stylesheet' %>
 <%= stylesheet_link_tag '/flexigrid/flexigrid.css', :media => 'screen, projection', :rel => 'stylesheet' %>
+<%= javascript_include_tag 'jquery' %>
 <%= javascript_include_tag '/flexigrid/flexigrid.pack.js' %>
 <%= javascript_include_tag '/admin/js/application.js' %>
+<%= yield(:head)%>
 </head>
 <body>
   

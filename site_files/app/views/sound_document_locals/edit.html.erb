@@ -1,0 +1,24 @@
+<h1>Editing sound_document_locals</h1>
+
+<% form_for(@sound_document_locals) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :sound_document_id %><br />
+    <%= f.text_field :sound_document_id %>
+  </p>
+  <p>
+    <%= f.label :local_id %><br />
+    <%= f.text_field :local_id %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @sound_document_locals %> |
+<%= link_to 'Back', sound_document_locals_path %>

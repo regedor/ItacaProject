@@ -1,0 +1,2 @@
+module SoundDocumentPrizesHelper
+end

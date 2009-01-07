@@ -1,0 +1,19 @@
+<h1>New sound_document_photo</h1>
+
+<% form_for(@sound_document_photo) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :sound_document_id %><br />
+    <%= f.text_field :sound_document_id %>
+  </p>
+  <p>
+    <%= f.label :photo_id %><br />
+    <%= f.text_field :photo_id %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', sound_document_photos_path %>

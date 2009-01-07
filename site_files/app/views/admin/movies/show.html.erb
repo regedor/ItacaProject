@@ -1,0 +1,11 @@
+<dl>
+<% for field in resource_fields -%>
+  <dt><strong><%=h field.human_name %></strong></dt>
+  <dd><%=h current_member.send(field.name) %></dd>
+<% end -%>
+</dl>
+
+<p>
+  <%= link_to '&laquo; Back', collection_path %> |
+  <%= link_to 'Edit', edit_member_path(current_member) %>
+</p>

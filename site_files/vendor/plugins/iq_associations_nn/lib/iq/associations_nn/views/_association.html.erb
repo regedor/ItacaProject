@@ -2,32 +2,27 @@
   prefix = association.new_record? ? 'new' : 'existing'
   fieldname = "#{@registry[:resource1]}[#{prefix}_#{@registry[:associations]}_attributes][]" %>
 
-  <div class="<%= @registry[:association] %>"
-<% if prefix == 'existing' %>
-    <% fields_for fieldname, association do |r2_form| %>
+  <div class="<%= @registry[:association] %>">
+    <% if prefix == 'existing' %>
+      <% fields_for fieldname, association do |r2_form| %>
       
-      <%= r2_form.hidden_field @registry[:resource2_id] %>
+        <%= r2_form.hidden_field @registry[:resource2_id] %>
       
-      <%= (association.send @registry[:resource2]).name %> 
-      <% r2_form.text_field :association_should_exist %>
-      <%= r2_form.check_box :association_should_exist  %>
-
+        <%= (association.send @registry[:resource2]).send @registry[:show_field] %> 
+        <%= r2_form.check_box :association_should_exist  %>
       
-    <% end %> 
-<% else %>
-    <%fieldname = "#{@registry[:resource1]}[#{prefix}_#{@registry[:associations]}_attributes][#{association.send @registry[:resource2_id]}]" %>
+      <% end %> 
+    <% else %>
+      <%fieldname = "#{@registry[:resource1]}[#{prefix}_#{@registry[:associations]}_attributes][#{association.send @registry[:resource2_id]}]" %>
     
-
+        <%= hidden_field_tag (fieldname + "[#{@registry[:resource2_id]}]"), (association.send @registry[:resource2_id]) %>
       
-      <%= hidden_field_tag (fieldname + "[#{@registry[:resource2_id]}]"), (association.send @registry[:resource2_id]) %>
+        <%= (association.send @registry[:resource2]).send @registry[:show_field] %> 
+        <%  text_field_tag fieldname + 'association_should_exist' %>
       
-      <%= (association.send @registry[:resource2]).name %> 
-      <%  text_field_tag fieldname + 'association_should_exist' %>
+        <%= check_box_tag fieldname + "[association_should_exist]", "1", association.association_should_exist=="1" %>
       
-      <%= check_box_tag fieldname+"[association_should_exist]", "1", association.association_should_exist=="1"  %>
-      
-
-<% end %>
+    <% end %>
   </div>
   
 <% end %>

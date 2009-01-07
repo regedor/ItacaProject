@@ -1,0 +1,24 @@
+<h1>Listing prize_locals</h1>
+
+<table>
+  <tr>
+    <th>Prize</th>
+    <th>Local</th>
+    <th>Description</th>
+  </tr>
+
+<% for prize_locals in @prize_locals %>
+  <tr>
+    <td><%=h prize_locals.prize_id %></td>
+    <td><%=h prize_locals.local_id %></td>
+    <td><%=h prize_locals.description %></td>
+    <td><%= link_to 'Show', prize_locals %></td>
+    <td><%= link_to 'Edit', edit_prize_locals_path(prize_locals) %></td>
+    <td><%= link_to 'Destroy', prize_locals, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New prize_locals', new_prize_locals_path %>
