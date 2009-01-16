@@ -1,6 +1,7 @@
 User:
 restful,
 
+
 Authors:
 ruby script/generate scaffold Author name:string biography:text first_work:string
 
