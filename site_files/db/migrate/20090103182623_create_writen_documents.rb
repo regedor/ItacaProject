@@ -6,7 +6,7 @@ class CreateWritenDocuments < ActiveRecord::Migration
       t.text      :synopsis
       t.integer   :author_id
       t.string    :editor
-      t.integer   :production_year
+      t.integer   :edition_year
       t.integer   :local_id
       t.text      :comments
       t.text      :production_context

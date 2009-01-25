@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
+#RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -73,3 +73,38 @@ Rails::Initializer.run do |config|
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 end
+
+class String
+  def humanize 
+    {
+      :movie              => "Filme",
+      :movies             => "Filmes",
+      :name               => "Nome",
+      :title              => "Título",
+      :synopsis           => "Sinopse", 
+      :genre              => "Genero", 
+      :author             => "Autor",  
+      :authors            => "Autores",  
+      :director           => "Realizador",  
+      :producer           => "Produtor",   
+      :production_year    => "Ano de Produção",            
+      :edition_year       => "Ano de Edição",
+      :document_type      => "Tipo de Documento", 
+      :release_date       => "Ano de Rodagem",               
+      :comments           => "Comentário",           
+      :production_context => "Contexto de Produção",               
+      :distributor        => "Distribuidor",         
+      :duration           => "Duração",           
+      :format             => "Formato",          
+      :category           => "Temática",                
+      :category_1         => "Sub Temática 1",        
+      :category_2         => "Sub Temática 2",  
+      :category_3         => "Sub Temática 3",  
+      :category_4         => "Sub Temática 4",  
+      :free               => "Tem autorização",    
+      :rights             => "Autorizações",      
+      :youtube_link       => "Link de YouTube" 
+    }[self.gsub(/_id$/, "").to_sym] || super	    
+  end
+end
+
