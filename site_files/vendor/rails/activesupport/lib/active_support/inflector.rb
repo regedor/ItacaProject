@@ -28,10 +28,10 @@ module ActiveSupport
     class Inflections
       include Singleton
 
-      attr_reader :plurals, :singulars, :uncountables
+      attr_reader :plurals, :singulars, :uncountables, :human 
 
       def initialize
-        @plurals, @singulars, @uncountables = [], [], []
+        @plurals, @singulars, @uncountables, @humans = [], [], [], []
       end
 
       # Specifies a new pluralization rule and its replacement. The rule can either be a string or a regular expression.
@@ -73,6 +73,10 @@ module ActiveSupport
       def uncountable(*words)
         (@uncountables << words).flatten!
       end
+
+     def human(rule, replacement)
+       @humans.insert(0, [rule, replacement])
+     end
 
       # Clears the loaded inflections within a given scope (default is <tt>:all</tt>).
       # Give the scope as a symbol of the inflection type, the options are: <tt>:plurals</tt>,
@@ -176,7 +180,9 @@ module ActiveSupport
     #   "man from the boondocks".titleize # => "Man From The Boondocks"
     #   "x-men: the last stand".titleize  # => "X Men: The Last Stand"
     def titleize(word)
-      humanize(underscore(word)).gsub(/\b('?[a-z])/) { $1.capitalize }
+      result = lower_case_and_underscored_word.to_s.dup
+      inflections.humans.each { |(rule, replacement)| break if result.gsub!(rule, replacement) }
+      result.gsub(/_id$/, "").gsub(/_/, " ").capitalize
     end
 
     # The reverse of +camelize+. Makes an underscored, lowercase form from the expression in the string.

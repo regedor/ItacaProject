@@ -1,6 +1,5 @@
     <tr<%= cycle(' class="alt"', '') %>>
 <% (member.respond_to?(:content_columns) ? member.content_columns : member.class.content_columns ).each do |column| -%>
-      <% # needs to take into account column formatting %>
       <td><%= (s = member.send(column.name)).blank? ? '&nbsp;' : h(s) %></td>
 <% end -%>
       <td class="actions">

@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090106205411) do
+ActiveRecord::Schema.define(:version => 20090131235542) do
+
+  create_table "author_photos", :force => true do |t|
+    t.integer  "author_id"
+    t.integer  "photo_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -25,8 +33,9 @@ ActiveRecord::Schema.define(:version => 20090106205411) do
     t.datetime "updated_at"
   end
 
-  create_table "contries", :force => true do |t|
-    t.string   "name"
+  create_table "countries", :force => true do |t|
+    t.string   "name",       :limit => 32
+    t.string   "code",       :limit => 3
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,7 +62,8 @@ ActiveRecord::Schema.define(:version => 20090106205411) do
 
   create_table "locals", :force => true do |t|
     t.string   "name"
-    t.integer  "contry_id"
+    t.integer  "country_id"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,6 +72,13 @@ ActiveRecord::Schema.define(:version => 20090106205411) do
     t.integer  "movie_id"
     t.integer  "local_id"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "movie_movies", :force => true do |t|
+    t.integer  "movie_id"
+    t.integer  "movie2_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -129,6 +146,13 @@ ActiveRecord::Schema.define(:version => 20090106205411) do
     t.datetime "updated_at"
   end
 
+  create_table "photo_photos", :force => true do |t|
+    t.integer  "photo_id"
+    t.integer  "photo2_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "photo_prizes", :force => true do |t|
     t.integer  "photo_id"
     t.integer  "prize_id"
@@ -143,16 +167,15 @@ ActiveRecord::Schema.define(:version => 20090106205411) do
     t.integer  "author_id"
     t.string   "editor"
     t.integer  "production_year"
-    t.integer  "local_id"
     t.text     "comments"
     t.text     "production_context"
     t.string   "distributor"
     t.string   "format"
     t.integer  "category_id"
-    t.integer  "category_id1"
-    t.integer  "category_id2"
-    t.integer  "category_id3"
-    t.integer  "category_id4"
+    t.integer  "category_1_id"
+    t.integer  "category_2_id"
+    t.integer  "category_3_id"
+    t.integer  "category_4_id"
     t.boolean  "free"
     t.string   "rights"
     t.datetime "created_at"
@@ -197,6 +220,13 @@ ActiveRecord::Schema.define(:version => 20090106205411) do
     t.datetime "updated_at"
   end
 
+  create_table "sound_document_sound_documents", :force => true do |t|
+    t.integer  "sound_document_id"
+    t.integer  "sound_document2_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "sound_document_writen_documents", :force => true do |t|
     t.integer  "sound_document_id"
     t.integer  "writen_document_id"
@@ -212,19 +242,19 @@ ActiveRecord::Schema.define(:version => 20090106205411) do
     t.string   "producer"
     t.integer  "production_year"
     t.integer  "release_date"
-    t.integer  "local_id"
     t.text     "comments"
     t.text     "production_context"
     t.string   "distributor"
     t.integer  "duration"
     t.string   "format"
     t.integer  "category_id"
-    t.integer  "category_id1"
-    t.integer  "category_id2"
-    t.integer  "category_id3"
-    t.integer  "category_id4"
+    t.integer  "category_1_id"
+    t.integer  "category_2_id"
+    t.integer  "category_3_id"
+    t.integer  "category_4_id"
     t.boolean  "free"
     t.string   "rights"
+    t.string   "youtube_link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -263,23 +293,38 @@ ActiveRecord::Schema.define(:version => 20090106205411) do
     t.datetime "updated_at"
   end
 
+  create_table "writen_document_prizes", :force => true do |t|
+    t.integer  "writen_document_id"
+    t.integer  "prize_id"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "writen_document_writen_documents", :force => true do |t|
+    t.integer  "writen_document_id"
+    t.integer  "writen_document2_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "writen_documents", :force => true do |t|
     t.string   "title"
     t.integer  "document_type_id"
     t.text     "synopsis"
     t.integer  "author_id"
     t.string   "editor"
-    t.integer  "production_year"
+    t.integer  "edition_year"
     t.integer  "local_id"
     t.text     "comments"
     t.text     "production_context"
     t.string   "distributor"
     t.string   "format"
     t.integer  "category_id"
-    t.integer  "category_id1"
-    t.integer  "category_id2"
-    t.integer  "category_id3"
-    t.integer  "category_id4"
+    t.integer  "category_1_id"
+    t.integer  "category_2_id"
+    t.integer  "category_3_id"
+    t.integer  "category_4_id"
     t.boolean  "free"
     t.string   "rights"
     t.datetime "created_at"

@@ -1,0 +1,10 @@
+<%= f.error_messages %>
+<%= f.persist_fields %>
+
+
+<dl>
+  <%= field_selector f, "country"                          %>
+  <% (f.columns.first f.columns.size-2 ).each do |column| -%>
+    <%= f.render column %>
+  <% end -%>
+</dl>

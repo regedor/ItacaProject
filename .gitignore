@@ -5,4 +5,5 @@ site_files/tmp/*
 site_files/rdoc
 site_files/rcov
 site_files/db/development.sqlite3
+*.swp
 .DS_Store

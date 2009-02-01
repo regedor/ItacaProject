@@ -54,24 +54,4 @@
        :extra_fields    => [],
        :show_field      => "name"
   }) %>
-  <%= association_javascript({
-       :resource1       => "movie",
-       :resource2       => "prize",
-       :association     => "movie_prizes",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.prizes.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "name"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "movie",                  
-       :resource2       => "movie2",
-       :association     => "movie_movies",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.movie2s.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "title"
-  }) %>
 </dl>

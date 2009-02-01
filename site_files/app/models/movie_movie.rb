@@ -1,5 +1,5 @@
-class MovieLocal < ActiveRecord::Base
+class MovieMovie < ActiveRecord::Base
   belongs_to :movie
-  belongs_to :local
+  belongs_to :movie2
   attr_accessor :association_should_exist
 end
