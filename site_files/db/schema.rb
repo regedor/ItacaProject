@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090131235542) do
+ActiveRecord::Schema.define(:version => 20090202222826) do
 
   create_table "author_photos", :force => true do |t|
     t.integer  "author_id"
@@ -23,19 +23,26 @@ ActiveRecord::Schema.define(:version => 20090131235542) do
     t.string   "name"
     t.text     "biography"
     t.string   "first_work"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
+    t.string   "description"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "countries", :force => true do |t|
-    t.string   "name",       :limit => 32
-    t.string   "code",       :limit => 3
+    t.string   "name",            :limit => 32
+    t.string   "code",            :limit => 3
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,18 +51,24 @@ ActiveRecord::Schema.define(:version => 20090131235542) do
     t.string   "name"
     t.text     "biography"
     t.string   "first_work"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "document_types", :force => true do |t|
     t.string   "name"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "genres", :force => true do |t|
     t.string   "name"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,6 +77,8 @@ ActiveRecord::Schema.define(:version => 20090131235542) do
     t.string   "name"
     t.integer  "country_id"
     t.string   "description"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -121,19 +136,38 @@ ActiveRecord::Schema.define(:version => 20090131235542) do
     t.string   "producer"
     t.integer  "production_year"
     t.integer  "release_date"
-    t.text     "comments"
+    t.text     "main_event"
+    t.text     "cultural_context"
+    t.text     "image_sound"
+    t.text     "ccdc"
+    t.text     "reading"
+    t.text     "exploration"
+    t.text     "analisis"
+    t.text     "proposals"
     t.text     "production_context"
+    t.text     "comments"
     t.string   "distributor"
     t.integer  "duration"
     t.string   "format"
     t.integer  "category_id"
-    t.integer  "category_1_id"
-    t.integer  "category_2_id"
-    t.integer  "category_3_id"
-    t.integer  "category_4_id"
+    t.integer  "subcategory_1_id"
+    t.integer  "subcategory_2_id"
+    t.integer  "subcategory_3_id"
+    t.integer  "subcategory_4_id"
     t.boolean  "free"
     t.string   "rights"
     t.string   "youtube_link"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
+    t.integer  "status",             :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "music_genres", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -172,12 +206,14 @@ ActiveRecord::Schema.define(:version => 20090131235542) do
     t.string   "distributor"
     t.string   "format"
     t.integer  "category_id"
-    t.integer  "category_1_id"
-    t.integer  "category_2_id"
-    t.integer  "category_3_id"
-    t.integer  "category_4_id"
+    t.integer  "subcategory_1_id"
+    t.integer  "subcategory_2_id"
+    t.integer  "subcategory_3_id"
+    t.integer  "subcategory_4_id"
     t.boolean  "free"
     t.string   "rights"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -193,6 +229,8 @@ ActiveRecord::Schema.define(:version => 20090131235542) do
   create_table "prizes", :force => true do |t|
     t.string   "title"
     t.text     "description"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -248,13 +286,25 @@ ActiveRecord::Schema.define(:version => 20090131235542) do
     t.integer  "duration"
     t.string   "format"
     t.integer  "category_id"
-    t.integer  "category_1_id"
-    t.integer  "category_2_id"
-    t.integer  "category_3_id"
-    t.integer  "category_4_id"
+    t.integer  "subcategory_1_id"
+    t.integer  "subcategory_2_id"
+    t.integer  "subcategory_3_id"
+    t.integer  "subcategory_4_id"
     t.boolean  "free"
     t.string   "rights"
+    t.integer  "music_genre_id"
     t.string   "youtube_link"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subcategories", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -321,12 +371,14 @@ ActiveRecord::Schema.define(:version => 20090131235542) do
     t.string   "distributor"
     t.string   "format"
     t.integer  "category_id"
-    t.integer  "category_1_id"
-    t.integer  "category_2_id"
-    t.integer  "category_3_id"
-    t.integer  "category_4_id"
+    t.integer  "subcategory_1_id"
+    t.integer  "subcategory_2_id"
+    t.integer  "subcategory_3_id"
+    t.integer  "subcategory_4_id"
     t.boolean  "free"
     t.string   "rights"
+    t.integer  "user_creator_id"
+    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

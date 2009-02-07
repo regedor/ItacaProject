@@ -1,77 +1,84 @@
 <%= f.error_messages %>
 <%= f.persist_fields %>
 
-
 <dl>
-  <% (f.columns.first f.columns.size-2 ).each do |column| -%>
-    <%= f.render column %>
+  <% (f.columns).each do |column| -%>
+    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
   <% end -%>
   <%= field_selector f, "author"                            %>
   <%= field_selector f, "director"                          %>
   <%= field_selector f, "genre"                             %>
   <%= field_selector f, "category"                          %>
-  <%= field_selector f, "category_1_id", Category           %>
-  <%= field_selector f, "category_2_id", Category           %>
-  <%= field_selector f, "category_3_id", Category           %>
-  <%= field_selector f, "category_4_id", Category           %>
-  <%= association_javascript({
-       :resource1       => "movie",
-       :resource2       => "sound_document",
-       :association     => "movie_sound_document",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.sound_documents.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "title"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "movie",
-       :resource2       => "writen_document",
-       :association     => "movie_writen_document",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.writen_documents.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "title"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "movie",
-       :resource2       => "photo",
-       :association     => "movie_photo",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.photos.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "title"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "movie",
-       :resource2       => "local",
-       :association     => "movie_local",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.locals.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "name"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "movie",
-       :resource2       => "prize",
-       :association     => "movie_prizes",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.prizes.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "name"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "movie",                  
-       :resource2       => "movie2",
-       :association     => "movie_movies",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.movie2s.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "title"
-  }) %>
+  <%= field_selector f, "subcategory_1_id", Subcategory     %>
+  <%= field_selector f, "subcategory_2_id", Subcategory     %>
+  <%= field_selector f, "subcategory_3_id", Subcategory     %>
+  <%= field_selector f, "subcategory_4_id", Subcategory     %>
 </dl>
+
+<h2>Filmes</h2>
+<%= association_javascript({
+      :resource1       => "movie",                  
+      :resource2       => "movie",
+      :resource2_id    => "movie2_id",
+      :association     => "movie_movies",
+      :path_controller => "/admin/associations",
+      :checked_ids     => f.object.movie_ids,
+      :resource1_id    => f.object.id,
+      :extra_fields    => [],
+      :show_field      => "title"
+}) %> <br />
+<h2>Documentos Sonoros</h2>
+<%= association_javascript({
+      :resource1       => "movie",
+      :resource2       => "sound_document",
+      :association     => "movie_sound_document",
+      :path_controller => "/admin/associations",
+      :checked_ids     => f.object.sound_document_ids,
+      :resource1_id    => f.object.id,
+      :extra_fields    => [],
+      :show_field      => "title"
+}) %> <br />
+<h2>Documentos Escritos</h2>
+<%= association_javascript({
+      :resource1       => "movie",
+      :resource2       => "writen_document",
+      :association     => "movie_writen_document",
+      :path_controller => "/admin/associations",
+      :checked_ids     => f.object.writen_document_ids,
+      :resource1_id    => f.object.id,
+      :extra_fields    => [],
+      :show_field      => "title"
+}) %> <br />
+<h2>Photos</h2>
+<%= association_javascript({
+      :resource1       => "movie",
+      :resource2       => "photo",
+      :association     => "movie_photo",
+      :path_controller => "/admin/associations",
+      :checked_ids     => f.object.photo_ids,
+      :resource1_id    => f.object.id,
+      :extra_fields    => [],
+      :show_field      => "title"
+}) %> <br />
+<h2>Locais</h2>
+<%= association_javascript({
+      :resource1       => "movie",
+      :resource2       => "local",
+      :association     => "movie_local",
+      :path_controller => "/admin/associations",
+      :checked_ids     => f.object.local_ids,
+      :resource1_id    => f.object.id,
+      :extra_fields    => [],
+      :show_field      => "name"
+}) %> <br />
+<h2>Prémios</h2>
+<%= association_javascript({
+      :resource1       => "movie",
+      :resource2       => "prize",
+      :association     => "movie_prizes",
+      :path_controller => "/admin/associations",
+      :checked_ids     => f.object.prize_ids,
+      :resource1_id    => f.object.id,
+      :extra_fields    => [],
+      :show_field      => "name"
+}) %> <br />

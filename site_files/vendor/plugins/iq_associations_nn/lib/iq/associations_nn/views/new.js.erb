@@ -7,6 +7,7 @@
 <% url += "&resource2=#{@registry[:resource2]}"              %>
 <% url += "&resource1=#{@registry[:resource1]}"              %>
 <% url += "&show_field=#{@registry[:show_field]}"              %>
+<% url += "&resource2_id=#{@registry[:resource2_id]}"              %>
 
 function <%= "add_#{@registry[:association]}_button_init" %>() {
   eAnchor = $('<a href="#"><%= "Add_#{@registry[:resource2].pluralize}".humanize %></a>');

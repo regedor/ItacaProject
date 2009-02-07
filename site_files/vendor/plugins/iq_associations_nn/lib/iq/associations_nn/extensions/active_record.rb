@@ -4,14 +4,17 @@ module IQ::AssociationsNn::Extensions::ActiveRecord
   end
   
   module ClassMethods
-    def associated_nn_with(*args)
+    def associated_nn(options)
       #options = args.last.is_a?(Hash) ? args.pop : {}
-      raise "Too many parameters" unless args.size == 2
-      resource1_name   = args[0]
-      resource2_name   = args[1]
-      associations_name = "#{resource1_name}_#{resource2_name}".pluralize
-      
-      
+      #raise "Too many parameters" unless args.size == 2
+      associations_name = options[:through]  
+      resources2_name   = options[:to]
+
+      if resources2_name
+        has_many resources2_name.to_sym, :through => associations_name.to_sym
+      end
+      has_many associations_name.to_sym
+
       after_update ("save_" + associations_name).to_sym
 
       define_method "new_" + associations_name + "_attributes=" do |associations|

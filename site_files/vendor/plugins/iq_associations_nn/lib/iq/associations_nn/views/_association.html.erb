@@ -1,4 +1,6 @@
-<% if association.send @registry[:resource2]
+<% r2 = @registry[:CLASS][:Resource2].first({:conditions => { :id => association.send(@registry[:resource2_id])}}) %>
+
+<% #if association.send @registry[:resource2]
   prefix = association.new_record? ? 'new' : 'existing'
   fieldname = "#{@registry[:resource1]}[#{prefix}_#{@registry[:associations]}_attributes][]" %>
 
@@ -7,8 +9,8 @@
       <% fields_for fieldname, association do |r2_form| %>
       
         <%= r2_form.hidden_field @registry[:resource2_id] %>
-      
-        <%= (association.send @registry[:resource2]).send @registry[:show_field] %> 
+	
+        <%= r2.send @registry[:show_field] %> 
         <%= r2_form.check_box :association_should_exist  %>
       
       <% end %> 
@@ -17,7 +19,7 @@
     
         <%= hidden_field_tag (fieldname + "[#{@registry[:resource2_id]}]"), (association.send @registry[:resource2_id]) %>
       
-        <%= (association.send @registry[:resource2]).send @registry[:show_field] %> 
+        <%= r2.send @registry[:show_field] %> 
         <%  text_field_tag fieldname + 'association_should_exist' %>
       
         <%= check_box_tag fieldname + "[association_should_exist]", "1", association.association_should_exist=="1" %>
@@ -25,5 +27,6 @@
     <% end %>
   </div>
   
-<% end %>
+  <% #end 
+%>
 

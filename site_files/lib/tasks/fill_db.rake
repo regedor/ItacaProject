@@ -1,35 +1,72 @@
 namespace :db do
   namespace :fill do
     task :categories => :environment do
-      puts "A criar Categorias!\n"
+      puts "A criar Temáticas!\n"
       Category.new( :name => "Emigração"                           ).save 
       Category.new( :name => "Emigração África"                    ).save 
       Category.new( :name => "Emigração América do Norte"          ).save 
       Category.new( :name => "Emigração América Latina"            ).save
       Category.new( :name => "Emigração Ásia"                      ).save
+      Category.new( :name => "Emigração Brasil"                    ).save
+      Category.new( :name => "Emigração Contemporânea"             ).save
+      Category.new( :name => "Emigração Europa"                    ).save
+      Category.new( :name => "Imigração"                           ).save
+      Category.new( :name => "Imigração África"                    ).save
+      Category.new( :name => "Imigração Ásia"                      ).save
+      Category.new( :name => "Imigração Brasil"                    ).save
+      Category.new( :name => "Imigração Europa"                    ).save
+      Category.new( :name => "Imigração Europa de Leste"           ).save
+      Category.new( :name => "Diáspora e Transnacionalismo"        ).save
+      Category.new( :name => "Migrações e Pós-colonialismo"        ).save
       puts "Concluido!"
     end
+
+    task :subcategories => :environment do
+      puts "A criar Descritores!\n"
+      Subcategory.new( :name => "Actividades Artísticas"              ).save
+      Subcategory.new( :name => "Associativismo"                      ).save
+      Subcategory.new( :name => "Cidades"                             ).save
+      Subcategory.new( :name => "Culturas e Identidades"              ).save
+      Subcategory.new( :name => "Descendentes"                        ).save
+      Subcategory.new( :name => "Escola"                              ).save
+      Subcategory.new( :name => "Género"                              ).save
+      Subcategory.new( :name => "Imigração Clandestina"               ).save
+      Subcategory.new( :name => "Participação Política"               ).save
+      Subcategory.new( :name => "Religião"                            ).save
+      Subcategory.new( :name => "Trabalho"                            ).save
+      puts "Concluido!"
+    end
+
     task :genres => :environment do
       puts "A criar Generos!\n"
-      Genre.new( :name => "Emigração"                              ).save 
-      Genre.new( :name => "Emigração África"                       ).save 
-      Genre.new( :name => "Emigração América do Norte"             ).save 
-      Genre.new( :name => "Emigração América Latina"               ).save
-      Genre.new( :name => "Emigração Ásia"                         ).save
-      puts "Concluido!"
+      Genre.new( :name => "Ficção"                                    ).save 
+      Genre.new( :name => "Documentário"                              ).save 
+      Genre.new( :name => "Investigação"                              ).save 
+      Genre.new( :name => "Institucionais"                            ).save
+      Genre.new( :name => "Amadores"                                  ).save
+      Genre.new( :name => "Outros"                                    ).save
+      puts "Concluido!"         
+    end
+
+    task :music_genres => :environment do
+      puts "A criar Generos Musicais!\n"
+      MusicGenre.new( :name => "Bandas Sonoras"                       ).save 
+      MusicGenre.new( :name => "Música Popular"                       ).save 
+      MusicGenre.new( :name => "Música Ligeira"                       ).save 
+      MusicGenre.new( :name => "Música Erudita"                       ).save
+      MusicGenre.new( :name => "Rap"                                  ).save
+      MusicGenre.new( :name => "Outros"                               ).save
+      puts "Concluido!"         
     end
 
     task :document_types => :environment do
       puts "A criar document types!\n"
-      DocumentType.new( :name => "Ficção"                          ).save 
-      DocumentType.new( :name => "Documentário"                    ).save 
-      DocumentType.new( :name => "Investigação"                    ).save 
-      DocumentType.new( :name => "Institucionais"                  ).save
-      DocumentType.new( :name => "Amadores"                        ).save
-      DocumentType.new( :name => "outros"                          ).save
+      DocumentType.new( :name => "Teses"                              ).save 
+      DocumentType.new( :name => "Livros"                             ).save 
+      DocumentType.new( :name => "Artigos"                            ).save 
+      DocumentType.new( :name => "outros"                             ).save
       puts "Concluido!"
     end
-
 
     task :countries => :environment do
       Country.new( :code=>'af', :name=>'Afghanistan').save
@@ -305,7 +342,7 @@ namespace :db do
       puts "Concluido!"
     end
 
-    task :all => [:categories, :users, :genres, :document_types, :countries]
+    task :all => [:categories, :users, :genres, :document_types, :countries, :music_genres, :subcategories]
 
   end
 end

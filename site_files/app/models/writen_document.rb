@@ -26,6 +26,12 @@ class WritenDocument < ActiveRecord::Base
   associated_nn_with 'writen_document', 'writen_documents'
   has_many :writen_document_writen_documents
   has_many :writen_document2s, :through => :writen_document_writen_documents
+
+  associated_nn_with 'writen_document', 'writen_documents'
+  has_many :writen_document_writen_documents
+  has_many :writen_documents, :finder_sql =>
+    'SELECT "writen_documents".* ' +
+    'FROM "writen_documents" INNER JOIN writen_document_writen_documents' + 
+    '  ON writen_document.id = writen_document_writen_documents.writen_document2_id ' +
+    'WHERE (("writen_document_writen_documents".writen_document_id = #{id}))'
 end
-class WritenDocument2 < WritenDocument
-end	

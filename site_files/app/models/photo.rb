@@ -26,8 +26,8 @@ class Photo < ActiveRecord::Base
 
   associated_nn_with 'photo', 'photos'
   has_many :photo_photos
-  has_many :photo2s, :through => :photo_photos
-end
-
-class Photo2 < Photo
+  has_many :photos, :finder_sql =>
+      'SELECT "photos".* ' +
+      'FROM "photos" INNER JOIN photo_photos ON photo.id = photo_photos.photo2_id ' +
+      'WHERE (("photo_photos".photo_id = #{id}))'
 end

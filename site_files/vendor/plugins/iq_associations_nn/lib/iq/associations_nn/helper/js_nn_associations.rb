@@ -8,10 +8,12 @@ module IQ::AssociationsNn::Helper::JsNnAssociation
     resource1_id          = options[:member_id].to_s || nil
     extra_fields          = options[:extra_fields].to_param
     show_field            = options[:show_field]
+    resource2_id          = options[:resource2_id] || ""
     
     javascript  = '<script src="'     + path_controller     + '/new.js?' 
     javascript += 'resource1='        + resource1        
     javascript += '&resource2='       + resource2         
+    javascript += '&resource2_id='    + resource2_id         
     javascript += '&association='     + association  
     javascript += '&path_controller=' + path_controller   
     javascript += '&extra_fields='    + extra_fields

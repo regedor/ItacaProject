@@ -80,7 +80,7 @@ module IQ::AssociationsNn::Extensions::ActionController # :nodoc:
           },
           :resource1         => params[:resource1],
           :resource2         => params[:resource2],
-          :resource2_id      => "#{params[:resource2]}_id",
+          :resource2_id      => (params[:resource2_id].blank? ? "#{params[:resource2]}_id" : params[:resource2_id]),
           :association       => params[:association],
           :associations      => "#{params[:association]}".pluralize,
           :path_controller   => params[:path_controller],
