@@ -1,3 +1,3 @@
 class Admin::AssociationsController < Admin::BaseController
-  nn_associaize
+  nn_associanize
 end

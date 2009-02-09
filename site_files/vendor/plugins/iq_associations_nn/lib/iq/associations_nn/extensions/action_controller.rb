@@ -4,7 +4,17 @@ module IQ::AssociationsNn::Extensions::ActionController # :nodoc:
   end
   
   module ClassMethods
-    def nn_associaize
+    def nn_associanize_update_method(associations_array,resource=nil)
+      resource = resource && resource.to_sym or  self.controller_name.singularize.to_sym
+      define_method "update" do
+        associations_array.each do | associations |
+          params[resource]["existing_#{ associations }_attributes".to_sym] ||= {}
+        end
+        super
+      end
+    end
+    
+    def nn_associanize
       
       self.append_view_path(File.join(File.dirname(__FILE__), '..', 'views'), :exclude_controller_path => true)
       
@@ -88,7 +98,8 @@ module IQ::AssociationsNn::Extensions::ActionController # :nodoc:
           :show_field        => params[:show_field],
           :VALUE => {
             :resource2_checked_ids      => params[:resource2_checked_ids],#.split '/'
-            :resource1_id               => params[:resource1_id]
+            :resource1_id               => params[:resource1_id],
+            :table_rows                 => params[:table_rows]
           }
         }
       end

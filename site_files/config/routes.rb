@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :countries,         :member => { :delete => :get }
     admin.resources :document_types,    :member => { :delete => :get }
     admin.resources :categories,        :member => { :delete => :get }
+    admin.resources :subcategories,     :member => { :delete => :get }
     admin.resources :genres,            :member => { :delete => :get }
     admin.resources :prizes,            :member => { :delete => :get }
     admin.resources :directors,         :member => { :delete => :get }
@@ -26,6 +27,7 @@ ActionController::Routing::Routes.draw do |map|
   # sessions controller
   # ==========================================================================
   map.resource :session
+  map.resources :users
   map.logout   '/logout',   :controller => 'sessions', :action => 'destroy'
   map.login    '/login',    :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users',    :action => 'create'

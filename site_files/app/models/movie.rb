@@ -7,8 +7,9 @@ class Movie < ActiveRecord::Base
   belongs_to :genre
   belongs_to :author
   belongs_to :director
+  belongs_to :user
 
-  associated_nn :through => 'movie_movies'
+  associated_nn :to =>  nil,               :through => 'movie_movies'
   associated_nn :to => 'sound_documents',  :through => 'movie_sound_documents'
   associated_nn :to => 'writen_documents', :through => 'movie_writen_documents'
   associated_nn :to => 'photos',           :through => 'movie_photos'

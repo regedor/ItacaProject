@@ -1,19 +1,21 @@
 class Local < ActiveRecord::Base
   belongs_to :country
-
-  associated_nn_with 'sound_document', 'locals'
-  has_many :sound_document_locals
-  has_many :sound_documents, :through => :sound_document_locals
+  belongs_to :user
   
-  associated_nn_with 'writen_document', 'locals'
-  has_many :writen_document_locals
-  has_many :writen_documents, :through => :writen_document_locals
-
-  associated_nn_with 'photo', 'locals'
-  has_many :photo_locals
-  has_many :photos, :through => :photo_locals
-
-  associated_nn_with 'movie', 'locals'
-  has_many :movie_locals
-  has_many :movies, :through => :movie_locals
+  associated_nn :to => 'movies',           :through => 'movie_locals'
+  associated_nn :to => 'sound_document',   :through => 'sound_document_locals'
+  associated_nn :to => 'writen_documents', :through => 'writen_document_locals'
+  associated_nn :to => 'photos',           :through => 'photo_locals'
+  associated_nn :to =>  nil,               :through => 'local_locals'
+  
+  has_many :sound_documents, :finder_sql =>
+    'SELECT "sound_documents".* ' +
+    'FROM "sound_documents" INNER JOIN sound_document_sound_documents' + 
+    '  ON sound_documents.id = sound_document_sound_documents.sound_document2_id ' +
+    'WHERE (("sound_document_sound_documents".sound_document_id = #{id}))'
+  
+  def subcategories
+    Subcategory.all :conditions => 
+      {:id => [self.subcategory_1_id,self.subcategory_2_id,self.subcategory_3_id,self.subcategory_4_id]}
+  end
 end

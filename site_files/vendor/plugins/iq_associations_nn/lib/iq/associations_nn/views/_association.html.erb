@@ -1,32 +1,52 @@
-<% r2 = @registry[:CLASS][:Resource2].first({:conditions => { :id => association.send(@registry[:resource2_id])}}) %>
-
-<% #if association.send @registry[:resource2]
-  prefix = association.new_record? ? 'new' : 'existing'
-  fieldname = "#{@registry[:resource1]}[#{prefix}_#{@registry[:associations]}_attributes][]" %>
+<% if r2 = @registry[:CLASS][:Resource2].first({:conditions => { :id => association.send(@registry[:resource2_id])}}) %>
+  <% prefix = association.new_record? ? 'new' : 'existing' %>
+  <% fieldname = "#{@registry[:resource1]}[#{prefix}_#{@registry[:associations]}_attributes][]" %>
 
   <div class="<%= @registry[:association] %>">
     <% if prefix == 'existing' %>
       <% fields_for fieldname, association do |r2_form| %>
       
         <%= r2_form.hidden_field @registry[:resource2_id] %>
-	
-        <%= r2.send @registry[:show_field] %> 
-        <%= r2_form.check_box :association_should_exist  %>
+        
+	      <%= r2_form.check_box :association_should_exist  %>
+        <%= label_tag "#{@registry[:resource1]}[#{prefix}_#{@registry[:associations]}_attributes][#{association.id}]", r2.send(@registry[:show_field]) %> 
+        
+        <% @registry[:extra_fields].split('/').each do | field_name | %>
+          <br />
+          <% if (s=field_name.split "::").size == 4 %>
+            <%= r2_form.collection_select s[0], s[1].constantize.all, :id, s[2].to_sym, :prompt => s[3].sub("_"," ") %>
+          <% else %>
+            <%= r2_form.label field_name %>
+            <%= r2_form.text_field field_name %>
+          <% end %>
+        <% end %>
       
       <% end %> 
     <% else %>
       <%fieldname = "#{@registry[:resource1]}[#{prefix}_#{@registry[:associations]}_attributes][#{association.send @registry[:resource2_id]}]" %>
     
-        <%= hidden_field_tag (fieldname + "[#{@registry[:resource2_id]}]"), (association.send @registry[:resource2_id]) %>
+      <%= hidden_field_tag (fieldname + "[#{@registry[:resource2_id]}]"), (association.send @registry[:resource2_id]) %>
       
-        <%= r2.send @registry[:show_field] %> 
-        <%  text_field_tag fieldname + 'association_should_exist' %>
+      <%= check_box_tag fieldname + "[association_should_exist]", "1", association.association_should_exist=="1" %>
+      <%= label_tag fieldname + "[association_should_exist]", r2.send(@registry[:show_field]) %> 
       
-        <%= check_box_tag fieldname + "[association_should_exist]", "1", association.association_should_exist=="1" %>
+      
+      <% @registry[:extra_fields].split('/').each do | field_name | %>
+        <br />
+        <% if (s=field_name.split '::').size == 4 %>
+
+          <%=
+          select_tag fieldname + "[#{s[0]}]", 
+            options_for_select([[s[3].sub("_"," "),""]] + (s[1].constantize.all.map {|a|[a.send(s[2]),a.id]}), association.send(s[0])) %>
+          
+          
+        <% else %>
+          <%= label_tag (fieldname + field_name), field_name %>
+          <%= text_field_tag fieldname + field_name %>
+        <% end %>
+      <% end %>
+        
       
     <% end %>
   </div>
-  
-  <% #end 
-%>
-
+<% end %>

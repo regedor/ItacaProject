@@ -150,6 +150,8 @@ class String
       :sex                  => "Sexo",
       :action               => "Acção",
       :actions              => "Acções",
+      :created_at           => "Introduzido em",
+      :updated_at           => "Última actulização em",
       :youtube_link         => "Link de YouTube" 
     }[self.downcase.gsub(/ /, "_").gsub(/_id$/, "").to_sym] || super	    
   end

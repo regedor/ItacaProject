@@ -7,9 +7,10 @@ class SoundDocument < ActiveRecord::Base
   belongs_to :author
   belongs_to :director
   belongs_to :music_genre
+  belongs_to :user
 
   associated_nn :to => 'movies',           :through => 'movie_sound_documents'
-  associated_nn :through => 'sound_document_sound_documents'
+  associated_nn :to =>  nil,               :through => 'sound_document_sound_documents'
   associated_nn :to => 'writen_documents', :through => 'sound_document_writen_documents'
   associated_nn :to => 'photos',           :through => 'sound_document_photos'
   associated_nn :to => 'locals',           :through => 'sound_document_locals'

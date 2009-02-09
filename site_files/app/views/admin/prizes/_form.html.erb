@@ -3,7 +3,11 @@
 
 
 <dl>
-  <% (f.columns.first f.columns.size-2 ).each do |column| -%>
-    <%= f.render column %>
+  <% (f.columns).each do |column| -%>
+    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
   <% end -%>
 </dl>
+<%= associate_nn_selector current_member, 'prize', 'movie',           'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'prize', 'sound_document',  'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'prize', 'writen_document', 'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'prize', 'photo',           'title', [], :mode => :invert %>

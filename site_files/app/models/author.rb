@@ -3,4 +3,5 @@ class Author < ActiveRecord::Base
   has_many :sound_documents
   has_many :writen_documents
   has_many :photos
+  belongs_to :user
 end

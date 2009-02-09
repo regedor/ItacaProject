@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090202222826) do
+ActiveRecord::Schema.define(:version => 20090208162224) do
 
   create_table "author_photos", :force => true do |t|
     t.integer  "author_id"
@@ -23,8 +23,7 @@ ActiveRecord::Schema.define(:version => 20090202222826) do
     t.string   "name"
     t.text     "biography"
     t.string   "first_work"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,8 +50,7 @@ ActiveRecord::Schema.define(:version => 20090202222826) do
     t.string   "name"
     t.text     "biography"
     t.string   "first_work"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -73,12 +71,18 @@ ActiveRecord::Schema.define(:version => 20090202222826) do
     t.datetime "updated_at"
   end
 
+  create_table "local_locals", :force => true do |t|
+    t.integer  "local_id"
+    t.integer  "local2_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locals", :force => true do |t|
     t.string   "name"
     t.integer  "country_id"
     t.string   "description"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -157,8 +161,7 @@ ActiveRecord::Schema.define(:version => 20090202222826) do
     t.boolean  "free"
     t.string   "rights"
     t.string   "youtube_link"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
+    t.integer  "user_id"
     t.integer  "status",             :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -212,8 +215,7 @@ ActiveRecord::Schema.define(:version => 20090202222826) do
     t.integer  "subcategory_4_id"
     t.boolean  "free"
     t.string   "rights"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -229,8 +231,7 @@ ActiveRecord::Schema.define(:version => 20090202222826) do
   create_table "prizes", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -294,8 +295,7 @@ ActiveRecord::Schema.define(:version => 20090202222826) do
     t.string   "rights"
     t.integer  "music_genre_id"
     t.string   "youtube_link"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -377,8 +377,7 @@ ActiveRecord::Schema.define(:version => 20090202222826) do
     t.integer  "subcategory_4_id"
     t.boolean  "free"
     t.string   "rights"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

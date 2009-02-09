@@ -2,12 +2,12 @@
 <%= f.persist_fields %>
 
 <dl>
-  <% (f.columns).each do |column| -%>
-    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
-  <% end -%>
   <%= field_selector f, "author"                            %>
   <%= field_selector f, "director"                          %>
   <%= field_selector f, "genre"                             %>
+  <% (f.columns).each do |column| -%>
+    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
+  <% end -%>
   <%= field_selector f, "category"                          %>
   <%= field_selector f, "subcategory_1_id", Subcategory     %>
   <%= field_selector f, "subcategory_2_id", Subcategory     %>
@@ -15,70 +15,9 @@
   <%= field_selector f, "subcategory_4_id", Subcategory     %>
 </dl>
 
-<h2>Filmes</h2>
-<%= association_javascript({
-      :resource1       => "movie",                  
-      :resource2       => "movie",
-      :resource2_id    => "movie2_id",
-      :association     => "movie_movies",
-      :path_controller => "/admin/associations",
-      :checked_ids     => f.object.movie_ids,
-      :resource1_id    => f.object.id,
-      :extra_fields    => [],
-      :show_field      => "title"
-}) %> <br />
-<h2>Documentos Sonoros</h2>
-<%= association_javascript({
-      :resource1       => "movie",
-      :resource2       => "sound_document",
-      :association     => "movie_sound_document",
-      :path_controller => "/admin/associations",
-      :checked_ids     => f.object.sound_document_ids,
-      :resource1_id    => f.object.id,
-      :extra_fields    => [],
-      :show_field      => "title"
-}) %> <br />
-<h2>Documentos Escritos</h2>
-<%= association_javascript({
-      :resource1       => "movie",
-      :resource2       => "writen_document",
-      :association     => "movie_writen_document",
-      :path_controller => "/admin/associations",
-      :checked_ids     => f.object.writen_document_ids,
-      :resource1_id    => f.object.id,
-      :extra_fields    => [],
-      :show_field      => "title"
-}) %> <br />
-<h2>Photos</h2>
-<%= association_javascript({
-      :resource1       => "movie",
-      :resource2       => "photo",
-      :association     => "movie_photo",
-      :path_controller => "/admin/associations",
-      :checked_ids     => f.object.photo_ids,
-      :resource1_id    => f.object.id,
-      :extra_fields    => [],
-      :show_field      => "title"
-}) %> <br />
-<h2>Locais</h2>
-<%= association_javascript({
-      :resource1       => "movie",
-      :resource2       => "local",
-      :association     => "movie_local",
-      :path_controller => "/admin/associations",
-      :checked_ids     => f.object.local_ids,
-      :resource1_id    => f.object.id,
-      :extra_fields    => [],
-      :show_field      => "name"
-}) %> <br />
-<h2>Prémios</h2>
-<%= association_javascript({
-      :resource1       => "movie",
-      :resource2       => "prize",
-      :association     => "movie_prizes",
-      :path_controller => "/admin/associations",
-      :checked_ids     => f.object.prize_ids,
-      :resource1_id    => f.object.id,
-      :extra_fields    => [],
-      :show_field      => "name"
-}) %> <br />
+<%= associate_nn_selector current_member, 'movie', 'movie',           'title', [], :mode => :itself %>
+<%= associate_nn_selector current_member, 'movie', 'sound_document',  'title', [], :mode => :normal %>
+<%= associate_nn_selector current_member, 'movie', 'writen_document', 'title', [], :mode => :normal %>
+<%= associate_nn_selector current_member, 'movie', 'photo',           'title', [], :mode => :normal %>
+<%= associate_nn_selector current_member, 'movie', 'local',           'name',  [], :mode => :normal %>
+<%= associate_nn_selector current_member, 'movie', 'prize',           'title',  [], :mode => :normal %>

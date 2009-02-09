@@ -13,11 +13,15 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
   #
-
   def admin_required
-    return true if (logged_in?  && current_user.role <= User::ADMIN)
+    return true if logged_in? && current_user.is_admin?
     session[:return_to] = request.request_uri
     redirect_to(login_path) and flash[:notice] = 'Não autorizado.' and return false
   end
 
+  def root_required
+    return true if logged_in? && current_user.is_root?
+    session[:return_to] = request.request_uri
+    redirect_to(login_path) and flash[:notice] = 'Não autorizado.' and return false
+  end
 end

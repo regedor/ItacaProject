@@ -1,76 +1,22 @@
 <%= f.error_messages %>
 <%= f.persist_fields %>
 
-
 <dl>
   <%= field_selector f, "author"                            %>
-  <% (f.columns.first f.columns.size-2 ).each do |column|  -%>
-    <%= f.render column %>
+  <% f.columns.each do |column| -%>
+    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
   <% end -%>
   <%= field_selector f, "category"                          %>
-  <%= field_selector f, "category_1_id", Category           %>
-  <%= field_selector f, "category_2_id", Category           %>
-  <%= field_selector f, "category_3_id", Category           %>
-  <%= field_selector f, "category_4_id", Category           %>
-  <%= association_javascript({
-       :resource1       => "photo",
-       :resource2       => "sound_document",
-       :association     => "sound_document_photos",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.sound_documents.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "title"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "photo",
-       :resource2       => "writen_document",
-       :association     => "writen_document_photos",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.writen_documents.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "title"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "photo",
-       :resource2       => "movie",
-       :association     => "movie_photos",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.movies.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "title"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "photo",
-       :resource2       => "local",
-       :association     => "photo_locals",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.locals.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "name"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "photo",
-       :resource2       => "prize",
-       :association     => "photo_prizes",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.locals.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "name"
-  }) %>
-  <%= association_javascript({
-       :resource1       => "photo",                  
-       :resource2       => "photo2",
-       :association     => "photo_photos",
-       :path_controller => "/admin/associations",
-       :checked_ids     => f.object.photo2s.map(&:id),
-       :resource1_id    => f.object.id,
-       :extra_fields    => [],
-       :show_field      => "title"
-  }) %>
-
+  <%= field_selector f, "subcategory_1_id", Subcategory     %>
+  <%= field_selector f, "subcategory_2_id", Subcategory     %>
+  <%= field_selector f, "subcategory_3_id", Subcategory     %>
+  <%= field_selector f, "subcategory_4_id", Subcategory     %>
+  <br/>
 </dl>
+ 
+<%= associate_nn_selector current_member, 'photo', 'movie',           'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'photo', 'sound_document',  'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'photo', 'writen_document', 'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'photo', 'photo',           'title', [], :mode => :itself %>
+<%= associate_nn_selector current_member, 'photo', 'local',           'name',  [], :mode => :normal %>
+<%= associate_nn_selector current_member, 'photo', 'prize',           'name',  [], :mode => :normal %>

@@ -1,7 +1,7 @@
-class PhotoPhoto < ActiveRecord::Base
-  A = 'photo_id'
-  B = 'photo2_id'
-  belongs_to :photo
+class LocalLocal < ActiveRecord::Base
+  A = 'local_id'
+  B = 'local2_id'
+  belongs_to :local
   attr_accessor :association_should_exist
 
   def after_create 

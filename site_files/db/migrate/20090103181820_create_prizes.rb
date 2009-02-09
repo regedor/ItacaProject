@@ -3,9 +3,8 @@ class CreatePrizes < ActiveRecord::Migration
     create_table :prizes do |t|
       t.string :title
       t.text :description
-      t.integer :user_creator_id
-      t.integer :user_updator_id
 
+      t.integer :user_id
       t.timestamps
     end
   end

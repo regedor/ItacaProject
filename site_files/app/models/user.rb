@@ -30,6 +30,13 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
+  def is_admin?
+    self.role < ADMIN
+  end
+
+  def is_root?
+    self.role == ROOT
+  end
 
   # Activates the user in the database.
   def activate!

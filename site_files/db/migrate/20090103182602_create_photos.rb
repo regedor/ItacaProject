@@ -11,15 +11,14 @@ class CreatePhotos < ActiveRecord::Migration
       t.string   :distributor
       t.string   :format
       t.integer  :category_id
-      t.integer   :subcategory_1_id
-      t.integer   :subcategory_2_id
-      t.integer   :subcategory_3_id
-      t.integer   :subcategory_4_id
+      t.integer  :subcategory_1_id
+      t.integer  :subcategory_2_id
+      t.integer  :subcategory_3_id
+      t.integer  :subcategory_4_id
       t.boolean  :free
       t.string   :rights
 
-      t.integer :user_creator_id
-      t.integer :user_updator_id
+      t.integer :user_id
       t.timestamps
     end
   end

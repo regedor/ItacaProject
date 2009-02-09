@@ -4,8 +4,6 @@ class CreateSubcategories < ActiveRecord::Migration
       t.string :name
       t.string :description
 
-      t.integer :user_creator_id
-      t.integer :user_updator_id
       t.timestamps
     end
   end

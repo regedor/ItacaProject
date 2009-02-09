@@ -10,9 +10,9 @@ class UsersController < ApplicationController
     success = @user && @user.save
     if success && @user.errors.empty?
       redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      flash[:notice] = "Obrigado por efectuar o registo. Em breve receberá um email para activar a sua conta."
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+      flash[:error]  = "Não foi possivel criar a sua conta. Se o problema persistir contacte o administrador."
       render :action => 'new'
     end
   end
@@ -23,13 +23,13 @@ class UsersController < ApplicationController
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
-      flash[:notice] = "Signup complete! Please sign in to continue."
+      flash[:notice] = "A sua conta encontra-se agora activa."
       redirect_to '/login'
     when params[:activation_code].blank?
-      flash[:error] = "The activation code was missing.  Please follow the URL from your email."
+      flash[:error] = "Código de activação inválido."
       redirect_back_or_default('/')
     else 
-      flash[:error]  = "We couldn't find a user with that activation code -- check your email? Or maybe you've already activated -- try signing in."
+      flash[:error]  = "Possivelmente esta conta já encontra activa."
       redirect_back_or_default('/')
     end
   end

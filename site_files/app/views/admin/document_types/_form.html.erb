@@ -3,12 +3,12 @@
 
 
 <dl>
-  <% (f.columns.first f.columns.size-2 ).each do |column| -%>
-    <%= f.render column %>
-  <% end -%>
   <%= field_selector f, "author"                            %>
   <%= field_selector f, "director"                          %>
   <%= field_selector f, "genre"                             %>
+  <% (f.columns).each do |column| -%>
+    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
+  <% end -%>
   <%= field_selector f, "category"                          %>
   <%= field_selector f, "category_1_id", Category           %>
   <%= field_selector f, "category_2_id", Category           %>

@@ -23,8 +23,7 @@ class CreateSoundDocuments < ActiveRecord::Migration
       t.integer  :music_genre_id
       t.string   :youtube_link
 
-      t.integer :user_creator_id
-      t.integer :user_updator_id
+      t.integer :user_id
       t.timestamps
     end
   end

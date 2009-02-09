@@ -20,8 +20,7 @@ class CreateWritenDocuments < ActiveRecord::Migration
       t.boolean   :free
       t.string    :rights
 
-      t.integer :user_creator_id
-      t.integer :user_updator_id
+      t.integer :user_id
       t.timestamps
     end
   end

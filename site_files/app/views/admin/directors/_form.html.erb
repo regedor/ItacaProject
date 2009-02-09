@@ -3,7 +3,7 @@
 
 
 <dl>
-  <% (f.columns.first f.columns.size-2 ).each do |column| -%>
-    <%= f.render column %>
+  <% (f.columns).each do |column| -%>
+    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
   <% end -%>
 </dl>

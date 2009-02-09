@@ -4,7 +4,12 @@
 
 <dl>
   <%= field_selector f, "country"                          %>
-  <% (f.columns.first f.columns.size-2 ).each do |column| -%>
-    <%= f.render column %>
+  <% (f.columns).each do |column| -%>
+    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
   <% end -%>
 </dl>
+<%= associate_nn_selector current_member, 'local', 'movie',           'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'local', 'sound_document',  'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'local', 'writen_document', 'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'local', 'photo',           'title', [], :mode => :invert %>
+<%= associate_nn_selector current_member, 'local', 'local',           'name',  [], :mode => :itself %>

@@ -1,13 +1,14 @@
-<% url  = "#{@registry[:path_controller]
-}/new?"              %>
-<% url += "resource2_checked_ids=#{@registry[:VALUE][:resource2_checked_ids]}"       %>
+<% url  = "#{@registry[:path_controller]}/new?"                                                                  %>
+<% url += "resource2_checked_ids=#{@registry[:VALUE][:resource2_checked_ids]}"                                   %>
 <% url += "&resource1_id=#{@registry[:VALUE][:resource1_id]}"                if @registry[:VALUE][:resource1_id] %>
-<% url += "&association=#{@registry[:association]}"          %>
-<% url += "&extra_fields=#{@registry[:extra_fields]}"          %>
-<% url += "&resource2=#{@registry[:resource2]}"              %>
-<% url += "&resource1=#{@registry[:resource1]}"              %>
-<% url += "&show_field=#{@registry[:show_field]}"              %>
-<% url += "&resource2_id=#{@registry[:resource2_id]}"              %>
+<% url += "&association=#{@registry[:association]}"                                                              %>
+<% url += "&extra_fields=#{@registry[:extra_fields]}"                                                            %>
+<% url += "&resource2=#{@registry[:resource2]}"                                                                  %>
+<% url += "&resource1=#{@registry[:resource1]}"                                                                  %>
+<% url += "&show_field=#{@registry[:show_field]}"                                                                %>
+<% url += "&resource2_id=#{@registry[:resource2_id]}"                                                            %>
+<% url += "&table_rows=#{@registry[:VALUE][:table_rows]}"                                                        %>
+
 
 function <%= "add_#{@registry[:association]}_button_init" %>() {
   eAnchor = $('<a href="#"><%= "Add_#{@registry[:resource2].pluralize}".humanize %></a>');

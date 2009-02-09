@@ -1,1 +1,13 @@
-<%= render :partial => 'association', :collection => @associations %>
+<% if ! @registry[:VALUE][:table_rows].blank? %>
+  <table>
+  <% @associations.in_groups_of(@registry[:VALUE][:table_rows].to_i, false) do |row_associations| %>
+    <tr>
+      <% for association in row_associations %>
+        <td><%= render :partial => 'association', :locals => { :association => association } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>  
+<% else %>
+  <%= render :partial => 'association', :collection => @associations %>
+<% end %>

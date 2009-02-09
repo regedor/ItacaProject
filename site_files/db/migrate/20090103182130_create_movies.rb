@@ -31,9 +31,8 @@ class CreateMovies < ActiveRecord::Migration
       t.string    :rights
       t.string    :youtube_link
 
-      t.integer    :user_creator_id
-      t.integer    :user_updator_id
-      t.integer    :status, :default => 0
+      t.integer   :user_id
+      t.integer   :status, :default => 0
       t.timestamps
     end
   end
