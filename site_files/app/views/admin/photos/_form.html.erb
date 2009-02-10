@@ -4,7 +4,12 @@
 <dl>
   <%= field_selector f, "author"                            %>
   <% f.columns.each do |column| -%>
-    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
+    <%= f.render column unless ['created_at', 
+                                'version_name', 
+                                'content_type', 
+                                'file_size', 
+                                'photo_owner_type', 
+                                'updated_at'].include? column.name %>
   <% end -%>
   <%= field_selector f, "category"                          %>
   <%= field_selector f, "subcategory_1_id", Subcategory     %>
@@ -20,3 +25,6 @@
 <%= associate_nn_selector current_member, 'photo', 'photo',           'title', [], :mode => :itself %>
 <%= associate_nn_selector current_member, 'photo', 'local',           'name',  [], :mode => :normal %>
 <%= associate_nn_selector current_member, 'photo', 'prize',           'name',  [], :mode => :normal %>
+
+<h3>Associar Ficheiro</h3>
+<%= uploadify_file_field :photo, :photo_uploaded_data %>

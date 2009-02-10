@@ -3,7 +3,7 @@ class CreateMoviePrizes < ActiveRecord::Migration
     create_table :movie_prizes do |t|
       t.integer :movie_id
       t.integer :prize_id
-      t.string :description
+      t.string  :description
 
       t.timestamps
     end

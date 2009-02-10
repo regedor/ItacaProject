@@ -18,7 +18,15 @@ class CreatePhotos < ActiveRecord::Migration
       t.boolean  :free
       t.string   :rights
 
-      t.integer :user_id
+      t.string   :filename
+      t.string   :version_name
+      t.string   :content_type
+      t.integer  :file_size
+      t.integer  :base_version_id
+      t.integer  :photo_owner_id
+      t.string   :photo_owner_type
+
+      t.integer  :user_id
       t.timestamps
     end
   end

@@ -8,6 +8,8 @@ class WritenDocument < ActiveRecord::Base
   belongs_to :document_type
   belongs_to :user
 
+  uploadify  :dir => 'public/assets/pdfs'
+
   associated_nn :to => 'movies',           :through => 'movie_writen_documents'
   associated_nn :to => 'sound_documents',  :through => 'sound_document_writen_documents'
   associated_nn :to =>  nil,               :through => 'writen_document_writen_documents'
@@ -20,6 +22,19 @@ class WritenDocument < ActiveRecord::Base
     'FROM "writen_documents" INNER JOIN writen_document_writen_documents' + 
     '  ON writen_document.id = writen_document_writen_documents.writen_document2_id ' +
     'WHERE (("writen_document_writen_documents".writen_document_id = #{id}))'
+
+  def pdf_uploaded_data=(data)
+    self.uploaded_data = data
+  end
+  
+  def pdf_already_uploaded_data
+    self.already_uploaded_data
+  end
+  
+  def pdf_already_uploaded_data=(data)
+    self.already_uploaded_data = data
+  end
+
 
   def subcategories
     Subcategory.all :conditions => 

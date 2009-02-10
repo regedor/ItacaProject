@@ -8,6 +8,8 @@ class Photo < ActiveRecord::Base
   belongs_to :genre
   belongs_to :user
 
+  uploadify :dir => 'public/assets/photos'
+
   associated_nn :to => 'movies',           :through => 'movie_photos'
   associated_nn :to => 'sound_documents',  :through => 'sound_document_photos'
   associated_nn :to => 'writen_documents', :through => 'writen_document_photos'
@@ -20,6 +22,18 @@ class Photo < ActiveRecord::Base
     'FROM "photos" INNER JOIN photo_photos' + 
     '  ON photos.id = photo_photos.photo2_id ' +
     'WHERE (("photo_photos".photo_id = #{id}))'
+
+  def photo_uploaded_data=(data)
+    self.uploaded_data = data
+  end
+  
+  def photo_already_uploaded_data
+    self.already_uploaded_data
+  end
+  
+  def photo_already_uploaded_data=(data)
+    self.already_uploaded_data = data
+  end
 
   def subcategories
     Subcategory.all :conditions => 

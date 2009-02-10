@@ -19,8 +19,18 @@ class CreateWritenDocuments < ActiveRecord::Migration
       t.integer   :subcategory_4_id
       t.boolean   :free
       t.string    :rights
+     
+      t.string    :filename
+      t.string    :version_name
+      t.string    :content_type
+      t.integer   :file_size
+      t.integer   :base_version_id
+      t.datetime  :created_at
+      t.datetime  :updated_at
+      t.integer   :pdf_owner_id
+      t.string    :pdf_owner_type
 
-      t.integer :user_id
+      t.integer   :user_id
       t.timestamps
     end
   end

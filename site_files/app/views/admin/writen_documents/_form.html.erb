@@ -1,12 +1,16 @@
 <%= f.error_messages %>
 <%= f.persist_fields %>
 
-
 <dl>
   <%= field_selector f, "document_type"                     %>
   <%= field_selector f, "author"                            %>
   <% f.columns.each do |column| -%>
-    <%= f.render column unless ['created_at','updated_at'].include? column.name %>
+    <%= f.render column unless ['updated_at',
+                                'created_at', 
+                                'version_name', 
+                                'content_type', 
+                                'file_size', 
+                                'photo_owner_type'].include? column.name %>
   <% end -%>
   <%= field_selector f, "category"                          %>
   <%= field_selector f, "subcategory_1_id",  Subcategory    %>
@@ -20,5 +24,7 @@
 <%= associate_nn_selector current_member, 'writen_document', 'writen_document', 'title', [], :mode => :itself %>
 <%= associate_nn_selector current_member, 'writen_document', 'photo',           'title', [], :mode => :normal %>
 <%= associate_nn_selector current_member, 'writen_document', 'local',           'name',  [], :mode => :normal %>
-<%= associate_nn_selector current_member, 'writen_document', 'prize',           'title',  [], :mode => :normal %>
+<%= associate_nn_selector current_member, 'writen_document', 'prize',           'title', [], :mode => :normal %>
 
+<h3>Associar PDF</h3>
+<%= uploadify_file_field :writen_document, :pdf_uploaded_data %>

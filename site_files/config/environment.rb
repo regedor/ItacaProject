@@ -76,6 +76,8 @@ end
 
 class String
   def humanize 
+    string = self
+    string = self.split.map(&:humanize).join " " if self.split.size > 1
     {
       :new_movie            => "Inserir filme",
       :new_sound_document   => "Inserir documento sonoro",
@@ -152,8 +154,9 @@ class String
       :actions              => "Acções",
       :created_at           => "Introduzido em",
       :updated_at           => "Última actulização em",
-      :youtube_link         => "Link de YouTube" 
-    }[self.downcase.gsub(/ /, "_").gsub(/_id$/, "").to_sym] || super	    
+      :youtube_link         => "Link de YouTube",
+      :add                  => "Adicionar" 
+    }[string.downcase.gsub(/ /, "_").gsub(/_id$/, "").to_sym] || super	    
   end
 end
 
