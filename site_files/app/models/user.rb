@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
   def is_admin?
-    self.role < ADMIN
+    self.role <= ADMIN
   end
 
   def is_root?
