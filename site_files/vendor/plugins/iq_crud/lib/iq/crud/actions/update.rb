@@ -19,12 +19,21 @@ module IQ::Crud::Actions::Update
   # PUT /products/1.xml
   def update
     instance_variable_set "@#{resource_singular}", find_member
-    
-    if current_member.update_attributes(params[resource_singular.to_sym])
-      flash[:success] = "#{resource_singular.humanize} was successfully updated."
-      response_for :update
-    else
-      response_for :update_failed
+    if current_user.role==User::ROOT || current_member.user_id == current_user.id
+      if current_member.update_attributes(params[resource_singular.to_sym])
+        flash[:success] = "Alterações guardadas com sucesso."
+        response_for :update
+      else
+        response_for :update_failed
+      end
     end
+    #instance_variable_set "@#{resource_singular}", find_member
+    #
+    #if current_member.update_attributes(params[resource_singular.to_sym])
+    #  flash[:success] = "#{resource_singular.humanize} was successfully updated."
+    #  response_for :update
+    #else
+    #  response_for :update_failed
+    #end
   end  
 end

@@ -3,8 +3,6 @@ class CreateCountries < ActiveRecord::Migration
     create_table :countries do |t|
       t.string :name, :limit => 32
       t.string :code, :limit => 3
-      t.integer :user_creator_id
-      t.integer :user_updator_id
 
       t.timestamps
     end

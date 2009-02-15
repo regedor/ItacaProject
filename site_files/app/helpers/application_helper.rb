@@ -10,7 +10,7 @@ module ApplicationHelper
     end
     "
       <dt>#{ f.label field_id_symbol                                                                    }</dt>
-      <dd>#{ f.collection_select field_id_symbol , field_class.all, :id, :name, :prompt => '--Select--' }</dd>
+      <dd>#{ f.collection_select field_id_symbol , field_class.all, :id, :name, :prompt => '-- Selecione --' }</dd>
     "
   end
 

@@ -31,6 +31,7 @@ class CreateWritenDocuments < ActiveRecord::Migration
       t.string    :pdf_owner_type
 
       t.integer   :user_id
+      t.integer   :status, :default => 0
       t.timestamps
     end
   end

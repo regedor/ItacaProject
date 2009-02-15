@@ -27,4 +27,4 @@
 <%= associate_nn_selector current_member, 'writen_document', 'prize',           'title', [], :mode => :normal %>
 
 <h3>Associar PDF</h3>
-<%= uploadify_file_field :writen_document, :pdf_uploaded_data %>
+<%= uploadify_file_field :writen_document, :pdf_uploaded_data %> <%= current_member.filename%>

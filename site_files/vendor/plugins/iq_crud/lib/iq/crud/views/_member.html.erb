@@ -1,9 +1,14 @@
     <tr<%= cycle(' class="alt"', '') %>>
-<% (member.respond_to?(:content_columns) ? member.content_columns : member.class.content_columns ).each do |column| -%>
+	    <% (member.respond_to?(:content_columns) ? member.content_columns : member.class.content_columns ).each do |column| -%>
+		    
+  <% unless ["version_name","content_type","photo_owner_type","pdf_owner_type"].include? column.name -%>  
       <td><%= (s = member.send(column.name)).blank? ? '&nbsp;' : h(s) %></td>
+  <% end -%>
 <% end -%>
       <td class="actions">
-        <%= link_to 'Edit',   edit_member_path(member) %> <span>|</span>
-        <%= link_to 'Delete', delete_member_path(member) %>
+      <% if current_user.role==User::ROOT || member.user_id == current_user.id -%>
+        <%= link_to 'Editar',   edit_member_path(member) %> <span>|</span>
+	<%= link_to 'Apagar', delete_member_path(member) %>
+      <% end -%>
       </td>
     </tr>

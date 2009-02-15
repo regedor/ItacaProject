@@ -19,12 +19,14 @@ module IQ::Crud::Actions::Destroy
   # DELETE /products/1.xml
   def destroy
     instance_variable_set "@#{resource_singular}", find_member
-    if current_member.destroy
-      flash[:success] = "#{resource_singular.humanize} has been deleted."
-      response_for :destroy
-    else
-      flash[:failure] = "#{resource_singular.humanize} could not be deleted."
-      response_for :destroy_failed
+    if current_user.role==User::ROOT || current_member.user_id == current_user.id
+      if current_member.destroy
+        flash[:success] = "#{resource_singular.humanize} removido com sucesso."
+        response_for :destroy
+      else
+        flash[:failure] = "#{resource_singular.humanize} could not be deleted."
+        response_for :destroy_failed
+      end
     end
   end
 end

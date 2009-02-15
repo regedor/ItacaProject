@@ -9,6 +9,8 @@ class Photo < ActiveRecord::Base
   belongs_to :user
 
   uploadify :dir => 'public/assets/photos'
+  process(          :format => 'jpg', :basename => 'original')    { |img| img.fit_to! 800, 800 }
+  process(:preview, :format => 'jpg', :basename => :version_name) { |img| img.fit_to! 64, 64 }
 
   associated_nn :to => 'movies',           :through => 'movie_photos'
   associated_nn :to => 'sound_documents',  :through => 'sound_document_photos'
@@ -16,6 +18,8 @@ class Photo < ActiveRecord::Base
   associated_nn :to =>  nil,               :through => 'photo_photos'
   associated_nn :to => 'locals',           :through => 'photo_locals'
   associated_nn :to => 'prizes',           :through => 'photo_prizes'
+
+
 
   has_many :photo_photos, :finder_sql =>
     'SELECT "photos".* ' +

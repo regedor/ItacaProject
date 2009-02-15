@@ -1,10 +1,11 @@
 class CreatePrizes < ActiveRecord::Migration
   def self.up
     create_table :prizes do |t|
-      t.string :title
-      t.text :description
+      t.string  :title
+      t.text    :description
 
       t.integer :user_id
+      t.integer :status, :default => 0
       t.timestamps
     end
   end

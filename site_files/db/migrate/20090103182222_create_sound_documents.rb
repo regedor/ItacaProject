@@ -24,6 +24,7 @@ class CreateSoundDocuments < ActiveRecord::Migration
       t.string   :youtube_link
 
       t.integer :user_id
+      t.integer :status, :default => 0
       t.timestamps
     end
   end

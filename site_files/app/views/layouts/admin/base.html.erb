@@ -30,14 +30,15 @@
            'photos','authors',
            'directors',
            'prizes',
-           'locals',
-           'countries',
+	   'locals'] +
+           ( current_user.role == User::ROOT ?
+           ['countries',
            'document_types',
            'genres',
 	   'categories',
 	   'subcategories',
-	   'users'
-         ]).each do |resource| %>
+	   'users'] : [])
+         ).each do |resource| %>
            <%= nav_item "<span><span>#{resource.humanize}</span></span>", send("admin_#{resource}_path") -%>
          <% end %>
     </ul>
