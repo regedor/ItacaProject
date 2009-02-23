@@ -1,10 +1,10 @@
-<h1>Delete <%= resource_singular.humanize.downcase %></h1>
+<h1>Apagar <%= resource_singular.humanize.downcase %></h1>
 
 <% form_for current_member, :html => { :method => :delete, :id => dom_id(current_member, 'delete'), :class => dom_class(current_member, 'delete') } do |f| %>
-<p>Are you sure you wish to delete this <%= resource_singular.humanize.downcase %>?</p>
+<p>Tem a certeza que deseja apagar <%= resource_singular.humanize.downcase %>?</p>
 
 <p class="form-actions">
-  <%= submit_tag "Delete #{resource_singular.humanize.downcase}" %> <span>or</span>
-  <%= link_to 'cancel', collection_path, :title => "Back to #{resource_singular.humanize.downcase} list" %>
+  <%= submit_tag "Apagar #{resource_singular.humanize.downcase}" %> <span>ou</span>
+  <%= link_to 'cancelar', collection_path, :title => "Voltar para a lista de #{resource_plural.humanize.downcase}" %>
 </p>
 <% end %>

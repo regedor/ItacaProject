@@ -16,12 +16,12 @@ class ApplicationController < ActionController::Base
   def admin_required
     return true if logged_in? && current_user.is_admin?
     session[:return_to] = request.request_uri
-    redirect_to(login_path) and flash[:notice] = 'Não autorizado.(only admin)' and return false
+    redirect_to(login_path) and flash[:notice] = 'Não autorizado. Deve ser Admin para aceder a esta área.' and return false
   end
 
   def root_required
     return true if logged_in? && current_user.is_root?
     session[:return_to] = request.request_uri
-    redirect_to(login_path) and flash[:notice] = 'Não autorizado.(only root)' and return false
+    redirect_to(login_path) and flash[:notice] = 'Não autorizado. Deve ser Root aceder a esta área.' and return false
   end
 end
