@@ -80,6 +80,7 @@ class String
       :new_movie                   => "Inserir filme",
       :new_sound_document          => "Inserir documento sonoro",
       :new_writen_document         => "Inserir documento escrito",
+      :new_music_genre             => "Criar novo tipo de som",
       :new_photo                   => "Inserir foto",
       :new_director                => "Inserir realizador",
       :new_local                   => "Inserir local",

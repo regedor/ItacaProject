@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :locals,            :member => { :delete => :get }
     admin.resources :countries,         :member => { :delete => :get }
     admin.resources :document_types,    :member => { :delete => :get }
+    admin.resources :music_genres,      :member => { :delete => :get }
     admin.resources :categories,        :member => { :delete => :get }
     admin.resources :subcategories,     :member => { :delete => :get }
     admin.resources :genres,            :member => { :delete => :get }

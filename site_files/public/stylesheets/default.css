@@ -191,6 +191,36 @@ background: url(/images/silk/icons/error.png) no-repeat 5px top;
   Common Panels
   ###################################################################
 */
+#wrapper {
+  background:   url(/images/bg_wrapper_top.gif) repeat-x;
+}
+
+body {
+  background:   url(/images/bg_body_bottom.gif) repeat-x;
+}
+
+#header {
+	height: 200px
+}
+
+#content_wrapper{
+  background:   url(/images/bg_content_wrapper.gif) repeat-y;
+}
+
+#content{
+  background:   url(/images/bg_content.gif) no-repeat top;
+}
+
+#footer {
+  position:     relative;
+  min-height:   50px;
+  width:        900px;
+  margin:       0 auto;
+  background:   url(/images/bg_footer.gif) no-repeat top;
+  padding-top:  40px;
+  text-align:   center;
+}
+
 #site {
   width:        900px;
   margin:       0 auto;
@@ -211,15 +241,7 @@ background: url(/images/silk/icons/error.png) no-repeat 5px top;
   margin:       0 auto;
   background:   url(/images/idm_body_top.jpg) no-repeat top;
 }
-#footer {
-  position:     relative;
-  min-height:   50px;
-  width:        900px;
-  margin:       0 auto;
-  background:   url(/images/idm_footer_top.jpg) no-repeat top;
-  padding-top:  40px;
-  text-align:   center;
-}
+
 
 .content{
   padding:      10px 80px;

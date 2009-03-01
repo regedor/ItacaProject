@@ -4,25 +4,26 @@
 
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Imagens das Migrações: <%= controller.action_name %></title>
+  <title>Imagens e Sonoridades das Migrações: <%= controller.action_name %></title>
   <%= stylesheet_link_tag 'default' %>
 </head>
 
 <body>
-  <div id="site">
-
-    <div id="site_top">
-
+  <div id="wrapper">
+	  <div id="header">
+		  dfgdfg
     </div>
 
-    <div id="site_body">
-      <div class="flash_text">
-        <div style="color: green"><%= flash[:notice] %> </div>
-        <div style="color: red"><%= flash[:error] %> </div>
-      </div>
+    <div id="content_wrapper">
+      <div id="content">
+        <div class="flash_text">
+          <div style="color: green"><%= flash[:notice] %> </div>
+          <div style="color: red"><%= flash[:error] %> </div>
+        </div>
 
-      <div class="content">
-        <%= yield  %>
+        <div class="content">
+          <%= yield  %>
+        </div>
       </div>
     </div>
 
