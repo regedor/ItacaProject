@@ -171,7 +171,9 @@ class String
       :remove_all_sound_documents  => "Remover todos os documentos sonoros",
       :remove_all_photos           => "Remover todas as fotos",
       :file_size                   => "Tamanho (bytes)",
-      :filename                    => "Nome do ficheiro"
+      :filename                    => "Nome do ficheiro",
+      :yes                         => "Sim",
+      :no                          => "Não"
     }[self.downcase.gsub(/ /, "_").gsub(/_id$/, "").to_sym] ||
     (self.split.size > 1 and return self.gsub(/_/, " ").split.map(&:humanize).join(" ").capitalize) || super	    
   end

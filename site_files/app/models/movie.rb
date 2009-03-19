@@ -9,12 +9,12 @@ class Movie < ActiveRecord::Base
   belongs_to :director
   belongs_to :user
 
-  associated_nn :to =>  nil,               :through => 'movie_movies'
-  associated_nn :to => 'sound_documents',  :through => 'movie_sound_documents'
-  associated_nn :to => 'writen_documents', :through => 'movie_writen_documents'
-  associated_nn :to => 'photos',           :through => 'movie_photos'
-  associated_nn :to => 'locals',           :through => 'movie_locals'
-  associated_nn :to => 'prizes',           :through => 'movie_prizes'
+  associated_nn :with =>  nil,               :through => 'movie_movies'
+  associated_nn :with => 'sound_documents',  :through => 'movie_sound_documents'
+  associated_nn :with => 'writen_documents', :through => 'movie_writen_documents'
+  associated_nn :with => 'photos',           :through => 'movie_photos'
+  associated_nn :with => 'locals',           :through => 'movie_locals'
+  associated_nn :with => 'prizes',           :through => 'movie_prizes'
 
   has_many :movies, :finder_sql =>
       'SELECT "movies".* ' +

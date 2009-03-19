@@ -1,108 +1,99 @@
-<p>
-  <b>Title:</b>
-  <%=h @movie.title %>
-</p>
+<% content_for :page_title, @movie.title %>
+<% content_for :body_id,    "show_movie" %>
 
-<p>
-  <b>Genre:</b>
-  <%=h @movie.genre_id %>
-</p>
+<div id='generic-info'>
+  <div id='item-presenter'>
+    <div id='youtube-embeb'>
+      <%= render_youtube @movie.youtube_link %>
+    </div>
+    <div id='related-photos'>
+      <% @movie.photos.each do | photo | %>
+        <%= link_to image_tag(photo.versions[:preview].relative_path), photo_path(photo), :title => "" %>
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <b>Synopsis:</b>
-  <%=h @movie.synopsis %>
-</p>
-
-<p>
-  <b>Author:</b>
-  <%=h @movie.author_id %>
-</p>
-
-<p>
-  <b>Director:</b>
-  <%=h @movie.director_id %>
-</p>
-
-<p>
-  <b>Producer:</b>
-  <%=h @movie.producer %>
-</p>
-
-<p>
-  <b>Production year:</b>
-  <%=h @movie.production_year %>
-</p>
-
-<p>
-  <b>Release date:</b>
-  <%=h @movie.release_date %>
-</p>
-
-<p>
-  <b>Local:</b>
-  <%=h @movie.local_id %>
-</p>
-
-<p>
-  <b>Comments:</b>
-  <%=h @movie.comments %>
-</p>
-
-<p>
-  <b>Production context:</b>
-  <%=h @movie.production_context %>
-</p>
-
-<p>
-  <b>Distributor:</b>
-  <%=h @movie.distributor %>
-</p>
-
-<p>
-  <b>Duration:</b>
-  <%=h @movie.duration %>
-</p>
-
-<p>
-  <b>Format:</b>
-  <%=h @movie.format %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%=h @movie.category_id %>
-</p>
-
-<p>
-  <b>Category id1:</b>
-  <%=h @movie.category_id1 %>
-</p>
-
-<p>
-  <b>Category id2:</b>
-  <%=h @movie.category_id2 %>
-</p>
-
-<p>
-  <b>Category id3:</b>
-  <%=h @movie.category_id3 %>
-</p>
-
-<p>
-  <b>Category id4:</b>
-  <%=h @movie.category_id4 %>
-</p>
-
-<p>
-  <b>Free:</b>
-  <%=h @movie.free %>
-</p>
-
-<p>
-  <b>Rights:</b>
-  <%=h @movie.rights %>
-</p>
+  <div id= 'fields'>
+    <%= render_field(@movie,'title')%>
+    <%= render_field_div "Género", @movie.genre.name if @movie.genre %>
+    <%= render_field_div "Temática", render_category_and_subs(@movie) %>
+    <%= render_field(@movie, 'duration')%>
+    <%= render_field(@movie, 'release_date')%>
+    <%= render_field_div "Autor", @movie.author.name, 
+                         :path => author_path(@movie.author_id),
+                         :description => "" if @movie.author %></p>
+    <%= render_field_div "Realizador", @movie.director.name, 
+                         :path => director_path(@movie.director_id),
+                         :description => "" if @movie.director %></p>
+    <%= render_prizes_list @movie %>
+    <%= render_field(@movie,'synopsis')%>
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+<div id='related-info'>
+  <h3>Relacionado com este filme:</h3>
+  <%= render_related 'movies', (@movie.movies.map do | item | 
+        { :title => item.title, :path => movie_path(item), :description => "" } 
+      end) %> 
+  <%= render_related 'locals', (@movie.locals.map do | item | 
+        { :title => item.name, :path => local_path(item), :description => "" } 
+      end) %> 
+  <%= render_related 'sound_documents', (@movie.sound_documents.map  do | item | 
+        { :title => item.title, :path => sound_document_path(item), :description => "" } 
+      end) %> 
+  <%= render_related 'writen_documents', (@movie.writen_documents.map do | item | 
+        { :title => item.title, :path => writen_document_path(item), :description => "" } 
+      end) %> 
+</div>	
+
+
+<div id='full-info'>
+  <h3>Ficha técnica</h3>
+  
+  <div id='full-info-control'>
+
+  </div>
+
+  <div id='full-info-fields'>
+    <% elements= [
+	{ :render_type => 'normal'       , :attribute => "title"                                            } ,  
+      	{ :render_type => 'id_field'     , :attribute => "genre_id"                                         } ,  
+      	{ :render_type => 'id_field'     , :attribute => "category_id"                                      } ,  
+      	{ :render_type => 'subcategories', :attribute => "subcategories"                                    } ,  
+      	{ :render_type => 'normal'       , :attribute => "synopsis"                                         } ,
+      	{ :render_type => 'id_field'     , :attribute => "author_id"                                        } ,
+      	{ :render_type => 'id_field'     , :attribute => "director_id"                                      } ,  
+      	{ :render_type => 'normal'       , :attribute => "producer"                                         } ,
+      	{ :render_type => 'normal'       , :attribute => "production_year"                                  } ,  
+      	{ :render_type => 'normal'       , :attribute => "release_date"                                     } ,  
+      	{ :render_type => 'normal'       , :attribute => "production_context"                               } ,  
+      	{ :render_type => 'normal'       , :attribute => "distributor"                                      } ,  
+      	{ :render_type => 'normal'       , :attribute => "duration"                                         } ,  
+      	{ :render_type => 'normal'       , :attribute => "format"                                           } ,  
+      	{ :render_type => 'yes_or_no'    , :attribute => "free"                                             } ,  
+      	{ :render_type => 'normal'       , :attribute => "rights"                                           } ,  
+      	{ :render_type => 'simple'       , :attribute => "Link"               , :value => movie_url(@movie) } ,  
+      	{ :render_type => 'none'         , :attribute => "youtube_link"                                     } ,  
+      	{ :render_type => 'normal'       , :attribute => "comments"                                         } ,  
+      	{ :render_type => 'normal'       , :attribute => "main_event"                                       } ,
+      	{ :render_type => 'normal'       , :attribute => "cultural_context"                                 } ,  
+      	{ :render_type => 'normal'       , :attribute => "image_sound"                                      } ,  
+      	{ :render_type => 'normal'       , :attribute => "ccdc"                                             } ,
+      	{ :render_type => 'normal'       , :attribute => "reading"                                          } ,  
+      	{ :render_type => 'normal'       , :attribute => "exploration"                                      } ,
+      	{ :render_type => 'normal'       , :attribute => "analisis"                                         } ,  
+      	{ :render_type => 'normal'       , :attribute => "proposals"                                        } ,  
+      	{ :render_type => 'none'         , :attribute => "created_at"                                       } ,  
+      	{ :render_type => 'none'         , :attribute => "updated_at"                                       } ,  
+      	{ :render_type => 'none'         , :attribute => "user_id"                                          } ,  
+      	{ :render_type => 'none'         , :attribute => "status"                                           } 
+    ] %>
+    <table>
+      <% elements.each do | element |  %>
+        <%= render_full_info_element element, @movie, (cycle "", "odd") %>
+      <% end %>
+    </table>	    
+  </div>  
+</div>
+

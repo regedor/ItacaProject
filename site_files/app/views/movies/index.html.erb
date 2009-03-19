@@ -1,4 +1,6 @@
-<h1>Listing movies</h1>
+<% content_for :page_title do %>
+  <h2>Lista de Filmes</h2>
+<% end %>
 
 <table>
   <tr>
@@ -10,17 +12,12 @@
     <th>Producer</th>
     <th>Production year</th>
     <th>Release date</th>
-    <th>Local</th>
     <th>Comments</th>
     <th>Production context</th>
     <th>Distributor</th>
     <th>Duration</th>
     <th>Format</th>
     <th>Category</th>
-    <th>Category id1</th>
-    <th>Category id2</th>
-    <th>Category id3</th>
-    <th>Category id4</th>
     <th>Free</th>
     <th>Rights</th>
   </tr>
@@ -35,26 +32,16 @@
     <td><%=h movie.producer %></td>
     <td><%=h movie.production_year %></td>
     <td><%=h movie.release_date %></td>
-    <td><%=h movie.local_id %></td>
     <td><%=h movie.comments %></td>
     <td><%=h movie.production_context %></td>
     <td><%=h movie.distributor %></td>
     <td><%=h movie.duration %></td>
     <td><%=h movie.format %></td>
     <td><%=h movie.category_id %></td>
-    <td><%=h movie.category_id1 %></td>
-    <td><%=h movie.category_id2 %></td>
-    <td><%=h movie.category_id3 %></td>
-    <td><%=h movie.category_id4 %></td>
     <td><%=h movie.free %></td>
     <td><%=h movie.rights %></td>
-    <td><%= link_to 'Show', movie %></td>
-    <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-    <td><%= link_to 'Destroy', movie, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
 
-<%= link_to 'New movie', new_movie_path %>

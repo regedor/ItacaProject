@@ -1,6 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
-#  map.default '', :controller => '--'
-
+    map.root :controller => 'pages', :action => 'show', :id => 'about'
+  # ==========================================================================
+  # public resources
+  # ==========================================================================
+    map.resources :pages
+    map.resources :movies
+    map.resources :sound_documents   
+    map.resources :writen_documents  
+    map.resources :photos   
+    map.resources :authors           
+    map.resources :directors         
+    map.resources :prizes          
+    map.resources :locals            
   # ==========================================================================
   # map Admin resources
   # ==========================================================================

@@ -1,5 +1,5 @@
 module ABRelation
-
+  #I'm using that when having multiple relation between the same model
   attr_accessor :association_should_exist
 
   def after_create 

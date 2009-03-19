@@ -4,26 +4,65 @@
 
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Imagens e Sonoridades das Migrações: <%= controller.action_name %></title>
+  <title> Imagens e Sonoridades das Migrações - <%= yield :page_title %> </title>
   <%= stylesheet_link_tag 'default' %>
 </head>
 
-<body>
+<body id="<%= yield(:body_id) || "body" %>" >
   <div id="wrapper">
-	  <div id="header">
-		  dfgdfg
+
+    <div id="header">
+      <h1 id="idm-logo">Imagens e Sonoridades das Migrações</h1>
+      <div id="account-bar">
+        <%= link_to "Acerca", page_path("about") %> |
+        <% if logged_in?%>	      
+		<%= (link_to "Area Privada", admin_movies_path) + ' | ' if current_user.is_admin? %>
+		<%= link_to "Log Out",   logout_path          %> 
+        <%else%>
+          <%= link_to "Login",    login_path  %> |
+          <%= link_to "Registar", signup_path %>
+        <% end %>
+      </div>
     </div>
 
-    <div id="content_wrapper">
+    <div id="nav-bar">
+      <ul id="nav">
+        <li> 
+          <%= link_to "Filmes", movies_path, 
+	              :id => "nav-movies-link", :title => "Lista de Filmes" %> 
+        </li>
+        <li> 
+          <%= link_to "Documentos Sonoros", sound_documents_path,
+		      :id => "nav-sound_documents-link", :title => "Lista de Documentos Sonoros" %> 
+        </li>
+        <li> 
+          <%= link_to "Documentos Escritos", writen_documents_path,
+		      :id => "nav-writen_documents-link", :title => "Lista de Documentos Escritos" %> 
+        </li> 
+        <li> 
+          <%= link_to "Fotos", photos_path,
+		      :id => "nav-photos-link", :title => "Lista de Fotos"%> 
+        </li> 
+        <li> 
+          <%= link_to "Autores", authors_path,
+		      :id => "nav-authors-link", :title => "Lista de Autores" %> 
+        </li> 
+        <li> 
+          <%= link_to "Realizadores", directors_path,
+		      :id => "nav-directors-link", :title => "Lista de Realizadores" %> 
+        </li> 
+      </ul>
+      <div id="page_title"> <h2> <%= yield :page_title %> </h2> </div>
+    </div>
+
+    <div id="content-wrapper">
       <div id="content">
+
         <div class="flash_text">
           <div style="color: green"><%= flash[:notice] %> </div>
           <div style="color: red"><%= flash[:error] %> </div>
         </div>
-
-        <div class="content">
-          <%= yield  %>
-        </div>
+        <%= yield %>
       </div>
     </div>
 
