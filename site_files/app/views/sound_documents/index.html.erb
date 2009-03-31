@@ -1,58 +1,27 @@
-<h1>Listing sound_documents</h1>
+<% content_for :page_title do %>Lista de Documentos Sonoros<% end %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Synopsis</th>
-    <th>Author</th>
-    <th>Director</th>
-    <th>Producer</th>
-    <th>Production year</th>
-    <th>Release date</th>
-    <th>Local</th>
-    <th>Comments</th>
-    <th>Production context</th>
-    <th>Distributor</th>
-    <th>Duration</th>
-    <th>Format</th>
-    <th>Category</th>
-    <th>Category id1</th>
-    <th>Category id2</th>
-    <th>Category id3</th>
-    <th>Category id4</th>
-    <th>Free</th>
-    <th>Rights</th>
-  </tr>
+<div id=sound-documents-index-list class=resource-list>
+  <table>
 
-<% for sound_document in @sound_documents %>
-  <tr>
-    <td><%=h sound_document.title %></td>
-    <td><%=h sound_document.synopsis %></td>
-    <td><%=h sound_document.author_id %></td>
-    <td><%=h sound_document.director_id %></td>
-    <td><%=h sound_document.producer %></td>
-    <td><%=h sound_document.production_year %></td>
-    <td><%=h sound_document.release_date %></td>
-    <td><%=h sound_document.local_id %></td>
-    <td><%=h sound_document.comments %></td>
-    <td><%=h sound_document.production_context %></td>
-    <td><%=h sound_document.distributor %></td>
-    <td><%=h sound_document.duration %></td>
-    <td><%=h sound_document.format %></td>
-    <td><%=h sound_document.category_id %></td>
-    <td><%=h sound_document.category_id1 %></td>
-    <td><%=h sound_document.category_id2 %></td>
-    <td><%=h sound_document.category_id3 %></td>
-    <td><%=h sound_document.category_id4 %></td>
-    <td><%=h sound_document.free %></td>
-    <td><%=h sound_document.rights %></td>
-    <td><%= link_to 'Show', sound_document %></td>
-    <td><%= link_to 'Edit', edit_sound_document_path(sound_document) %></td>
-    <td><%= link_to 'Destroy', sound_document, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <tr>
+      <th></th>
+      <th><%=h "Title".humanize %>          </th>
+      <th><%=h "Author".humanize %>         </th>
+      <th><%=h "Director".humanize %>       </th>
+      <th><%=h "music genre".humanize %>          </th>
+      <th><%=h "Synopsis".humanize %>       </th>
+    </tr>
+  
+    <% for resource in @sound_documents %>
+    <tr <%= cycle "", "class='odd'"%> href="<%= sound_document_path(resource) %>">
+      <td class="resource-pic"></td>
+      <td><%= link_to truncate(resource.title,50,"..."), sound_document_path(resource) %></td>
+      <td><%= link_to resource.author.name, author_path(resource.author) if resource.author %></td>
+      <td><%= link_to resource.director.name, director_path(resource.director) if resource.director %></td>
+      <td><%=h resource.music_genre.name if resource.music_genre %></td>
+      <td><%=h truncate(resource.synopsis,50,"...") %></td>
+    </tr>
+    <% end %>
 
-<br />
-
-<%= link_to 'New sound_document', new_sound_document_path %>
+  </table>
+</div>

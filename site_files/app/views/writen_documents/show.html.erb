@@ -1,93 +1,95 @@
-<p>
-  <b>Title:</b>
-  <%=h @writen_document.title %>
-</p>
+<% content_for :page_title, truncate(@writen_document.title,46,"...") %>
+<% content_for :body_id,    "show-writen_document" %>
 
-<p>
-  <b>Document type:</b>
-  <%=h @writen_document.document_type_id %>
-</p>
+<div id='generic-info'>
+  <div id='item-visuals'>
+    <div id='item-presenter'>
+    </div>
+    <div id='related-photos'>
+      <% @writen_document.photos.each do | photo | %>
+        <%= link_to image_tag(photo.versions[:preview].relative_path), photo_path(photo), :title => "" %>
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <b>Synopsis:</b>
-  <%=h @writen_document.synopsis %>
-</p>
-
-<p>
-  <b>Author:</b>
-  <%=h @writen_document.author_id %>
-</p>
-
-<p>
-  <b>Editor:</b>
-  <%=h @writen_document.editor %>
-</p>
-
-<p>
-  <b>Production year:</b>
-  <%=h @writen_document.production_year %>
-</p>
-
-<p>
-  <b>Local:</b>
-  <%=h @writen_document.local_id %>
-</p>
-
-<p>
-  <b>Comments:</b>
-  <%=h @writen_document.comments %>
-</p>
-
-<p>
-  <b>Production context:</b>
-  <%=h @writen_document.production_context %>
-</p>
-
-<p>
-  <b>Distributor:</b>
-  <%=h @writen_document.distributor %>
-</p>
-
-<p>
-  <b>Format:</b>
-  <%=h @writen_document.format %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%=h @writen_document.category_id %>
-</p>
-
-<p>
-  <b>Category id1:</b>
-  <%=h @writen_document.category_id1 %>
-</p>
-
-<p>
-  <b>Category id2:</b>
-  <%=h @writen_document.category_id2 %>
-</p>
-
-<p>
-  <b>Category id3:</b>
-  <%=h @writen_document.category_id3 %>
-</p>
-
-<p>
-  <b>Category id4:</b>
-  <%=h @writen_document.category_id4 %>
-</p>
-
-<p>
-  <b>Free:</b>
-  <%=h @writen_document.free %>
-</p>
-
-<p>
-  <b>Rights:</b>
-  <%=h @writen_document.rights %>
-</p>
+  <div id= 'fields'>
+    <%= render_field(@writen_document,'title')%>
+    <%= render_field_div "Autor", @writen_document.author.name, 
+                         :path => author_path(@writen_document.author_id),
+                         :description => "" if @writen_document.author %></p>
+    <%= render_field_div "Género", @writen_document.document_type.name if @writen_document.document_type%>
+    <%= render_field_div "Temática", render_category_and_subs(@writen_document) %>
+    <%= render_field(@writen_document,'synopsis')%>
+  </div>
+</div>
 
 
-<%= link_to 'Edit', edit_writen_document_path(@writen_document) %> |
-<%= link_to 'Back', writen_documents_path %>
+<div id='related-info'>
+  <h3>Relacionado com este documento escrito</h3>
+  <%= render_related 'locals', (@writen_document.locals.map do | item | 
+        { :title => item.name, :path => local_path(item), :description => "" } 
+      end) %> 
+  <%= render_related 'prizes', (@writen_document.prizes.map do | item | 
+        { :title => item.title, :path => prize_path(item), :description => item.description_for(@writen_document) } 
+      end) %> 
+  <%= render_related 'movies', (@writen_document.movies.map do | item | 
+        { :title => item.title, :path => movie_path(item), :description => "" } 
+      end) %> 
+  <%= render_related 'sound_documents', (@writen_document.sound_documents.map  do | item | 
+        { :title => item.title, :path => sound_document_path(item), :description => "" } 
+      end) %> 
+  <%= render_related 'writen_documents', (@writen_document.writen_documents.map do | item | 
+        { :title => item.title, :path => writen_document_path(item), :description => "" } 
+      end) %> 
+</div>	
+
+
+<div id='full-info'>
+  <h3>Ficha técnica</h3>
+  
+  <div id='full-info-control'>
+
+  </div>
+
+  <div id='full-info-fields'>
+    <% elements= [
+	{ :render_type => 'normal'       , :attribute => "title"                                            } ,  
+     # 	{ :render_type => 'id_field'     , :attribute => "genre_id"                                         } ,  
+      	{ :render_type => 'id_field'     , :attribute => "category_id"                                      } ,  
+      	{ :render_type => 'subcategories', :attribute => "subcategories"                                    } ,  
+      	{ :render_type => 'normal'       , :attribute => "synopsis"                                         } ,
+      	{ :render_type => 'id_field'     , :attribute => "author_id"                                        } ,
+     # 	{ :render_type => 'id_field'     , :attribute => "director_id"                                      } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "producer"                                         } ,
+     # 	{ :render_type => 'normal'       , :attribute => "production_year"                                  } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "release_date"                                     } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "production_context"                               } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "distributor"                                      } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "duration"                                         } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "format"                                           } ,  
+      	{ :render_type => 'yes_or_no'    , :attribute => "free"                                             } ,  
+      	{ :render_type => 'normal'       , :attribute => "rights"                                           } ,  
+      	{ :render_type => 'simple'       , :attribute => "Link"               , :value => movie_url(@writen_document) } ,  
+     # 	{ :render_type => 'none'         , :attribute => "youtube_link"                                     } ,  
+      	{ :render_type => 'normal'       , :attribute => "comments"                                         } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "main_event"                                       } ,
+     # 	{ :render_type => 'normal'       , :attribute => "cultural_context"                                 } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "image_sound"                                      } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "ccdc"                                             } ,
+     # 	{ :render_type => 'normal'       , :attribute => "reading"                                          } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "exploration"                                      } ,
+     # 	{ :render_type => 'normal'       , :attribute => "analisis"                                         } ,  
+     # 	{ :render_type => 'normal'       , :attribute => "proposals"                                        } ,  
+     # 	{ :render_type => 'none'         , :attribute => "created_at"                                       } ,  
+     # 	{ :render_type => 'none'         , :attribute => "updated_at"                                       } ,  
+      	{ :render_type => 'none'         , :attribute => "user_id"                                          } ,  
+      	{ :render_type => 'none'         , :attribute => "status"                                           } 
+    ] %>
+    <table>
+      <% elements.each do | element |  %>
+        <%= render_full_info_element element, @writen_document, (cycle "", "odd") if render_full_info_element element, @writen_document%>
+      <% end %>
+    </table>	    
+  </div>  
+</div>
+

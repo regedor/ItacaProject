@@ -9,12 +9,12 @@ class SoundDocument < ActiveRecord::Base
   belongs_to :music_genre
   belongs_to :user
 
-  associated_nn :to => 'movies',           :through => 'movie_sound_documents'
-  associated_nn :to =>  nil,               :through => 'sound_document_sound_documents'
-  associated_nn :to => 'writen_documents', :through => 'sound_document_writen_documents'
-  associated_nn :to => 'photos',           :through => 'sound_document_photos'
-  associated_nn :to => 'locals',           :through => 'sound_document_locals'
-  associated_nn :to => 'prizes',           :through => 'sound_document_prizes'
+  associated_nn :with => 'movies',           :through => 'movie_sound_documents'
+  associated_nn :with =>  nil,               :through => 'sound_document_sound_documents'
+  associated_nn :with => 'writen_documents', :through => 'sound_document_writen_documents'
+  associated_nn :with => 'photos',           :through => 'sound_document_photos'
+  associated_nn :with => 'locals',           :through => 'sound_document_locals'
+  associated_nn :with => 'prizes',           :through => 'sound_document_prizes'
 
   has_many :sound_documents, :finder_sql =>
     'SELECT "sound_documents".* ' +

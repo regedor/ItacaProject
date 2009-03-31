@@ -324,6 +324,8 @@ form dl dd dl dd button {
   border-color: #b55;
 }
 
+
+h1#logo a { text-decoration: none; color: #fff; }
 /* = Self-clearing floats
 -------------------------------------------------- */
 #content:after,

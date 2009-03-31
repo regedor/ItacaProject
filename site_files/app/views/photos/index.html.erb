@@ -1,52 +1,23 @@
-<h1>Listing photos</h1>
+<% content_for :page_title do %>Lista de Fotos<% end %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Synopsis</th>
-    <th>Author</th>
-    <th>Editor</th>
-    <th>Production year</th>
-    <th>Local</th>
-    <th>Comments</th>
-    <th>Production context</th>
-    <th>Distributor</th>
-    <th>Format</th>
-    <th>Category</th>
-    <th>Category id1</th>
-    <th>Category id2</th>
-    <th>Category id3</th>
-    <th>Category id4</th>
-    <th>Free</th>
-    <th>Rights</th>
-  </tr>
+<div id=photos-index-list class=resource-list>
+  <table>
 
-<% for photo in @photos %>
-  <tr>
-    <td><%=h photo.title %></td>
-    <td><%=h photo.synopsis %></td>
-    <td><%=h photo.author_id %></td>
-    <td><%=h photo.editor %></td>
-    <td><%=h photo.production_year %></td>
-    <td><%=h photo.local_id %></td>
-    <td><%=h photo.comments %></td>
-    <td><%=h photo.production_context %></td>
-    <td><%=h photo.distributor %></td>
-    <td><%=h photo.format %></td>
-    <td><%=h photo.category_id %></td>
-    <td><%=h photo.category_id1 %></td>
-    <td><%=h photo.category_id2 %></td>
-    <td><%=h photo.category_id3 %></td>
-    <td><%=h photo.category_id4 %></td>
-    <td><%=h photo.free %></td>
-    <td><%=h photo.rights %></td>
-    <td><%= link_to 'Show', photo %></td>
-    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-    <td><%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <tr>
+      <th></th>
+      <th><%=h "Title".humanize %>          </th>
+      <th><%=h "Author".humanize %>         </th>
+      <th><%=h "Synopsis".humanize %>       </th>
+    </tr>
+  
+    <% for resource in @photos %>
+    <tr <%= cycle "", "class='odd'"%> href="<%= photo_path(resource) %>">
+      <td class="resource-pic"></td>
+      <td><%= link_to truncate(resource.title,60,"..."), photo_path(resource) %></td>
+      <td><%= link_to resource.author.name, author_path(resource.author) if resource.author %></td>
+      <td><%=h truncate(resource.synopsis,60,"...") %></td>
+    </tr>
+    <% end %>
 
-<br />
-
-<%= link_to 'New photo', new_photo_path %>
+  </table>
+</div>

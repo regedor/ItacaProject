@@ -12,12 +12,12 @@ class Photo < ActiveRecord::Base
   process(          :format => 'jpg', :basename => 'original')    { |img| img.fit_to! 800, 800 }
   process(:preview, :format => 'jpg', :basename => :version_name) { |img| img.fit_to! 64, 64 }
 
-  associated_nn :to => 'movies',           :through => 'movie_photos'
-  associated_nn :to => 'sound_documents',  :through => 'sound_document_photos'
-  associated_nn :to => 'writen_documents', :through => 'writen_document_photos'
-  associated_nn :to =>  nil,               :through => 'photo_photos'
-  associated_nn :to => 'locals',           :through => 'photo_locals'
-  associated_nn :to => 'prizes',           :through => 'photo_prizes'
+  associated_nn :with => 'movies',           :through => 'movie_photos'
+  associated_nn :with => 'sound_documents',  :through => 'sound_document_photos'
+  associated_nn :with => 'writen_documents', :through => 'writen_document_photos'
+  associated_nn :with =>  nil,               :through => 'photo_photos'
+  associated_nn :with => 'locals',           :through => 'photo_locals'
+  associated_nn :with => 'prizes',           :through => 'photo_prizes'
 
 
 

@@ -33,25 +33,28 @@ module ApplicationHelper
   def render_full_info_element(element, item, tag_class=nil)
     case element[:render_type]
       when 'normal'
-        return "" if (value = item.send element[:attribute]).blank?
+        return nil if (value = item.send element[:attribute]).blank?
         attribute = element[:attribute].humanize
       when 'id_field'
 	attribute = element[:attribute][0..-4]
 	element[:label_field] ||= 'name'
-	value = attribute.classify.constantize.find_by_id(item.send(element[:attribute])).send element[:label_field]
+	return nil unless a = attribute.classify.constantize.find_by_id(item.send(element[:attribute]))
+	value = a.send element[:label_field]
 	attribute = attribute.humanize
       when 'simple'
 	attribute = element[:attribute].humanize
 	value     = element[:value]
       when 'subcategories'
-        "teste"      
+	attribute = "subcategories".humanize
+        value = item.category && item.category.name || "--"
+        item.subcategories.each { |s| value += ", #{s.name}" }
       when 'yes_or_no'
 	attribute = element[:attribute].humanize
-        value     = (item.send element[:attribute]) ? "yes" : "no"
+        value     = ((item.send element[:attribute]) ? "yes" : "no").humanize
       else
-	return ""
+	return nil
     end
-    "<tr #{'class='+tag_class unless tag_class.blank?}> <td>#{attribute}:</td> <td>#{value}</td> </tr>"
+    "<tr #{'class='+tag_class unless tag_class.blank?}> <td class='column-title'>#{attribute}</td> <td>#{value}</td> </tr>"
   end
 
   def render_related(name, list)
@@ -90,22 +93,22 @@ module ApplicationHelper
   end	  
   def render_field_div(title, content, options={})
     if options[:path]
-      "<div class='field'> <h4>#{title}:</h4><p>" + 
+      "<div class='field'> <h4>#{title}</h4><p>" + 
         link_to(content, options[:path], :title => options[:description]) + 
       "</p></div>"
     else   
-      "<div class='field'> <h4>#{title}:</h4><p>" + content + "</p></div>"
+      "<div class='field'> <h4>#{title}</h4><p>" + content + "</p></div>"
     end
   end
 
   def render_category_and_subs(item)
-    out = item.category && item.category.name || "none"
+    out = item.category && item.category.name || "vazio"
     item.subcategories.each { |s| out += ", #{s.name}" }
     out
   end
 
   def render_field (item, field)
-    "<div class='field'> <h4>#{field.humanize}:</h4> <p>#{item.send field}</p></div>" unless item.send(field).blank?
+    "<div class='field'> <h4>#{field.humanize}</h4> <p>#{item.send field}</p></div>" unless item.send(field).blank?
   end
 
   def render_youtube(url)

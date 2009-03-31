@@ -1,9 +1,9 @@
-<% content_for :page_title, @movie.title %>
-<% content_for :body_id,    "show_movie" %>
+<% content_for :page_title, truncate(@movie.title,46,"...") %>
+<% content_for :body_id,    "show-movie" %>
 
 <div id='generic-info'>
-  <div id='item-presenter'>
-    <div id='youtube-embeb'>
+  <div id='item-visuals'>
+    <div id='item-presenter'>
       <%= render_youtube @movie.youtube_link %>
     </div>
     <div id='related-photos'>
@@ -15,29 +15,31 @@
 
   <div id= 'fields'>
     <%= render_field(@movie,'title')%>
-    <%= render_field_div "Género", @movie.genre.name if @movie.genre %>
-    <%= render_field_div "Temática", render_category_and_subs(@movie) %>
-    <%= render_field(@movie, 'duration')%>
-    <%= render_field(@movie, 'release_date')%>
     <%= render_field_div "Autor", @movie.author.name, 
                          :path => author_path(@movie.author_id),
                          :description => "" if @movie.author %></p>
     <%= render_field_div "Realizador", @movie.director.name, 
                          :path => director_path(@movie.director_id),
                          :description => "" if @movie.director %></p>
-    <%= render_prizes_list @movie %>
+    <%= render_field(@movie, 'production_year')%>
+    <%= render_field_div "Género", @movie.genre.name if @movie.genre %>
+    <%= render_field_div "Temática", render_category_and_subs(@movie) %>
+    <%= render_field(@movie, 'duration')%>
     <%= render_field(@movie,'synopsis')%>
   </div>
 </div>
 
 
 <div id='related-info'>
-  <h3>Relacionado com este filme:</h3>
-  <%= render_related 'movies', (@movie.movies.map do | item | 
-        { :title => item.title, :path => movie_path(item), :description => "" } 
-      end) %> 
+  <h3>Relacionado com este filme</h3>
   <%= render_related 'locals', (@movie.locals.map do | item | 
         { :title => item.name, :path => local_path(item), :description => "" } 
+      end) %> 
+  <%= render_related 'prizes', (@movie.prizes.map do | item | 
+        { :title => item.title, :path => prize_path(item), :description => item.description_for(@movie) } 
+      end) %> 
+  <%= render_related 'movies', (@movie.movies.map do | item | 
+        { :title => item.title, :path => movie_path(item), :description => "" } 
       end) %> 
   <%= render_related 'sound_documents', (@movie.sound_documents.map  do | item | 
         { :title => item.title, :path => sound_document_path(item), :description => "" } 
@@ -91,7 +93,7 @@
     ] %>
     <table>
       <% elements.each do | element |  %>
-        <%= render_full_info_element element, @movie, (cycle "", "odd") %>
+        <%= render_full_info_element element, @movie, (cycle "", "odd") if render_full_info_element element, @movie%>
       <% end %>
     </table>	    
   </div>  

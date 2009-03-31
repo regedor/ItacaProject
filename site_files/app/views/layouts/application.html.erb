@@ -16,7 +16,7 @@
       <div id="account-bar">
         <%= link_to "Acerca", page_path("about") %> |
         <% if logged_in?%>	      
-		<%= (link_to "Area Privada", admin_movies_path) + ' | ' if current_user.is_admin? %>
+		<%= (link_to "Administração", admin_movies_path) + ' | ' if current_user.is_admin? %>
 		<%= link_to "Log Out",   logout_path          %> 
         <%else%>
           <%= link_to "Login",    login_path  %> |

@@ -1,24 +1,24 @@
-<h1>Listing authors</h1>
+<% content_for :page_title do %>Lista de Autores<% end %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Biography</th>
-    <th>First work</th>
-  </tr>
 
-<% for author in @authors %>
-  <tr>
-    <td><%=h author.name %></td>
-    <td><%=h author.biography %></td>
-    <td><%=h author.first_work %></td>
-    <td><%= link_to 'Show', author %></td>
-    <td><%= link_to 'Edit', edit_author_path(author) %></td>
-    <td><%= link_to 'Destroy', author, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div id=movies-index-list class=resource-list>
+  <table>
 
-<br />
+    <tr>
+      <th></th>
+      <th><%=h "Name".humanize %>          </th>
+      <th><%=h "Biography".humanize %>         </th>
+    </tr>
+  
+    <% for resource in @authors %>
+    <tr <%= cycle "", "class='odd'"%>  href="<%= author_path(resource)%>" >
+      <td class="resource-pic">  </td>
+      <td><%= link_to truncate(resource.name,80,"..."), author_path(resource) %></td>
+      <td><%=h truncate(resource.biography,80,"...") %></td>
+    </tr>
+    <% end %>
 
-<%= link_to 'New author', new_author_path %>
+  </table>
+</div>
+
+

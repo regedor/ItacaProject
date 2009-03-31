@@ -1,54 +1,26 @@
-<h1>Listing writen_documents</h1>
+<% content_for :page_title do %>Lista de Documentos Escritos<% end %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Document type</th>
-    <th>Synopsis</th>
-    <th>Author</th>
-    <th>Editor</th>
-    <th>Production year</th>
-    <th>Local</th>
-    <th>Comments</th>
-    <th>Production context</th>
-    <th>Distributor</th>
-    <th>Format</th>
-    <th>Category</th>
-    <th>Category id1</th>
-    <th>Category id2</th>
-    <th>Category id3</th>
-    <th>Category id4</th>
-    <th>Free</th>
-    <th>Rights</th>
-  </tr>
+<div id=writen-documents-index-list class=resource-list>
+  <table>
 
-<% for writen_document in @writen_documents %>
-  <tr>
-    <td><%=h writen_document.title %></td>
-    <td><%=h writen_document.document_type_id %></td>
-    <td><%=h writen_document.synopsis %></td>
-    <td><%=h writen_document.author_id %></td>
-    <td><%=h writen_document.editor %></td>
-    <td><%=h writen_document.production_year %></td>
-    <td><%=h writen_document.local_id %></td>
-    <td><%=h writen_document.comments %></td>
-    <td><%=h writen_document.production_context %></td>
-    <td><%=h writen_document.distributor %></td>
-    <td><%=h writen_document.format %></td>
-    <td><%=h writen_document.category_id %></td>
-    <td><%=h writen_document.category_id1 %></td>
-    <td><%=h writen_document.category_id2 %></td>
-    <td><%=h writen_document.category_id3 %></td>
-    <td><%=h writen_document.category_id4 %></td>
-    <td><%=h writen_document.free %></td>
-    <td><%=h writen_document.rights %></td>
-    <td><%= link_to 'Show', writen_document %></td>
-    <td><%= link_to 'Edit', edit_writen_document_path(writen_document) %></td>
-    <td><%= link_to 'Destroy', writen_document, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <tr>
+      <th></th>
+      <th><%=h "Title".humanize %>          </th>
+      <th><%=h "Author".humanize %>         </th>
+      <th><%=h "document type".humanize %>          </th>
+      <th><%=h "Synopsis".humanize %>       </th>
+    </tr>
+  
+    <% for resource in @writen_documents %>
+    <tr <%= cycle "", "class='odd'"%> href="<%= writen_document_path(resource) %>">
+      <td class="resource-pic"></td>
+      <td><%= link_to truncate(resource.title,60,"..."), writen_document_path(resource) %></td>
+      <td><%= link_to resource.author.name, author_path(resource.author) if resource.author %></td>
+      <td><%=h resource.document_type.name if resource.document_type %></td>
+      <td><%=h truncate(resource.synopsis,60,"...") %></td>
+    </tr>
+    <% end %>
 
-<br />
+  </table>
+</div>
 
-<%= link_to 'New writen_document', new_writen_document_path %>

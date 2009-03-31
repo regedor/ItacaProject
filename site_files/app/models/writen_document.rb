@@ -10,17 +10,17 @@ class WritenDocument < ActiveRecord::Base
 
   uploadify  :dir => 'public/assets/pdfs'
 
-  associated_nn :to => 'movies',           :through => 'movie_writen_documents'
-  associated_nn :to => 'sound_documents',  :through => 'sound_document_writen_documents'
-  associated_nn :to =>  nil,               :through => 'writen_document_writen_documents'
-  associated_nn :to => 'photos',           :through => 'writen_document_photos'
-  associated_nn :to => 'locals',           :through => 'writen_document_locals'
-  associated_nn :to => 'prizes',           :through => 'writen_document_prizes'
+  associated_nn :with => 'movies',           :through => 'movie_writen_documents'
+  associated_nn :with => 'sound_documents',  :through => 'sound_document_writen_documents'
+  associated_nn :with =>  nil,               :through => 'writen_document_writen_documents'
+  associated_nn :with => 'photos',           :through => 'writen_document_photos'
+  associated_nn :with => 'locals',           :through => 'writen_document_locals'
+  associated_nn :with => 'prizes',           :through => 'writen_document_prizes'
 
   has_many :writen_documents, :finder_sql =>
     'SELECT "writen_documents".* ' +
     'FROM "writen_documents" INNER JOIN writen_document_writen_documents' + 
-    '  ON writen_document.id = writen_document_writen_documents.writen_document2_id ' +
+    '  ON writen_documents.id = writen_document_writen_documents.writen_document2_id ' +
     'WHERE (("writen_document_writen_documents".writen_document_id = #{id}))'
 
   def pdf_uploaded_data=(data)
