@@ -1,7 +1,7 @@
 <% content_for :page_title, truncate(@movie.title,46,"...") %>
 <% content_for :body_id,    "show-movie" %>
 
-<div id='generic-info'>
+<div id='generic-info' class='selfclear'>
   <div id='item-visuals'>
     <div id='item-presenter'>
       <%= render_youtube @movie.youtube_link %>
@@ -29,8 +29,7 @@
   </div>
 </div>
 
-
-<div id='related-info'>
+<div id='related-info' class='selfclear'>
   <h3>Relacionado com este filme</h3>
   <%= render_related 'locals', (@movie.locals.map do | item | 
         { :title => item.name, :path => local_path(item), :description => "" } 

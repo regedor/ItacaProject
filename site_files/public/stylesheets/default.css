@@ -89,7 +89,8 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #nav a#nav-writen_documents-link { background-position: -137px;}  
 #nav a#nav-photos-link           { background-position: -200px;}  
 #nav a#nav-authors-link          { background-position: -263px;}  
-#nav a#nav-directors-link        { background-position: -326px;}  
+#nav a#nav-directors-link        { background-position: -326px;} 
+#nav, #nav li            { display:inline; }
 
 #content-wrapper     { background: url(/images/bg_content-wrapper.gif) repeat-y center; }
 #content             { background:  url(/images/bg_content.gif) no-repeat top;
@@ -113,7 +114,8 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 */
 #full-info, #related-info                 { background: url(/images/bg_division-bar.gif) repeat-x top;
                                             margin : 20px -20px 7px -20px; padding: 0 20px 0 20px; }
-#full-info > h3, #related-info > h3       { padding-top: 22px; top:-0.5em; padding-bottom: 5px; position:relative}
+#full-info h3, #related-info h3           { padding-top: 22px; padding-bottom: 5px; position:relative}
+#full-info h3, #related-info h3           { top:-0.5em; }
 #related-info                             { padding-right:0;}
 #show-movie #generic-info #item-presenter { background: url(/images/bg_big-pic-movie.gif) no-repeat center -20px; }
 
@@ -132,13 +134,20 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 
 
 
-
 /* Self-clearing floats */
-#related-info:after,
-#generic-info:after{
+.selfclear:after{
   content: "."; 
   display: block; 
   height: 0; 
   clear: both; 
   visibility: hidden;
+}
+.selfclear {
+  display: inline-block; /* IE 7 */
+}
+.selfclear {
+  display: block;
+}
+* html .selfclear {
+  height: 1px; /* IE < 7 */
 }
