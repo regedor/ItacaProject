@@ -5,17 +5,19 @@
 <div id=directors-index-list class=resource-list>
   <table>
 
-    <tr>
+    <tr class="table-header">
       <th></th>
       <th><%=h "Name".humanize %>          </th>
       <th><%=h "Biography".humanize %>         </th>
+      <th></th>
     </tr>
   
     <% for resource in @directors %>
     <tr <%= cycle "", "class='odd'"%>  href="<%= director_path(resource)%>" >
       <td class="resource-pic">  </td>
-      <td><%= link_to truncate(resource.name,80,"..."), director_path(resource) %></td>
-      <td><%=h truncate(resource.biography,80,"...") %></td>
+      <td><%= link_to truncate(resource.name,80,"..."),      director_path(resource) %></td>
+      <td><%= link_to truncate(resource.biography,80,"..."), director_path(resource) %></td>
+      <td class="last-td-in-row"> </td>
     </tr>
     <% end %>
 

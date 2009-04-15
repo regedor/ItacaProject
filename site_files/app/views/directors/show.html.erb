@@ -1,18 +1,32 @@
-<p>
-  <b>Name:</b>
-  <%=h @director.name %>
-</p>
+<% content_for :page_title, truncate(@director.name,46,"...") %>
+<% content_for :body_id,    "show-director" %>
 
-<p>
-  <b>Biography:</b>
-  <%=h @director.biography %>
-</p>
+<div id='generic-info' class='selfclear'>
+  <div id='item-visuals'>
+    <div id='item-presenter'>
+    </div>
+  </div>
 
-<p>
-  <b>First work:</b>
-  <%=h @director.first_work %>
-</p>
+  <div id= 'fields'>
+    <%= render_field(@director,'name')%>
+    <%= render_field(@director,'first_work')%>
+    <%= render_field(@director,'biography')%>
+  </div> 
+</div>
 
 
-<%= link_to 'Edit', edit_director_path(@director) %> |
-<%= link_to 'Back', directors_path %>
+<div id='related-info' class='selfclear'>
+  <h3>Obras do Realizador</h3>
+
+  <div class='selfclear'>
+    <%= render_related 'movies', (@director.movies.map do | item | 
+          { :title => item.title, :path => movie_path(item), :description => "" } 
+    end) if @director.movies %> 
+    <%= render_related 'sound_documents', (@director.sound_documents.map  do | item | 
+          { :title => item.title, :path => sound_document_path(item), :description => "" } 
+    end) if @director.sound_documents %> 
+  </div>
+</div>	
+
+
+

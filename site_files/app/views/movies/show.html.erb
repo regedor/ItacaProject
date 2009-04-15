@@ -25,37 +25,54 @@
     <%= render_field_div "Género", @movie.genre.name if @movie.genre %>
     <%= render_field_div "Temática", render_category_and_subs(@movie) %>
     <%= render_field(@movie, 'duration')%>
-    <%= render_field(@movie,'synopsis')%>
-  </div>
+  </div> 
 </div>
+
+<div id='more-info' style="clear:both;">
+  <h3>Sinopse</h3>
+  <p> <%= !@movie.synopsis.blank? && @movie.synopsis || "<span class='empty-data'>(sem informação)</span>" %> </p>
+</div>
+
+
 
 <div id='related-info' class='selfclear'>
   <h3>Relacionado com este filme</h3>
-  <%= render_related 'locals', (@movie.locals.map do | item | 
-        { :title => item.name, :path => local_path(item), :description => "" } 
-      end) %> 
-  <%= render_related 'prizes', (@movie.prizes.map do | item | 
-        { :title => item.title, :path => prize_path(item), :description => item.description_for(@movie) } 
-      end) %> 
-  <%= render_related 'movies', (@movie.movies.map do | item | 
-        { :title => item.title, :path => movie_path(item), :description => "" } 
-      end) %> 
-  <%= render_related 'sound_documents', (@movie.sound_documents.map  do | item | 
-        { :title => item.title, :path => sound_document_path(item), :description => "" } 
-      end) %> 
-  <%= render_related 'writen_documents', (@movie.writen_documents.map do | item | 
-        { :title => item.title, :path => writen_document_path(item), :description => "" } 
-      end) %> 
+
+  <div class='selfclear'>
+    <%= render_related 'locals', (@movie.locals.map do | item | 
+          { :title => item.name, :path => local_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'prizes', (@movie.prizes.map do | item | 
+          { :title => item.title, :path => prize_path(item), :description => item.description_for(@movie) } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'movies', (@movie.movies.map do | item | 
+          { :title => item.title, :path => movie_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'sound_documents', (@movie.sound_documents.map  do | item | 
+          { :title => item.title, :path => sound_document_path(item), :description => "" } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'writen_documents', (@movie.writen_documents.map do | item | 
+          { :title => item.title, :path => writen_document_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'photos', (@movie.photos.map do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+  </div>
 </div>	
 
 
 <div id='full-info'>
-  <h3>Ficha técnica</h3>
+  <h3>
+    Descrição e Análise 
+    <%= link_to image_tag("page_white_acrobat.png"), 
+	        movie_path(@movie, :format => 'pdf'),
+                :title => "Download da descrição e analise em formato PDF"%>
+  </h3>
   
-  <div id='full-info-control'>
-
-  </div>
-
   <div id='full-info-fields'>
     <% elements= [
 	{ :render_type => 'normal'       , :attribute => "title"                                            } ,  

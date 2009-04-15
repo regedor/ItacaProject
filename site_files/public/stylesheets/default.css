@@ -30,18 +30,19 @@ blockquote, q { quotes: "" ""; }
 
 /* = Typography
 -------------------------------------------------- */
-a                                   { text-decoration: underline; color: #fff;}
-a:hover                             { color:#68f; text-decoration: none;}
-p                                   { font-size: 1.1em; line-height: 1.7; margin-bottom: 1.5em; }
+a                                   { text-decoration: none; color: #fff;}
+a:hover                             { color:#57f; text-decoration: none;}
+p                                   { font-size: 1.1em; line-height: 1.7; margin-bottom: 1.5em; text-align:justify;}
 h2                                  { font-size: 2.2em; }
 
 h3                                  { font-size: 1.8em; }
 h4                                  { font-size: 1.6em; color: #68f;}
 #content p                          { font-size: 1.26em; color: #fff;}
-#full-info td                       { font-size: 1.2em; color: #68f;}
-#full-info td.column-title          { font-size: 1.25em; color: #fff;}
+#full-info td                       { font-size: 1.26em; color: #fff;}
+#full-info td.column-title          { font-size: 1.2em; color: #68f; font-weight: bold;}
 #related-info #related-prizes li p  { margin-bottom: 0.5em;}
 #related-info h4                    { margin: 0.6em 0;}
+
 
 .resource-list a                    { text-decoration:none;}
 .resource-list th                   { font-size: 1.6em; color: #68f;}             
@@ -56,9 +57,15 @@ h4                                  { font-size: 1.6em; color: #68f;}
 #login-form input, 
 #signup-form input                  { margin-bottom: 1em;}
 
+#about p                            { margin-bottom: 0.5em; }
+#about h4                           { margin-top: 1em; margin-bottom:0.1em}
 
+#footer a {font-weight:bold;}
 
-/* = Structure
+#authors-index-list a { color:#fff;}
+.empty-data { font-style:italic; color: #345;}
+
+/* = General Structure
 -------------------------------------------------- */
 body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat-x scroll bottom;  
                      margin: 0;  padding: 0; font-size: 62.5%; color: #fff;
@@ -97,57 +104,64 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
                        width: auto; padding: 22px 55px; min-height:  250px; }
 #footer              { background:   url(/images/bg_footer.gif) no-repeat top center;
 	               height: 60px; padding-top: 40px; text-align: center; font-size: 1.2em; }
-#footer a            { color:       #fff; text-decoration: none; }
 
 
 
-/* = Show Structure
+/* = Resources Show Structure
 -------------------------------------------------- */
-#generic-info #fields                     { float: right; width:420px; }	
-#generic-info #item-visuals               { float: left;  width:425px; }
-#generic-info #related-photos             { float: left;  width: 425px; margin-top: 20px; }
-#generic-info #item-presenter             { min-height: 300px; }
+#generic-info #fields                      { float: right; width:420px; }	
+#generic-info #item-visuals                { float: left;  width:425px; margin-bottom:40px;}
+#generic-info #related-photos              { float: left;  width: 425px; margin-top: 20px; }
+#generic-info #item-presenter              { min-height: 300px; }
 
 
-#related-info .related-items              { float: left; width: 50%;}
-/*#related-info #related-prizes > h4         { background: url(/images/bg_division-bar.gif) no-repeat; padding-left:60px}
-*/
-#full-info, #related-info                 { background: url(/images/bg_division-bar.gif) repeat-x top;
-                                            margin : 20px -20px 7px -20px; padding: 0 20px 0 20px; }
-#full-info h3, #related-info h3           { padding-top: 22px; padding-bottom: 5px; position:relative}
-#full-info h3, #related-info h3           { top:-0.5em; }
-#related-info                             { padding-right:0;}
-#show-movie #generic-info #item-presenter { background: url(/images/bg_big-pic-movie.gif) no-repeat center -20px; }
+#related-info .related-items               { float: left; width: 50%;}
+#full-info, 
+#related-info,
+#more-info                                 { background: url(/images/bg_division-bar.gif) repeat-x top;
+                                             margin : 20px -20px 0px -20px; padding: 0 20px 0 20px; }
+#full-info h3, 
+#related-info h3,
+#more-info h3                              { padding-top: 22px; padding-bottom: 15px; position:relative}
+#full-info h3, 
+#related-info h3,
+#more-info h3                              { top:-0.5em; }
+#related-info                              { padding-right:0;}
+#show-movie    #item-presenter             { background: url(/images/bg_big-pic-movie.gif) no-repeat center -20px; }
+#show-author   #item-presenter             { background: url(/images/bg_big-pic-author.gif) no-repeat center -20px; }
+#show-director #item-presenter             { background: url(/images/bg_big-pic-director.gif) no-repeat center -20px; }
 
-#full-info-fields                         { padding-top:10px;}
-#full-info table                          { width: 100%; border-collapse: collapse; border: 1px solid #777}
-#full-info table                          { margin-top: 11px;}
-#full-info tr.odd                         { background: #39414a; }
-#full-info td.column-title                { border-right: 1px solid #777; text-align:right;width: 9.9em;}
-#full-info td                             { padding: 0.5em; }
+#full-info table                           { width: 100%; border-collapse: collapse; border: 1px solid #777}
+#full-info table                           { margin-top: 11px;}
+#full-info tr.odd                          { background: #1e242d; }
+#full-info td.column-title                 { border-right: 1px solid #777; text-align: right; width: 150px;}
+#full-info td                              { padding: 0.5em; }
 
+/* = Resources Show Structure
+-------------------------------------------------- */
 .resource-list {margin:0 -20px}
 .resource-list table                      { width: 100%; border-collapse: collapse;}
-.resource-list tr.odd                     { background: #39414a;}
-.resource-list td, .resource-list th      { padding: 0.5em 0; }
-.resource-list .resource-pic      { width: 20px; }
+.resource-list tr.odd                     { background: #1e242d;}
+.resource-list tr:hover                   { background: url(/images/bg_hover-row.png) repeat-x}
+.resource-list tr.odd:hover               { background: #1e242d url(/images/bg_hover-row.png) repeat-x}
+.resource-list tr.table-header            { background: url(/images/bg_hover-row.png) repeat-x}
+.resource-list tr.table-header            { background: none}
+.resource-list th                         { padding: 0.5em; text-align:center; }
+.resource-list td                         { padding: 0 0.5em; border-collapse: collapse; border-left: 1px dashed #777 }
+.resource-list td a                       { display: block; padding: 0.5em 0; }
+.resource-list td.resource-pic            { border-left: none }
+.resource-list .resource-pic              { width: 10px; }
+.resource-list .last-td-in-row            { width: 10px;}
 
 
+/* = About Page Structure
+-------------------------------------------------- */
+#about #logos { text-align:center;}
+#about #logos img { border: 3px solid #39414A; margin: 0 10px;}
 
-/* Self-clearing floats */
-.selfclear:after{
-  content: "."; 
-  display: block; 
-  height: 0; 
-  clear: both; 
-  visibility: hidden;
-}
-.selfclear {
-  display: inline-block; /* IE 7 */
-}
-.selfclear {
-  display: block;
-}
-* html .selfclear {
-  height: 1px; /* IE < 7 */
-}
+/* Self-clearing floats and IE hacks */
+.selfclear:after  { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.selfclear        { display: inline-block; /* IE 7 */ }
+.selfclear        { display: block; }
+* html .selfclear { height: 1px; /* IE < 7 */ }
+* html .resource-list tr.table-header { background: #000; /* IE < 7 */}

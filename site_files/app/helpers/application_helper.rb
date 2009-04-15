@@ -30,7 +30,7 @@ module ApplicationHelper
 
 # shows
 #----------------------------
-  def render_full_info_element(element, item, tag_class=nil)
+  def render_full_info_element(element, item, tag_class=nil, pdf=nil)
     case element[:render_type]
       when 'normal'
         return nil if (value = item.send element[:attribute]).blank?
@@ -54,26 +54,28 @@ module ApplicationHelper
       else
 	return nil
     end
-    "<tr #{'class='+tag_class unless tag_class.blank?}> <td class='column-title'>#{attribute}</td> <td>#{value}</td> </tr>"
+    if pdf
+      [attribute,value]
+    else
+      "<tr #{'class='+tag_class unless tag_class.blank?}> <td class='column-title'>#{attribute}</td> <td>#{value}</td> </tr>"
+    end
   end
 
   def render_related(name, list)
-    unless list.empty?
       out  = "<div id='related-#{name.gsub(/_/,"-")}' class='related-items'>"
       out += "<h4>#{name.humanize}</h4>"
       out += "<ul>"
       list.each do | item |
         out += "<li>"
         out += "<p>"
-        out += link_to(item[:title], item[:path], :title => item[:description])
+        out += link_to(truncate(item[:title],50,"..."), item[:path], :title => item[:description])
         out += "</p>"
         out += "</li>"
       end
+
+      out += "<p><span class='empty-data'>(sem #{name.humanize.downcase})</span></p>" if list.empty?
       out += "</ul>"
       out += "</div>"
-    else
-      ""
-    end
   end
 
   def render_prizes_list(item)

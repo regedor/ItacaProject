@@ -1,18 +1,46 @@
-<p>
-  <b>Name:</b>
-  <%=h @author.name %>
-</p>
+<% content_for :page_title, truncate(@author.name,46,"...") %>
+<% content_for :body_id,    "show-author" %>
 
-<p>
-  <b>Biography:</b>
-  <%=h @author.biography %>
-</p>
+<div id='generic-info' class='selfclear'>
+  <div id='item-visuals'>
+    <div id='item-presenter'>
 
-<p>
-  <b>First work:</b>
-  <%=h @author.first_work %>
-</p>
+    </div>
+    <div id='related-photos'>
+      <% @author.photos.each do | photo | %>
+        <%= link_to image_tag(photo.versions[:preview].relative_path), photo_path(photo), :title => "" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id= 'fields'>
+    <%= render_field(@author,'name')%>
+    <%= render_field(@author,'first_work')%>
+    <%= render_field(@author,'biography')%>
+  </div> 
+</div>
 
 
-<%= link_to 'Edit', edit_author_path(@author) %> |
-<%= link_to 'Back', authors_path %>
+<div id='related-info' class='selfclear'>
+  <h3>Obras do autor</h3>
+
+  <div class='selfclear'>
+    <%= render_related 'movies', (@author.movies.map do | item | 
+          { :title => item.title, :path => movie_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'sound_documents', (@author.sound_documents.map  do | item | 
+          { :title => item.title, :path => sound_document_path(item), :description => "" } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'writen_documents', (@author.writen_documents.map do | item | 
+          { :title => item.title, :path => writen_document_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'photos', (@author.photos.map do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+  </div>
+</div>	
+
+
+
