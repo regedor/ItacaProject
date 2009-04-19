@@ -57,11 +57,12 @@
 
     <div id="content-wrapper">
       <div id="content">
-
+        <% unless flash[:notice].blank? && flash[:error].blank? %>
         <div class="flash_text">
           <div style="color: green"><%= flash[:notice] %> </div>
           <div style="color: red"><%= flash[:error] %> </div>
         </div>
+        <% end %>
         <%= yield %>
       </div>
     </div>

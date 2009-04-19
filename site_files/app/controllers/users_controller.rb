@@ -7,12 +7,13 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
+    @user.login = @user.email
     success = @user && @user.save
     if success && @user.errors.empty?
       redirect_back_or_default('/')
       flash[:notice] = "Obrigado por efectuar o registo. Em breve receberá um email para activar a sua conta."
     else
-      flash[:error]  = "Não foi possivel criar a sua conta. Se o problema persistir contacte o administrador."
+      flash[:error]  = "Registo falhou. Verifique todos os campos e tente novamente, se o problema persistir contacte o administrador."
       render :action => 'new'
     end
   end

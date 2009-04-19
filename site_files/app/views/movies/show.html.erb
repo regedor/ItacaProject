@@ -17,10 +17,12 @@
     <%= render_field(@movie,'title')%>
     <%= render_field_div "Autor", @movie.author.name, 
                          :path => author_path(@movie.author_id),
-                         :description => "" if @movie.author %></p>
+			 :description => "",
+			 :class => "author" if @movie.author %></p>
     <%= render_field_div "Realizador", @movie.director.name, 
                          :path => director_path(@movie.director_id),
-                         :description => "" if @movie.director %></p>
+			 :description => "",
+			 :class => "director" if @movie.director %></p>
     <%= render_field(@movie, 'production_year')%>
     <%= render_field_div "Género", @movie.genre.name if @movie.genre %>
     <%= render_field_div "Temática", render_category_and_subs(@movie) %>
@@ -87,7 +89,7 @@
       	{ :render_type => 'normal'       , :attribute => "release_date"                                     } ,  
       	{ :render_type => 'normal'       , :attribute => "production_context"                               } ,  
       	{ :render_type => 'normal'       , :attribute => "distributor"                                      } ,  
-      	{ :render_type => 'normal'       , :attribute => "duration"                                         } ,  
+      	{ :render_type => 'normal'       , :attribute => "duration"           , :at_end => " min"           } , 
       	{ :render_type => 'normal'       , :attribute => "format"                                           } ,  
       	{ :render_type => 'yes_or_no'    , :attribute => "free"                                             } ,  
       	{ :render_type => 'normal'       , :attribute => "rights"                                           } ,  

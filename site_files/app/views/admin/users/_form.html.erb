@@ -1,7 +1,13 @@
 <%= f.error_messages %>
 <%= f.persist_fields %>
 <dl>
-<% f.columns.each do |column| -%>
-<%= f.render column %>
-<% end -%>
+  <dt> <%= label_tag 'profile', 'Perfil' %>                                </dt>
+  <dd> <%= f.text_area :profile %>                                         </dd>
+  <dt> <%= label_tag 'password', 'Alterar Password' %>                     </dt>
+  <dd> <%= f.password_field :password %>                                   </dd>
+  <dt> <%= label_tag 'password_confirmation', 'Confirmação de Password' %> </dt>
+  <dd> <%= f.password_field :password_confirmation %>                      </dd>
+  <% ["name", "login", "email", "role"].each do |column| -%>
+  <%= f.render column %>
+  <% end -%>
 </dl>

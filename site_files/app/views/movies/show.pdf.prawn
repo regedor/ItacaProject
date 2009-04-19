@@ -13,7 +13,7 @@ elements= [
   { :render_type => 'normal'       , :attribute => "release_date"                                     } ,  
   { :render_type => 'normal'       , :attribute => "production_context"                               } ,  
   { :render_type => 'normal'       , :attribute => "distributor"                                      } ,  
-  { :render_type => 'normal'       , :attribute => "duration"                                         } ,  
+  { :render_type => 'normal'       , :attribute => "duration"           , :at_end => " min"           } ,  
   { :render_type => 'normal'       , :attribute => "format"                                           } ,  
   { :render_type => 'yes_or_no'    , :attribute => "free"                                             } ,  
   { :render_type => 'normal'       , :attribute => "rights"                                           } ,  

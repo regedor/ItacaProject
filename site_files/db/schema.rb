@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090208162224) do
+ActiveRecord::Schema.define(:version => 20090419211741) do
 
   create_table "author_photos", :force => true do |t|
     t.integer  "author_id"
@@ -329,6 +329,7 @@ ActiveRecord::Schema.define(:version => 20090208162224) do
     t.integer  "role",                                     :default => 4
     t.string   "phone",                     :limit => 40
     t.string   "sex",                       :limit => 40
+    t.string   "profile"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

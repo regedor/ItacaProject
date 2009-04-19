@@ -2,7 +2,7 @@ class DirectorsController < ApplicationController
   # GET /directors
   # GET /directors.xml
   def index
-    @directors = Director.find(:all)
+    @directors = Director.all :order => 'name ASC'
 
     respond_to do |format|
       format.html # index.html.erb

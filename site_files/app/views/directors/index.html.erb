@@ -6,18 +6,14 @@
   <table>
 
     <tr class="table-header">
-      <th></th>
-      <th><%=h "Name".humanize %>          </th>
-      <th><%=h "Biography".humanize %>         </th>
-      <th></th>
+      <th class="main"> <%=h "Name".humanize %>          </th>
+      <th>              <%=h "Biography".humanize %>     </th>
     </tr>
   
     <% for resource in @directors %>
-    <tr <%= cycle "", "class='odd'"%>  href="<%= director_path(resource)%>" >
-      <td class="resource-pic">  </td>
-      <td><%= link_to truncate(resource.name,80,"..."),      director_path(resource) %></td>
-      <td><%= link_to truncate(resource.biography,80,"..."), director_path(resource) %></td>
-      <td class="last-td-in-row"> </td>
+    <tr <%= cycle "", "class='odd'"%> >
+      <td class="main">     <%= link_to truncate(resource.name,50,"..."),      director_path(resource) %></td>
+      <td class="biography"><%= link_to truncate(resource.biography,50,"..."), director_path(resource) %></td>
     </tr>
     <% end %>
 

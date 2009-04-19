@@ -2,25 +2,27 @@
 
 
 <div id=movies-index-list class=resource-list>
+
+
   <table>
 
     <tr class="table-header">
-      <th></th>
-      <th><%=h "Title".humanize %>          </th>
-      <th><%=h "Genre".humanize %>          </th>
-      <th><%=h "Author".humanize %>         </th>
-      <th><%=h "Director".humanize %>       </th>
-      <th></th>
+      <th class="main"> <%= "Title".humanize %>          </th>
+      <th>              <%= "Director".humanize %>       </th>
+      <th>              <%=h "Genre".humanize %>         </th>
     </tr>
   
     <% for movie in @movies %>
     <tr <%= cycle "", "class='odd'"%> href="<%= movie_path(movie)%>">
-      <td class="resource-pic">                                                                       </td>
-      <td><%=  link_to truncate(movie.title,55,"..."), movie_path(movie), :title => movie.synopsis %> </td>
-      <td><%=h movie.genre.name if movie.genre %>                                                     </td>
-      <td><%=  link_to movie.author.name, author_path(movie.author) if movie.author %>                </td>
-      <td><%=  link_to movie.director.name, director_path(movie.director) if movie.director %>        </td>
-      <td class="last-td-in-row">                                                                     </td>
+      <td class="main">
+        <%= link_to h(truncate(movie.title,40,"...")), movie_path(movie), :title => movie.synopsis %>            
+      </td>
+      <td class="director">
+        <%= link_to h(movie.director && truncate(movie.director.name,40,"..") || ""), movie_path(movie), :title => movie.synopsis %> 
+      </td>
+      <td class="genre">
+        <%= link_to h(movie.genre && truncate(movie.genre.name,15,"..") || ""), movie_path(movie), :title => movie.synopsis %> 
+      </td>
     </tr>
     <% end %>
 

@@ -17,7 +17,10 @@
 <div id="wrapper">
   
   <div id="header">
-    <h1 id="logo"> <%= link_to "Admin", root_path %> / <%=h yield(:title) || resource_plural.humanize %></h1>
+    <h1 id="logo">
+      Admin / <%=h yield(:title) || resource_plural.humanize %> 
+      <small><%= link_to "(ver site)", root_path %></small>
+    </h1>
   </div>
   
   <hr />

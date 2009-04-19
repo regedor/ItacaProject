@@ -54,21 +54,22 @@ module ApplicationHelper
       else
 	return nil
     end
+    value = value.to_s + element[:at_end] if element[:at_end] and not value.blank?
     if pdf
       [attribute,value]
     else
-      "<tr #{'class='+tag_class unless tag_class.blank?}> <td class='column-title'>#{attribute}</td> <td>#{value}</td> </tr>"
+      "<tr #{'class='+tag_class unless tag_class.blank?}> <td class='column-title'>#{attribute}</td> <td><p>#{value}</p></td> </tr>"
     end
   end
 
   def render_related(name, list)
       out  = "<div id='related-#{name.gsub(/_/,"-")}' class='related-items'>"
-      out += "<h4>#{name.humanize}</h4>"
+      out += "<h4#{' class="'+name.singularize+'"'}>#{name.humanize}</h4>"
       out += "<ul>"
       list.each do | item |
         out += "<li>"
         out += "<p>"
-        out += link_to(truncate(item[:title],50,"..."), item[:path], :title => item[:description])
+        out += link_to( h(truncate(item[:title],50,"...")), item[:path], :title => item[:description], :class => name.singularize)
         out += "</p>"
         out += "</li>"
       end
@@ -95,8 +96,8 @@ module ApplicationHelper
   end	  
   def render_field_div(title, content, options={})
     if options[:path]
-      "<div class='field'> <h4>#{title}</h4><p>" + 
-        link_to(content, options[:path], :title => options[:description]) + 
+      "<div class='field'> <h4#{' class="'+options[:class]+'"' if options[:class]}>#{title}</h4><p>" + 
+        link_to(content, options[:path], :title => options[:description], :class => options[:class]) + 
       "</p></div>"
     else   
       "<div class='field'> <h4>#{title}</h4><p>" + content + "</p></div>"

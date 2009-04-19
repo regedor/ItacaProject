@@ -31,38 +31,40 @@ blockquote, q { quotes: "" ""; }
 /* = Typography
 -------------------------------------------------- */
 a                                   { text-decoration: none; color: #fff;}
-a:hover                             { color:#57f; text-decoration: none;}
+a:hover                             { color:#57f;}
 p                                   { font-size: 1.1em; line-height: 1.7; margin-bottom: 1.5em; text-align:justify;}
 h2                                  { font-size: 2.2em; }
 
 h3                                  { font-size: 1.8em; }
 h4                                  { font-size: 1.6em; color: #68f;}
 #content p                          { font-size: 1.26em; color: #fff;}
-#full-info td                       { font-size: 1.26em; color: #fff;}
 #full-info td.column-title          { font-size: 1.2em; color: #68f; font-weight: bold;}
-#related-info #related-prizes li p  { margin-bottom: 0.5em;}
+#full-info td p                     { margin-bottom:0;}
 #related-info h4                    { margin: 0.6em 0;}
 
 
 .resource-list a                    { text-decoration:none;}
 .resource-list th                   { font-size: 1.6em; color: #68f;}             
-.resource-list td                   { font-size: 1.2em;}         
+.resource-list td                   { font-size: 1.3em;}         
 
-.flash_text                         { font-size: 1.2em; text-align:center;}
+.flash_text                         { font-size: 1.3em; text-align:center; }
+.flash_text                         { border: 1px dashed #fff; padding: 0.4em; margin-bottom: 10px;}
 
 #login-form label, 
 #signup-form label                  { font-size: 1.3em; color: #68f; line-height: 1.7; }
 #login-form, 
 #signup-form                        { text-align: center;margin-top:20px;}
 #login-form input, 
-#signup-form input                  { margin-bottom: 1em;}
+#signup-form input, 
+#signup-form textarea               { margin-bottom: 1em;}
+#signup-form small                  { color: #fff; font-size:0.9em;}
 
 #about p                            { margin-bottom: 0.5em; }
 #about h4                           { margin-top: 1em; margin-bottom:0.1em}
+#about h5                           { margin-top: 1em; margin-bottom:0.1em; font-size: 1.4em; color: #68f;}
+#about small                        { font-size: 0.9em; }
 
 #footer a {font-weight:bold;}
-
-#authors-index-list a { color:#fff;}
 .empty-data { font-style:italic; color: #345;}
 
 /* = General Structure
@@ -90,6 +92,7 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #nav               { float: right; width: 400px; height: 59px; margin-right:24px;}
 #nav a             { background: url(/images/bg_buttons.gif) no-repeat;
                      float: left; text-indent: -6666px;  width: 63px; height:59px; display:block; }
+#nav li            { background: url(/images/bg_buttons-hover.gif) no-repeat; /*preload hack*/}
 #nav a:hover       { background: url(/images/bg_buttons-hover.gif) no-repeat; }
 #nav a#nav-movies-link           { background-position: -11px;}
 #nav a#nav-sound_documents-link  { background-position: -74px;} 
@@ -143,22 +146,60 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 .resource-list table                      { width: 100%; border-collapse: collapse;}
 .resource-list tr.odd                     { background: #1e242d;}
 .resource-list tr:hover                   { background: url(/images/bg_hover-row.png) repeat-x}
+.resource-list tr:hover a                 { color: #68f;}
 .resource-list tr.odd:hover               { background: #1e242d url(/images/bg_hover-row.png) repeat-x}
 .resource-list tr.table-header            { background: url(/images/bg_hover-row.png) repeat-x}
 .resource-list tr.table-header            { background: none}
-.resource-list th                         { padding: 0.5em; text-align:center; }
-.resource-list td                         { padding: 0 0.5em; border-collapse: collapse; border-left: 1px dashed #777 }
-.resource-list td a                       { display: block; padding: 0.5em 0; }
-.resource-list td.resource-pic            { border-left: none }
-.resource-list .resource-pic              { width: 10px; }
-.resource-list .last-td-in-row            { width: 10px;}
+.resource-list th                         { padding: 10px; text-align:left; }
+.resource-list td                         { border-collapse: collapse; }
+.resource-list td.main                    { border-right: 1px dashed #777; } 
+.resource-list td.director                { border-right: 1px dashed #777; width: 315px; } 
+.resource-list td.biography               { width: 388px; } 
+.resource-list td.genre                   { width: 135px; } 
+.resource-list td a                       { display: block; padding: 1em 10px; }
 
+.resource-list     th.main                { padding-left: 82px;}
+.resource-list     td.main a              { padding-left: 82px;}
+#movies-index-list td.main                { background: url(/images/bg_movie-icon.png) no-repeat 16px -3px;}
+#sound_documents-index-list td.main       { background: url(/images/bg_sound_document-icon.png) no-repeat 15px -3px;}
+#written_documents-index-list td.main     { background: url(/images/bg_txt-icon.png) no-repeat 15px -3px;}
+#photos-index-list td.main                { background: url(/images/bg_photo-icon.png) no-repeat 15px -3px;}
+#authors-index-list td.main               { background: url(/images/bg_author-icon.png) no-repeat 15px -4px;}
+#directors-index-list td.main             { background: url(/images/bg_director-icon.png) no-repeat 15px -3px;}
 
-/* = About Page Structure
--------------------------------------------------- */
-#about #logos { text-align:center;}
-#about #logos img { border: 3px solid #39414A; margin: 0 10px;}
+#related-info p                   { margin-bottom: 1.0em;} 
+#generic-info h4.author           { margin-bottom: 0.75em;} 
+#generic-info h4.director         { margin-bottom: 0.75em;} 
+#related-info h4.local            { margin-bottom: 0.75em;} 
+#related-info h4.prize            { margin-bottom: 0.75em;} 
+#related-info h4.movie            { margin-bottom: 0.75em;} 
+#related-info h4.sound_document   { margin-bottom: 0.75em;} 
+#related-info h4.writen_document  { margin-bottom: 0.75em;} 
+#related-info h4.photo            { margin-bottom: 0.75em;} 
 
+#generic-info a.author             { padding: 15px 0px 5px 40px; } 
+#generic-info a.director           { padding: 15px 0px 5px 40px; } 
+#related-info a.local              { padding: 15px 0px 5px 40px; } 
+#related-info a.prize              { padding: 15px 0px 5px 40px; } 
+#related-info a.movie              { padding: 15px 0px 5px 40px; } 
+#related-info a.sound_document     { padding: 15px 0px 5px 40px; } 
+#related-info a.writen_document    { padding: 15px 0px 5px 40px; } 
+#related-info a.photo              { padding: 15px 0px 5px 40px; } 
+
+#show-movie a.author               { background: url(/images/bg_author-icon.png)            no-repeat -14px -3px;}
+#show-movie a.director 	           { background: url(/images/bg_director-icon.png)          no-repeat -13px -3px;} 
+#related-info a.local              { background: url(/images/bg_local-icon.png)             no-repeat -13px -3px;} 
+#related-info a.prize              { background: url(/images/bg_prize-icon.png)             no-repeat -13px -3px;} 
+#related-info a.movie              { background: url(/images/bg_movie-icon.png)             no-repeat -13px -3px;} 
+#related-info a.sound_document     { background: url(/images/bg_sound_document-icon.png)    no-repeat -13px -3px;} 
+#related-info a.writen_document    { background: url(/images/bg_txt-icon.png)               no-repeat -13px -3px;} 
+#related-info a.photo              { background: url(/images/bg_photo-icon.png)             no-repeat -13px -3px;} 
+                                                                                                   
+/* = About Page Structure                                                                          
+-------------------------------------------------- */                                              
+#about #logos { text-align:center;}                                                                
+#about #logos img { border: 3px solid #39414A; margin: 0 10px;}                                    
+                                                                                                   
 /* Self-clearing floats and IE hacks */
 .selfclear:after  { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .selfclear        { display: inline-block; /* IE 7 */ }
