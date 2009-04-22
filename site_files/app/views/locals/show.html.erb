@@ -1,13 +1,47 @@
-<p>
-  <b>Name:</b>
-  <%=h @local.name %>
-</p>
+<% content_for :page_title, truncate(@local.name,46,"...") %>
+<% content_for :body_id,    "show-local" %>
 
-<p>
-  <b>Contry:</b>
-  <%=h @local.contry_id %>
-</p>
+<div id='generic-info' class='selfclear'>
+  <div id='item-visuals'>
+    <div id='item-presenter'>
+
+    </div>
+    <div id='related-photos'>
+      <% @local.photos.each do | photo | %>
+        <%= link_to image_tag(photo.versions[:preview].relative_path), photo_path(photo), :title => "" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id= 'fields'>
+    <%= render_field(@local,'name')%>
+    <%= render_field(@local,'countryname')%>
+  </div> 
+</div>
 
 
-<%= link_to 'Edit', edit_local_path(@local) %> |
-<%= link_to 'Back', locals_path %>
+<div id='related-info' class='selfclear'>
+  <h3>Relacionado com este local</h3>
+
+  <div class='selfclear'>
+    <%= render_related 'movies', (@local.movies.map do | item | 
+          { :title => item.title, :path => movie_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'sound_documents', (@local.sound_documents.map  do | item | 
+          { :title => item.title, :path => sound_document_path(item), :description => "" } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'writen_documents', (@local.writen_documents.map do | item | 
+          { :title => item.title, :path => writen_document_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'photos', (@local.photos.map do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'locals', (@local.locals.map do | item | 
+          { :title => item.name, :path => local_path(item), :description => "" } 
+    end) %> 
+  </div>
+</div>

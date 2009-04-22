@@ -2,7 +2,7 @@ class Prize < ActiveRecord::Base
   belongs_to :user
   
   associated_nn :with => 'movies',           :through => 'movie_prizes'
-  associated_nn :with => 'sound_document',   :through => 'sound_document_prizes'
+  associated_nn :with => 'sound_documents',   :through => 'sound_document_prizes'
   associated_nn :with => 'writen_documents', :through => 'writen_document_prizes'
   associated_nn :with => 'photos',           :through => 'photo_prizes'
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090419211741) do
+ActiveRecord::Schema.define(:version => 20090421221701) do
 
   create_table "author_photos", :force => true do |t|
     t.integer  "author_id"
@@ -165,6 +165,14 @@ ActiveRecord::Schema.define(:version => 20090419211741) do
     t.integer  "status",             :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "author_2_id"
+    t.integer  "author_3_id"
+    t.integer  "author_4_id"
+    t.integer  "author_5_id"
+    t.integer  "director_2_id"
+    t.integer  "director_3_id"
+    t.integer  "director_4_id"
+    t.integer  "director_5_id"
   end
 
   create_table "music_genres", :force => true do |t|
@@ -225,6 +233,10 @@ ActiveRecord::Schema.define(:version => 20090419211741) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "author_2_id"
+    t.integer  "author_3_id"
+    t.integer  "author_4_id"
+    t.integer  "author_5_id"
   end
 
   create_table "prize_locals", :force => true do |t|
@@ -305,6 +317,14 @@ ActiveRecord::Schema.define(:version => 20090419211741) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "author_2_id"
+    t.integer  "author_3_id"
+    t.integer  "author_4_id"
+    t.integer  "author_5_id"
+    t.integer  "director_2_id"
+    t.integer  "director_3_id"
+    t.integer  "director_4_id"
+    t.integer  "director_5_id"
   end
 
   create_table "subcategories", :force => true do |t|
@@ -393,6 +413,10 @@ ActiveRecord::Schema.define(:version => 20090419211741) do
     t.integer  "pdf_owner_id"
     t.string   "pdf_owner_type"
     t.integer  "user_id"
+    t.integer  "author_2_id"
+    t.integer  "author_3_id"
+    t.integer  "author_4_id"
+    t.integer  "author_5_id"
   end
 
 end

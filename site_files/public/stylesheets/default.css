@@ -142,7 +142,8 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 
 /* = Resources Show Structure
 -------------------------------------------------- */
-.resource-list {margin:0 -20px}
+.resource-list                            { margin:0 -20px;}
+.resource-list p                          { margin:0 20px 15px 20px;}
 .resource-list table                      { width: 100%; border-collapse: collapse;}
 .resource-list tr.odd                     { background: #1e242d;}
 .resource-list tr:hover                   { background: url(/images/bg_hover-row.png) repeat-x}
@@ -177,14 +178,14 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #related-info h4.writen_document  { margin-bottom: 0.75em;} 
 #related-info h4.photo            { margin-bottom: 0.75em;} 
 
-#generic-info a.author             { padding: 15px 0px 5px 40px; } 
-#generic-info a.director           { padding: 15px 0px 5px 40px; } 
-#related-info a.local              { padding: 15px 0px 5px 40px; } 
-#related-info a.prize              { padding: 15px 0px 5px 40px; } 
-#related-info a.movie              { padding: 15px 0px 5px 40px; } 
-#related-info a.sound_document     { padding: 15px 0px 5px 40px; } 
-#related-info a.writen_document    { padding: 15px 0px 5px 40px; } 
-#related-info a.photo              { padding: 15px 0px 5px 40px; } 
+#generic-info a.author             { padding: 15px 0px 5px 33px; } 
+#generic-info a.director           { padding: 15px 0px 5px 33px; } 
+#related-info a.local              { padding: 15px 0px 5px 33px; } 
+#related-info a.prize              { padding: 15px 0px 5px 33px; } 
+#related-info a.movie              { padding: 15px 0px 5px 33px; } 
+#related-info a.sound_document     { padding: 15px 0px 5px 33px; } 
+#related-info a.writen_document    { padding: 15px 0px 5px 33px; } 
+#related-info a.photo              { padding: 15px 0px 5px 33px; } 
 
 #show-movie a.author               { background: url(/images/bg_author-icon.png)            no-repeat -14px -3px;}
 #show-movie a.director 	           { background: url(/images/bg_director-icon.png)          no-repeat -13px -3px;} 

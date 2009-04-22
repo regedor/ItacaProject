@@ -4,7 +4,11 @@ class WritenDocument < ActiveRecord::Base
   belongs_to :subcategory2, :foreign_key => "subcategory_2_id", :class_name => "Subcategory"
   belongs_to :subcategory3, :foreign_key => "subcategory_3_id", :class_name => "Subcategory"
   belongs_to :subcategory4, :foreign_key => "subcategory_4_id", :class_name => "Subcategory"
-  belongs_to :author
+  belongs_to :author1, :foreign_key => "author_id",   :class_name => "Author"
+  belongs_to :author2, :foreign_key => "author_2_id", :class_name => "Author"
+  belongs_to :author3, :foreign_key => "author_3_id", :class_name => "Author"
+  belongs_to :author4, :foreign_key => "author_4_id", :class_name => "Author"
+  belongs_to :author5, :foreign_key => "author_5_id", :class_name => "Author"
   belongs_to :document_type
   belongs_to :user
 
@@ -40,4 +44,10 @@ class WritenDocument < ActiveRecord::Base
     Subcategory.all :conditions => 
       {:id => [self.subcategory_1_id,self.subcategory_2_id,self.subcategory_3_id,self.subcategory_4_id]}
   end
+
+  def authors
+    Author.all :conditions => 
+      {:id => [self.author_id,self.author_2_id,self.author_3_id,self.author_4_id,self.author_5_id]}
+  end
+
 end

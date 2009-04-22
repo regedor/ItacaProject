@@ -3,25 +3,31 @@
 
 <div id=movies-index-list class=resource-list>
 
+  <p>
+    À data da criação deste CD, a nossa Base de Dados contava com <%= Movie.count %> filmes, 
+    os quais se encontram listados mais abaixo. 
+    Para ter acesso às últimas actualizações da nossa Base de dados visite a nossa pagina em 
+    <a style='text-decoration:underline;' href='http://itacaproject.com'>www.itacaproject.com</a>.
+  </p>
 
   <table>
 
     <tr class="table-header">
-      <th class="main"> <%= "Title".humanize %>          </th>
-      <th>              <%= "Director".humanize %>       </th>
+      <th class="main"> <%=h "Title".humanize %>          </th>
+      <th>              <%=h "Director".humanize %>       </th>
       <th>              <%=h "Genre".humanize %>         </th>
     </tr>
   
     <% for movie in @movies %>
     <tr <%= cycle "", "class='odd'"%> href="<%= movie_path(movie)%>">
       <td class="main">
-        <%= link_to h(truncate(movie.title,40,"...")), movie_path(movie), :title => movie.synopsis %>            
+        <%= link_to h(truncate(movie.title,46,"...")), movie_path(movie), :title => movie.synopsis %>            
       </td>
       <td class="director">
-        <%= link_to h(movie.director && truncate(movie.director.name,40,"..") || ""), movie_path(movie), :title => movie.synopsis %> 
+        <%= link_to h(truncate(directors_names(movie),43,"...") || ""), movie_path(movie), :title => movie.synopsis %> 
       </td>
       <td class="genre">
-        <%= link_to h(movie.genre && truncate(movie.genre.name,15,"..") || ""), movie_path(movie), :title => movie.synopsis %> 
+        <%= link_to h(movie.genre && truncate(movie.genre.name,15,"...") || ""), movie_path(movie), :title => movie.synopsis %> 
       </td>
     </tr>
     <% end %>

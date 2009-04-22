@@ -1,13 +1,42 @@
-<p>
-  <b>Title:</b>
-  <%=h @prize.title %>
-</p>
+<% content_for :page_title, truncate(@prize.title,46,"...") %>
+<% content_for :body_id,    "show-prize" %>
 
-<p>
-  <b>Description:</b>
-  <%=h @prize.description %>
-</p>
+<div id='generic-info' class='selfclear'>
+  <div id='item-visuals'>
+    <div id='item-presenter'>
+
+    </div>
+    <div id='related-photos'>
+      <% @prize.photos.each do | photo | %>
+        <%= link_to image_tag(photo.versions[:preview].relative_path), photo_path(photo), :title => "" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id= 'fields'>
+    <%= render_field(@prize,'title')%>
+    <%= render_field(@prize,'description')%>
+  </div> 
+</div>
 
 
-<%= link_to 'Edit', edit_prize_path(@prize) %> |
-<%= link_to 'Back', prizes_path %>
+<div id='related-info' class='selfclear'>
+  <h3>Vencedores deste Prémio</h3>
+
+  <div class='selfclear'>
+    <%= render_related 'movies', (@prize.movies.map do | item | 
+          { :title => item.title, :path => movie_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'sound_documents', (@prize.sound_documents.map  do | item | 
+          { :title => item.title, :path => sound_document_path(item), :description => "" } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'writen_documents', (@prize.writen_documents.map do | item | 
+          { :title => item.title, :path => writen_document_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'photos', (@prize.photos.map do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+  </div>
+</div>	

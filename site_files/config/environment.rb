@@ -114,7 +114,6 @@ class String
       :name                        => "Nome",
       :title                       => "Título",
       :synopsis                    => "Sinopse", 
-      :genre                       => "Genero", 
       :author                      => "Autor",  
       :authors                     => "Autores",  
       :director                    => "Realizador",  
