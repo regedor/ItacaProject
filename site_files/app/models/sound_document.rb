@@ -25,10 +25,10 @@ class SoundDocument < ActiveRecord::Base
   associated_nn :with => 'prizes',           :through => 'sound_document_prizes'
 
   has_many :sound_documents, :finder_sql =>
-    'SELECT "sound_documents".* ' +
-    'FROM "sound_documents" INNER JOIN sound_document_sound_documents' + 
+    'SELECT sound_documents.* ' +
+    'FROM sound_documents INNER JOIN sound_document_sound_documents' + 
     '  ON sound_documents.id = sound_document_sound_documents.sound_document2_id ' +
-    'WHERE (("sound_document_sound_documents".sound_document_id = #{id}))'
+    'WHERE ((sound_document_sound_documents.sound_document_id = #{id}))'
   
   def subcategories
     Subcategory.all :conditions => 

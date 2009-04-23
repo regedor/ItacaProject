@@ -25,9 +25,9 @@ class Movie < ActiveRecord::Base
   associated_nn :with => 'prizes',           :through => 'movie_prizes'
 
   has_many :movies, :finder_sql =>
-      'SELECT "movies".* ' +
-      'FROM "movies" INNER JOIN movie_movies ON movies.id = movie_movies.movie2_id ' +
-      'WHERE (("movie_movies".movie_id = #{id}))'
+      'SELECT movies.* ' +
+      'FROM movies INNER JOIN movie_movies ON movies.id = movie_movies.movie2_id ' +
+      'WHERE (movie_movies.movie_id = #{id})'
 
   def subcategories
     Subcategory.all :conditions => 

@@ -9,6 +9,7 @@
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+require 'lib/extensions.rb'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -172,7 +173,8 @@ class String
       :file_size                   => "Tamanho (bytes)",
       :filename                    => "Nome do ficheiro",
       :yes                         => "Sim",
-      :no                          => "Não"
+      :no                          => "Não",
+      :countryname                 => "País"
     }[self.downcase.gsub(/ /, "_").gsub(/_id$/, "").to_sym] ||
     (self.split.size > 1 and return self.gsub(/_/, " ").split.map(&:humanize).join(" ").capitalize) || super	    
   end

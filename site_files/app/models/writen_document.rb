@@ -22,10 +22,10 @@ class WritenDocument < ActiveRecord::Base
   associated_nn :with => 'prizes',           :through => 'writen_document_prizes'
 
   has_many :writen_documents, :finder_sql =>
-    'SELECT "writen_documents".* ' +
-    'FROM "writen_documents" INNER JOIN writen_document_writen_documents' + 
+    'SELECT writen_documents.* ' +
+    'FROM writen_documents INNER JOIN writen_document_writen_documents' + 
     '  ON writen_documents.id = writen_document_writen_documents.writen_document2_id ' +
-    'WHERE (("writen_document_writen_documents".writen_document_id = #{id}))'
+    'WHERE (writen_document_writen_documents.writen_document_id = #{id})'
 
   def pdf_uploaded_data=(data)
     self.uploaded_data = data

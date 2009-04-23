@@ -26,10 +26,10 @@ class Photo < ActiveRecord::Base
 
 
   has_many :photo_photos, :finder_sql =>
-    'SELECT "photos".* ' +
-    'FROM "photos" INNER JOIN photo_photos' + 
+    'SELECT photos.* ' +
+    'FROM photos INNER JOIN photo_photos' + 
     '  ON photos.id = photo_photos.photo2_id ' +
-    'WHERE (("photo_photos".photo_id = #{id}))'
+    'WHERE (photo_photos.photo_id = #{id})'
 
   def photo_uploaded_data=(data)
     self.uploaded_data = data

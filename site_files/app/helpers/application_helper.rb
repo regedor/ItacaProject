@@ -10,9 +10,10 @@ module ApplicationHelper
     else
       field_id_symbol = field.to_sym
     end
+    options = [HashObject.new :id => nil, :name => '-- Selecione --'] + field_class.all
     "
       <dt>#{ f.label field_id_symbol                                                                    }</dt>
-      <dd>#{ f.collection_select field_id_symbol , field_class.all, :id, :name, :prompt => '-- Selecione --' }</dd>
+      <dd>#{ f.collection_select field_id_symbol , options, :id, :name }</dd>
     "
   end
 

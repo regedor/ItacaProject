@@ -9,9 +9,9 @@ class Local < ActiveRecord::Base
   associated_nn :with =>  nil,               :through => 'local_locals'
   
   has_many :locals, :finder_sql =>
-   'SELECT "locals".* ' +
-   'FROM "locals" INNER JOIN local_locals ON locals.id = local_locals.local2_id ' +
-   'WHERE (("local_locals".local_id = #{id}))'
+   'SELECT locals.* ' +
+   'FROM locals INNER JOIN local_locals ON locals.id = local_locals.local2_id ' +
+   'WHERE ((local_locals.local_id = #{id}))'
 
   def countryname
     self.country.name
