@@ -14,6 +14,6 @@ class Local < ActiveRecord::Base
    'WHERE ((local_locals.local_id = #{id}))'
 
   def countryname
-    self.country.name
+    self.country.name if self.country
   end
 end

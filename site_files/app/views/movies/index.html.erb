@@ -3,11 +3,12 @@
 
 <div id=movies-index-list class=resource-list>
 
-  <p>
-    À data da criação deste CD, a nossa Base de Dados contava com <%= Movie.count %> filmes, 
-    os quais se encontram listados mais abaixo. 
-    Para ter acesso às últimas actualizações da nossa Base de dados visite a nossa pagina em 
-    <a style='text-decoration:underline;' href='http://itacaproject.com'>www.itacaproject.com</a>.
+  <p><%=h "
+    A Base de Dados Imagens e Sonoridades das Migrações conta, em
+    Abril de 2009 (data de criação deste CD), com #{Movie.count} filmes, 
+    os quais se encontram abaixo listados. 
+    Para ter acesso às últimas actualizações da Base de dados visite a nossa pagina em " %>
+    <a style='text-decoration:underline;' href='http://itacaproject.com'>www.itacaproject.com</a>.  
   </p>
 
   <table>
