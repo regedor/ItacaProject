@@ -90,8 +90,9 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #page_title        { float: left; width: 480px; margin-left: 55px; }
 #page_title h2     { padding-top: 30px; margin-top: -0.5em;height:1.15em;overflow:hidden;}
 #nav               { float: right; width: 400px; height: 59px; margin-right:24px;}
-#nav a             { background: url(/images/bg_buttons.gif) no-repeat;
-                     float: left; text-indent: -6666px;  width: 63px; height:59px; display:block; }
+#nav a             { background: url(/images/bg_buttons.gif) no-repeat 0 0;
+                     text-indent: -6666px;  width: 63px; height:59px; display:block; }
+#nav li            { float:       left;     width: 63px; height:59px; display:block; }
 #nav li            { background: url(/images/bg_buttons-hover.gif) no-repeat; /*preload hack*/}
 #nav a:hover       { background: url(/images/bg_buttons-hover.gif) no-repeat; }
 #nav a#nav-movies-link           { background-position: -11px;}

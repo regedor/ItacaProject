@@ -1,0 +1,15 @@
+#content .odd td                          { background: #1e242d;}
+#content tr                          { background: none;}
+
+#movies-index-list td.main                { background: url(/images/bg_movie-icon.png) no-repeat 16px -3px;}
+#movies-index-list .odd td.main           { background: #1e242d url(/images/bg_movie-icon.png) no-repeat 16px -3px;}
+#sound_documents-index-list td.main       { background: url(/images/bg_sound_document-icon.png) no-repeat 15px -3px;}
+#sound_documents-index-list .odd td.main  { background: #1e242d url(/images/bg_sound_document-icon.png) no-repeat 15px -3px;}
+#written_documents-index-list td.main     { background: url(/images/bg_txt-icon.png) no-repeat 15px -3px;}
+#written_documents-index-list .odd td.main{ background: #1e242d url(/images/bg_txt-icon.png) no-repeat 15px -3px;}
+#photos-index-list .odd td.main           { background: url(/images/bg_photo-icon.png) no-repeat 15px -3px;}
+#photos-index-list td.main                { background: #1e242d url(/images/bg_photo-icon.png) no-repeat 15px -3px;}
+#authors-index-list td.main               { background: url(/images/bg_author-icon.png) no-repeat 15px -4px;}
+#authors-index-list .odd td.main          { background: #1e242d url(/images/bg_author-icon.png) no-repeat 15px -4px;}
+#directors-index-list td.main             { background: url(/images/bg_director-icon.png) no-repeat 15px -3px;}
+#directors-index-list .odd td.main        { background: #1e242d url(/images/bg_director-icon.png) no-repeat 15px -3px;}
