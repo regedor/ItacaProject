@@ -7,6 +7,7 @@
   <title> Imagens e Sonoridades das Migrações - <%= yield :page_title %> </title>
   <%= stylesheet_link_tag 'default' %>
   <!--[if lt IE 8]> <link href="/stylesheets/ie.css" rel="stylesheet" type="text/css" /> <![endif]-->
+  <%= javascript_include_tag "ga" %>
 </head>
 
 <body id="<%= yield(:body_id) || "body" %>" >
@@ -20,8 +21,8 @@
 		<%= (link_to "Administração", admin_movies_path) + ' | ' if current_user.is_admin? %>
 		<%= link_to "Log Out",   logout_path          %> 
         <%else%>
-          <%= link_to "Login",    "http://itacaproject.com/login"  %> |
-          <%= link_to "Registar", "http://itacaproject.com/signup" %>
+          <%= link_to "Login",    login_path  %> |
+          <%= link_to "Registar", signup_path %>
         <% end %>
       </div>
     </div>
