@@ -73,16 +73,15 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
                      margin: 0;  padding: 0; font-size: 62.5%; color: #fff;
                      font-family: Verdana, HelveticaNeue, Helvetica, Arial, sans-serif; }
 
-#wrapper           { background: #39414a url(/images/bg_wrapper-top.gif) repeat-x top; }
+#wrapper           { background: #605656 url(/images/bg_wrapper-top.gif) repeat-x top; }
 
 #nav-bar,
 #header,
 #content-wrapper,
 #footer            { width:  972px; margin: 0 auto; }
 
-#header            { height: 166px;  }
-#idm-logo          { background: url(/images/bg_logo.gif) no-repeat 35px 0px;
-                     text-indent: -6666px; height:166px; width:449px; float:left; }
+#header            { height: 166px; background: url(/images/bg_logo.gif) no-repeat }
+#idm-logo          { text-indent: -6666px; height:166px; width:449px; float:left; }
 #account-bar       { width:  350px; padding: 20px 56px; float:right; text-align:right; }
 #account-bar a     { font-size: 1.2em; text-decoration: none; color: #fff; }
 
