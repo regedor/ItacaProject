@@ -318,7 +318,7 @@ namespace :db do
     task :users => :environment do
       puts "A criar Users!"
       user = User.new
-      user.login                 = 'regedor'
+      user.login                 = 'miguelregedor@gmail.com'
       user.password              = 'works68'
       user.password_confirmation = 'works68'
       user.name                  = 'Miguel Regedor'
@@ -329,7 +329,7 @@ namespace :db do
       user.save
       user.activate!
       user = User.new
-      user.login                 = 'itaca'
+      user.login                 = 'jsribeiro@gmail.com'
       user.password              = 'itacapass'
       user.password_confirmation = 'itacapass'
       user.name                  = 'IDM Admin'

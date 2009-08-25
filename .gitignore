@@ -8,5 +8,6 @@ site_files/db/development.sqlite3
 site_files/db/schema.rb
 site_files/public/assets
 *.swp
+.*.sw*
 .DS_Store
 

@@ -90,12 +90,12 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #page_title        { float: left; width: 480px; margin-left: 55px; }
 #page_title h2     { padding-top: 30px; margin-top: -0.5em;height:1.15em;overflow:hidden;}
 #nav               { float: right; width: 400px; height: 59px; margin-right:24px;}
-#nav a             { background: url(/images/bg_buttons.gif) no-repeat 0 0;
+#nav li            { float: left;  width: 63px;  height:59px;  display:block; }
+#nav li            { background: url(/images/bg_buttons-hover.gif) no-repeat -11px 0; /*preload hack*/}
+#nav a             { background: url(/images/bg_buttons.gif) no-repeat -11px 0;
                      text-indent: -6666px;  width: 63px; height:59px; display:block; }
-#nav li            { float:       left;     width: 63px; height:59px; display:block; }
-#nav li            { background: url(/images/bg_buttons-hover.gif) no-repeat; /*preload hack*/}
-#nav a:hover       { background: url(/images/bg_buttons-hover.gif) no-repeat; }
-#nav a#nav-movies-link           { background-position: -11px;}
+#nav a:hover       { background: url(/images/bg_buttons-hover.gif) no-repeat 100px 0; }
+#nav a#nav-movies-link           { background-position: -11px 0;}
 #nav a#nav-sound_documents-link  { background-position: -74px;} 
 #nav a#nav-writen_documents-link { background-position: -137px;}  
 #nav a#nav-photos-link           { background-position: -200px;}  

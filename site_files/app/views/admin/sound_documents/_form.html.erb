@@ -2,8 +2,8 @@
 <%= f.persist_fields %>
 
 <dl>
-  <%= field_selector f, "author"                            %>
-  <%= field_selector f, "director"                          %>
+  <%= authors_field_selector_with_js f, current_member      %>
+  <%= directors_field_selector_with_js f, current_member    %>
   <%= field_selector f, "music_genre"                       %>
   <% f.columns.each do |column| -%>
     <%= f.render column unless ['created_at','updated_at'].include? column.name %>

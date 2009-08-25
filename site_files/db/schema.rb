@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.text     "biography"
     t.string   "first_work"
     t.integer  "user_id"
+    t.integer  "status",     :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,17 +32,13 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "countries", :force => true do |t|
-    t.string   "name",            :limit => 32
-    t.string   "code",            :limit => 3
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
+    t.string   "name",       :limit => 32
+    t.string   "code",       :limit => 3
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -51,22 +48,19 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.text     "biography"
     t.string   "first_work"
     t.integer  "user_id"
+    t.integer  "status",     :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "document_types", :force => true do |t|
     t.string   "name"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "genres", :force => true do |t|
     t.string   "name"
-    t.integer  "user_creator_id"
-    t.integer  "user_updator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.integer  "country_id"
     t.string   "description"
     t.integer  "user_id"
+    t.integer  "status",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -231,6 +226,7 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.integer  "photo_owner_id"
     t.string   "photo_owner_type"
     t.integer  "user_id"
+    t.integer  "status",             :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_2_id"
@@ -251,6 +247,7 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.string   "title"
     t.text     "description"
     t.integer  "user_id"
+    t.integer  "status",      :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -315,6 +312,7 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.integer  "music_genre_id"
     t.string   "youtube_link"
     t.integer  "user_id"
+    t.integer  "status",             :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "author_2_id"
@@ -340,6 +338,7 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.string   "email",                     :limit => 100
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
+    t.datetime "last_login_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token",            :limit => 40
@@ -413,6 +412,7 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.integer  "pdf_owner_id"
     t.string   "pdf_owner_type"
     t.integer  "user_id"
+    t.integer  "status",             :default => 0
     t.integer  "author_2_id"
     t.integer  "author_3_id"
     t.integer  "author_4_id"

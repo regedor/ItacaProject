@@ -37,4 +37,62 @@ module Admin::BaseHelper
   def date_select(object_name, method, options = {})
     super object_name, method, options.merge(:start_year => 1850)
   end
+
+
+# admin forms
+#--------------------
+  def field_selector( f, field, field_class = nil )
+    unless field_class
+      field_id_symbol = (field + "_id").to_sym 
+      field_class     = field.classify.constantize
+    else
+      field_id_symbol = field.to_sym
+    end
+    options = [HashObject.new :id => nil, :name => '-- Selecione --'] + field_class.all
+    "
+      <dt>#{ f.label field_id_symbol                                                                    }</dt>
+      <dd>#{ f.collection_select field_id_symbol , options, :id, :name }</dd>
+    "
+  end
+
+  def authors_field_selector_with_js(f, m)
+    out  = field_selector f, "author"
+    out += "<div id=\"add_more_authors\">"
+    out += field_selector f, "author_2_id", Author
+    out += field_selector f, "author_3_id", Author             
+    out += "</div>"
+    if m.author_2_id.blank? and m.author_3_id.blank? 
+      out += "<script>  $(\"#add_more_authors\").hide(); </script>"
+      out += "<a href=\"#\" onclick=\"$('#add_more_authors').show();$(this).hide();\"> Adicionar mais autores </a>"
+      out += "<p></p>"
+    end
+    return out
+  end
+
+  def directors_field_selector_with_js(f, m)
+    out  = field_selector f, "director"
+    out += "<div id=\"add_more_directors\">"
+    out += field_selector f, "director_2_id", Director
+    out += field_selector f, "director_3_id", Director           
+    out += "</div>"
+    if m.director_2_id.blank? and m.director_3_id.blank? 
+      out += "<script>  $(\"#add_more_directors\").hide(); </script>"
+      out += "<a href=\"#\" onclick=\"$('#add_more_directors').show();$(this).hide();\"> Adicionar mais realizadores </a>"
+      out += "<p></p>"
+    end
+    return out
+  end
+
+  def associate_nn_selector(m,r1,r2,sf,ef,options)
+    options[:member]          = m
+    options[:resource1]       = r1
+    options[:resource2]       = r2
+    options[:show_field]      = sf 
+    options[:table_rows]      = 3
+    options[:extra_fields]    = ef 
+    options[:resource2_key]   = r2.to_s+"2_id" if options[:mode] == :itself
+    options[:path_controller] = '/admin/associations'
+    "<h2>#{options[:resource2].pluralize.humanize}</h2>" +  association_javascript(options) + "<br />"
+  end
+
 end

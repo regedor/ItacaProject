@@ -27,6 +27,6 @@ ActionMailer::Base.smtp_settings = {
   :port => 587,
   :domain => "ItacaProject.com",
   :authentication => :plain,
-  :user_name => "itacaproject.com",
+  :user_name => "itacaproject",
   :password => "RegedorWorks"
 }

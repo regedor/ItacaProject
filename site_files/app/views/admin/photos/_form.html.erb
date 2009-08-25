@@ -2,7 +2,7 @@
 <%= f.persist_fields %>
 
 <dl>
-  <%= field_selector f, "author"                            %>
+  <%= authors_field_selector_with_js f, current_member      %>
   <% f.columns.each do |column| -%>
     <%= f.render column unless ['created_at', 
                                 'version_name', 

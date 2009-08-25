@@ -15,10 +15,10 @@
 
   <div id= 'fields'>
     <%= render_field(@movie,'title')%>
-    <%= render_related 'author', (@movie.authors.map do | item | 
+    <%= render_related (@movie.authors.size > 1 ? 'authors' : 'author'), (@movie.authors.map do | item | 
           { :title => item.name, :path => author_path(item) } 
     end) %> 
-    <%= render_related 'director', (@movie.directors.map do | item | 
+    <%= render_related (@movie.directors.size > 1 ? 'directors' : 'director'), (@movie.directors.map do | item | 
           { :title => item.name, :path => director_path(item) } 
     end) %> 
     <%= render_field(@movie, 'production_year')%>

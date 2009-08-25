@@ -3,7 +3,7 @@
 
 <dl>
   <%= field_selector f, "document_type"                     %>
-  <%= field_selector f, "author"                            %>
+  <%= authors_field_selector_with_js f, current_member      %>
   <% f.columns.each do |column| -%>
     <%= f.render column unless ['updated_at',
                                 'created_at', 

@@ -14,9 +14,9 @@
 
   <div id= 'fields'>
     <%= render_field(@writen_document,'title')%>
-    <%= render_field_div "Autor", @writen_document.author.name, 
-                         :path => author_path(@writen_document.author_id),
-                         :description => "" if @writen_document.author %></p>
+    <%= render_related (@writen_document.authors.size > 1 ? 'authors' : 'author'), (@writen_document.authors.map do | item | 
+          { :title => item.name, :path => author_path(item) } 
+    end) %> 
     <%= render_field_div "Género", @writen_document.document_type.name if @writen_document.document_type%>
     <%= render_field_div "Temática", render_category_and_subs(@writen_document) %>
     <%= render_field(@writen_document,'synopsis')%>
