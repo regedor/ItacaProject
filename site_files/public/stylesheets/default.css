@@ -31,27 +31,27 @@ blockquote, q { quotes: "" ""; }
 /* = Typography
 -------------------------------------------------- */
 a                                   { text-decoration: none; color: #fff;}
-a:hover                             { color:#57f;}
+a:hover                             { color:#755;}
 p                                   { font-size: 1.1em; line-height: 1.7; margin-bottom: 1.5em; text-align:justify;}
 h2                                  { font-size: 2.2em; }
 
 h3                                  { font-size: 1.8em; }
-h4                                  { font-size: 1.6em; color: #68f;}
+h4                                  { font-size: 1.6em; color: #678;}
 #content p                          { font-size: 1.26em; color: #fff;}
-#full-info td.column-title          { font-size: 1.2em; color: #68f; font-weight: bold;}
+#full-info td.column-title          { font-size: 1.2em; color: #678; font-weight: bold;}
 #full-info td p                     { margin-bottom:0;}
 #related-info h4                    { margin: 0.6em 0;}
 
 
 .resource-list a                    { text-decoration:none;}
-.resource-list th                   { font-size: 1.6em; color: #68f;}             
+.resource-list th                   { font-size: 1.6em; color: #678;}             
 .resource-list td                   { font-size: 1.3em;}         
 
 .flash_text                         { font-size: 1.3em; text-align:center; }
 .flash_text                         { border: 1px dashed #fff; padding: 0.4em; margin-bottom: 10px;}
 
 #login-form label, 
-#signup-form label                  { font-size: 1.3em; color: #68f; line-height: 1.7; }
+#signup-form label                  { font-size: 1.3em; color: #678; line-height: 1.7; }
 #login-form, 
 #signup-form                        { text-align: center;margin-top:20px;}
 #login-form input, 
@@ -61,7 +61,7 @@ h4                                  { font-size: 1.6em; color: #68f;}
 
 #about p                            { margin-bottom: 0.5em; }
 #about h4                           { margin-top: 1em; margin-bottom:0.1em}
-#about h5                           { margin-top: 1em; margin-bottom:0.1em; font-size: 1.4em; color: #68f;}
+#about h5                           { margin-top: 1em; margin-bottom:0.1em; font-size: 1.4em; color: #678;}
 #about small                        { font-size: 0.9em; }
 
 #footer a {font-weight:bold;}
@@ -147,7 +147,7 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 .resource-list table                      { width: 100%; border-collapse: collapse;}
 .resource-list tr.odd                     { background: #1e242d;}
 .resource-list tr:hover                   { background: url(/images/bg_hover-row.png) repeat-x}
-.resource-list tr:hover a                 { color: #68f;}
+.resource-list tr:hover a                 { color: #678;}
 .resource-list tr.odd:hover               { background: #1e242d url(/images/bg_hover-row.png) repeat-x}
 .resource-list tr.table-header            { background: url(/images/bg_hover-row.png) repeat-x}
 .resource-list tr.table-header            { background: none}
