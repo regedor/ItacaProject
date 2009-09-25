@@ -1,4 +1,6 @@
-class Movie < ActiveRecord::Base 
+class Movie < ActiveRecord::Base
+  #######################
+  # Relationships related
   belongs_to :category
   belongs_to :subcategory1, :foreign_key => "subcategory_1_id", :class_name => "Subcategory"
   belongs_to :subcategory2, :foreign_key => "subcategory_2_id", :class_name => "Subcategory"
@@ -42,5 +44,27 @@ class Movie < ActiveRecord::Base
   def directors
     Director.all :conditions => 
       {:id => [self.director_id,self.director_2_id,self.director_3_id,self.director_4_id,self.director_5_id]}
+  end
+  
+  #######################
+  # Instace methods
+  def fill_percentage
+    unit = 100.0 / self.attributes.size
+    percentage = self.attributes.values.map{|v| if v.blank? then 0 else unit end}.sum
+    "#{percentage.round}%"
+  end
+
+  def director_names
+    self.directors.map(&:name).join ", "
+  end
+
+  #######################
+  # Class Methods
+  def self.headers_to_admin_list
+    ['Título','Realizador','Percentagem de Preenchimento']
+  end
+
+  def self.fields_to_admin_list
+    ['title', 'director_names', 'fill_percentage']
   end
 end

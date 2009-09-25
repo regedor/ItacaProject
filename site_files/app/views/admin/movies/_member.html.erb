@@ -1,0 +1,11 @@
+    <tr<%= cycle(' class="alt"', '') %>>
+      <td class="actions">
+      <% if current_user.role==User::ROOT || member.user_id == current_user.id -%>
+        <%= link_to 'Editar',   edit_member_path(member) %> <span>|</span>
+	<%= link_to 'Apagar', delete_member_path(member) %>
+      <% end -%>
+      </td>
+    <% member.class.fields_to_admin_list.each do |column| -%>
+      <td><%= (s = member.send(column)).blank? ? '&nbsp;' : h(s) %></td>
+    <% end -%>
+    </tr>

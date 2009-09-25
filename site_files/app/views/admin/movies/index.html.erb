@@ -1,0 +1,20 @@
+
+<h1><%= resource_plural.humanize %></h1>
+
+<p><%= link_to "New #{resource_singular}".humanize, new_member_path %></p>
+
+<table cellspacing="0" id="crudify-table">
+  <thead>
+    <tr>
+      <th class="actions">Acções</th>
+<% resource_class.headers_to_admin_list.each do |column| -%>
+      <th><%= column.humanize %></th>
+<% end -%>
+    </tr>
+  </thead>
+  <tbody>
+      <%= render :partial => 'member', :collection => current_collection -%>
+  </tbody>
+</table>
+
+<p><%= link_to "New #{resource_singular}".humanize, new_member_path %></p>
