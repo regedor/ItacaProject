@@ -319,8 +319,8 @@ namespace :db do
       puts "A criar Users!"
       user = User.new
       user.login                 = 'miguelregedor@gmail.com'
-      user.password              = 'works68'
-      user.password_confirmation = 'works68'
+      user.password              = 'projecto128'
+      user.password_confirmation = 'projecto128'
       user.name                  = 'Miguel Regedor'
       user.role                  =  User::ROOT
       user.email                 = 'miguelregedor@gmail.com'

@@ -118,7 +118,6 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #generic-info #related-photos              { float: left;  width: 425px; margin-top: 20px; }
 #generic-info #item-presenter              { min-height: 300px; }
 
-
 #related-info .related-items               { float: left; width: 50%;}
 #full-info, 
 #related-info,
@@ -140,34 +139,6 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #full-info tr.odd                          { background: #1e242d; }
 #full-info td.column-title                 { border-right: 1px solid #777; text-align: right; width: 150px;}
 #full-info td                              { padding: 0.5em; }
-
-/* = Resources Show Structure
--------------------------------------------------- */
-.resource-list                            { margin:0 -20px;}
-.resource-list p                          { margin:0 20px 15px 20px;}
-.resource-list table                      { width: 100%; border-collapse: collapse;}
-.resource-list tr.odd                     { background: #1e242d;}
-.resource-list tr:hover                   { background: url(/images/bg_hover-row.png) repeat-x}
-.resource-list tr:hover a                 { color: #68f;}
-.resource-list tr.odd:hover               { background: #1e242d url(/images/bg_hover-row.png) repeat-x}
-.resource-list tr.table-header            { background: url(/images/bg_hover-row.png) repeat-x}
-.resource-list tr.table-header            { background: none}
-.resource-list th                         { padding: 10px; text-align:left; }
-.resource-list td                         { border-collapse: collapse; }
-.resource-list td.main                    { border-right: 1px dashed #777; } 
-.resource-list td.director                { border-right: 1px dashed #777; width: 315px; } 
-.resource-list td.biography               { width: 388px; } 
-.resource-list td.genre                   { width: 135px; } 
-.resource-list td a                       { display: block; padding: 1em 10px; }
-
-.resource-list     th.main                { padding-left: 82px;}
-.resource-list     td.main a              { padding-left: 82px;}
-#movies-index-list td.main                { background: url(/images/bg_movie-icon.png) no-repeat 16px -3px;}
-#sound_documents-index-list td.main       { background: url(/images/bg_sound_document-icon.png) no-repeat 15px -3px;}
-#written_documents-index-list td.main     { background: url(/images/bg_txt-icon.png) no-repeat 15px -3px;}
-#photos-index-list td.main                { background: url(/images/bg_photo-icon.png) no-repeat 15px -3px;}
-#authors-index-list td.main               { background: url(/images/bg_author-icon.png) no-repeat 15px -4px;}
-#directors-index-list td.main             { background: url(/images/bg_director-icon.png) no-repeat 15px -3px;}
 
 #related-info p                   { margin-bottom: 1.0em;} 
 #generic-info h4.author           { margin-bottom: 0.75em;} 
@@ -196,12 +167,41 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #related-info a.sound_document     { background: url(/images/bg_sound_document-icon.png)    no-repeat -13px -3px;} 
 #related-info a.writen_document    { background: url(/images/bg_txt-icon.png)               no-repeat -13px -3px;} 
 #related-info a.photo              { background: url(/images/bg_photo-icon.png)             no-repeat -13px -3px;} 
-                                                                                                   
+ 
+/* = Resources List Structure
+-------------------------------------------------- */
+.resource-list                            { margin:0 -20px;}
+.resource-list p                          { margin:0 20px 15px 20px;}
+.resource-list table                      { width: 861px; border-collapse: collapse;margin:auto}
+.resource-list tr.odd                     { background: #1e242d;}
+.resource-list tr:hover                   { background: url(/images/bg_hover-row.png) repeat-x}
+.resource-list tr:hover a                 { color: #68f;}
+.resource-list tr.odd:hover               { background: #1e242d url(/images/bg_hover-row.png) repeat-x}
+.resource-list tr.table-header            { background: url(/images/bg_hover-row.png) repeat-x}
+.resource-list tr.table-header            { background: none}
+.resource-list th                         { padding: 10px; text-align:left; }
+.resource-list td                         { border-collapse: collapse; border-right: 1px dashed #777; } 
+.resource-list td.main                    { border-left: 1px dashed #777; } 
+.resource-list td.director                { width: 315px; } 
+.resource-list td.biography               { width: 388px; } 
+.resource-list td.genre                   { width: 135px; } 
+.resource-list td a                       { display: block; padding: 1em 10px; }
+
+.resource-list     th.main                { padding-left: 62px;}
+.resource-list     td.main a              { padding-left: 62px;}
+#movies-index-list td.main                { background: url(/images/bg_movie-icon.png)          no-repeat 5px -3px;}
+#sound_documents-index-list td.main       { background: url(/images/bg_sound_document-icon.png) no-repeat 5px -3px;}
+#written_documents-index-list td.main     { background: url(/images/bg_txt-icon.png)            no-repeat 5px -3px;}
+#photos-index-list td.main                { background: url(/images/bg_photo-icon.png)          no-repeat 5px -3px;}
+#authors-index-list td.main               { background: url(/images/bg_author-icon.png)         no-repeat 5px -4px;}
+#directors-index-list td.main             { background: url(/images/bg_director-icon.png)       no-repeat 5px -3px;}
+                                                                                                  
 /* = About Page Structure                                                                          
 -------------------------------------------------- */                                              
 #about #logos { text-align:center;}                                                                
 #about #logos img { border: 3px solid #39414A; margin: 0 10px;}                                    
                                                                                                    
+
 /* Self-clearing floats and IE hacks */
 .selfclear:after  { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .selfclear        { display: inline-block; /* IE 7 */ }
