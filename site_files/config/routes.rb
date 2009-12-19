@@ -18,21 +18,21 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.default    '', :controller => 'movies'
     admin.resources :associations
-    admin.resources :writen_documents,  :member => { :delete => :get }
-    admin.resources :photos,            :member => { :delete => :get }
-    admin.resources :sound_documents,   :member => { :delete => :get }
-    admin.resources :movies,            :member => { :delete => :get }
-    admin.resources :locals,            :member => { :delete => :get }
-    admin.resources :countries,         :member => { :delete => :get }
-    admin.resources :document_types,    :member => { :delete => :get }
-    admin.resources :music_genres,      :member => { :delete => :get }
-    admin.resources :categories,        :member => { :delete => :get }
-    admin.resources :subcategories,     :member => { :delete => :get }
-    admin.resources :genres,            :member => { :delete => :get }
-    admin.resources :prizes,            :member => { :delete => :get }
-    admin.resources :directors,         :member => { :delete => :get }
-    admin.resources :authors,           :member => { :delete => :get }
-    admin.resources :users,             :member => { :delete => :get }
+    admin.resources :writen_documents,:member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :photos,          :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :sound_documents, :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :movies,          :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :locals,          :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :countries,       :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :document_types,  :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :music_genres,    :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :categories,      :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :subcategories,   :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :genres,          :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :prizes,          :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :directors,       :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :authors,         :member => {:delete => :get}, :collection => {:grid_data => :post}
+    admin.resources :users,           :member => {:delete => :get}, :collection => {:grid_data => :post}
   end
 
   # ==========================================================================

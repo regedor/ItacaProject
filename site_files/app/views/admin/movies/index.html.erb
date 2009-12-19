@@ -1,20 +1,32 @@
-
 <h1><%= resource_plural.humanize %></h1>
 
-<p><%= link_to "New #{resource_singular}".humanize, new_member_path %></p>
-
-<table cellspacing="0" id="crudify-table">
-  <thead>
-    <tr>
-      <th class="actions">Acções</th>
-<% resource_class.headers_to_admin_list.each do |column| -%>
-      <th><%= column.humanize %></th>
-<% end -%>
-    </tr>
-  </thead>
-  <tbody>
-      <%= render :partial => 'member', :collection => current_collection -%>
-  </tbody>
-</table>
-
-<p><%= link_to "New #{resource_singular}".humanize, new_member_path %></p>
+<table id="flex1"></table>
+<script type="text/javascript">
+  var table = $("#flex1")         
+  if(table.length > 0) { table.flexigrid ({
+    url: '/admin/<%= resource_plural %>/grid_data?authenticity_token=<%= form_authenticity_token %>',
+    dataType: 'json',             
+    colModel : [<%= @resource_columns %>],
+    buttons : [{ 
+      name: '<%= "New #{resource_singular}".humanize %>', 
+      bclass: 'add', 
+      onpress : function (com,grid) { window.location = "<%= new_member_path %>"; }
+    },],
+    searchitems : [
+      {display: 'Título',   name : 'title'},
+      {display: 'ID',       name : 'id'},
+      {display: 'Sinopse',  name : 'synopsis'},
+      {display: 'Produtor', name : 'producer'}
+    ],
+    sortname: "title",
+    sortorder: "desc",
+    usepager: true,
+    useRp: true,
+    rp: 20,
+    width: 'auto',
+    height: 'auto',
+    rpOptions: [10,15,20,30,50,100],
+    pagestat: ' {from} a {to} do total de {total} <%= resource_plural.humanize.downcase %>',
+    procmsg:  'A processar, aguarde ...',
+    });}
+</script>
