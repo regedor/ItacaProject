@@ -113,32 +113,37 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 
 /* = Resources Show Structure
 -------------------------------------------------- */
-#generic-info #fields                      { float: right; width:420px; }	
-#generic-info #item-visuals                { float: left;  width:425px; margin-bottom:40px;}
-#generic-info #related-photos              { float: left;  width: 425px; margin-top: 20px; }
-#generic-info #item-presenter              { min-height: 300px; }
+#generic-info #fields                { float: right; width:420px; }	
+#generic-info #item-visuals          { float: left;  width:425px; margin-bottom:40px;}
+#generic-info #related-photos        { float: left;  width: 425px; margin-top: 20px; }
+#generic-info #item-presenter        { min-height: 300px; }
 
-#related-info .related-items               { float: left; width: 50%;}
+#related-info .related-items         { float: left; width: 50%;}
 #full-info, 
 #related-info,
-#more-info                                 { background: url(/images/bg_division-bar.gif) repeat-x top;
-                                             margin : 20px -20px 0px -20px; padding: 0 20px 0 20px; }
+#more-info                           { background: url(/images/bg_division-bar.gif) repeat-x top;
+                                       margin : 20px -20px 0px -20px; padding: 0 20px 0 20px; }
 #full-info h3, 
 #related-info h3,
-#more-info h3                              { padding-top: 22px; padding-bottom: 15px; position:relative}
+#more-info h3                         { padding-top: 22px; padding-bottom: 15px; position:relative}
 #full-info h3, 
 #related-info h3,
-#more-info h3                              { top:-0.5em; }
-#related-info                              { padding-right:0;}
-#show-movie    #item-presenter             { background: url(/images/bg_big-pic-movie.gif) no-repeat center -20px; }
-#show-author   #item-presenter             { background: url(/images/bg_big-pic-author.gif) no-repeat center -20px; }
-#show-director #item-presenter             { background: url(/images/bg_big-pic-director.gif) no-repeat center -20px; }
+#more-info h3                         { top:-0.5em; }
+#related-info                         { padding-right:0;}
+#show-movie           #item-presenter { background: url(/images/bg_big-pic-movie.gif) no-repeat center -20px; }
+#show-sound_document  #item-presenter { background: url(/images/bg_big-pic-sound_document.gif) no-repeat center -20px; }
+#show-photo           #item-presenter { background: url(/images/bg_big-pic-photo.gif) no-repeat center -20px; }
+#show-writen_document #item-presenter { background: url(/images/bg_big-pic-writen_document.gif) no-repeat center -20px; }
+#show-author          #item-presenter { background: url(/images/bg_big-pic-author.gif) no-repeat center -20px; }
+#show-director        #item-presenter { background: url(/images/bg_big-pic-director.gif) no-repeat center -20px; }
+#show-prize           #item-presenter { background: url(/images/bg_big-pic-prize.gif) no-repeat center -20px; }
+#show-local           #item-presenter { background: url(/images/bg_big-pic-local.gif) no-repeat center -20px; }
 
-#full-info table                           { width: 100%; border-collapse: collapse; border: 1px solid #777}
-#full-info table                           { margin-top: 11px;}
-#full-info tr.odd                          { background: #1e242d; }
-#full-info td.column-title                 { border-right: 1px solid #777; text-align: right; width: 150px;}
-#full-info td                              { padding: 0.5em; }
+#full-info table                     { width: 100%; border-collapse: collapse; border: 1px solid #777}
+#full-info table                     { margin-top: 11px;}
+#full-info tr.odd                    { background: #1e242d; }
+#full-info td.column-title           { border-right: 1px solid #777; text-align: right; width: 150px;}
+#full-info td                        { padding: 0.5em; }
 
 #related-info p                   { margin-bottom: 1.0em;} 
 #generic-info h4.author           { margin-bottom: 0.75em;} 
@@ -150,23 +155,23 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #related-info h4.writen_document  { margin-bottom: 0.75em;} 
 #related-info h4.photo            { margin-bottom: 0.75em;} 
 
-#generic-info a.author             { padding: 15px 0px 5px 33px; } 
-#generic-info a.director           { padding: 15px 0px 5px 33px; } 
-#related-info a.local              { padding: 15px 0px 5px 33px; } 
-#related-info a.prize              { padding: 15px 0px 5px 33px; } 
-#related-info a.movie              { padding: 15px 0px 5px 33px; } 
-#related-info a.sound_document     { padding: 15px 0px 5px 33px; } 
-#related-info a.writen_document    { padding: 15px 0px 5px 33px; } 
-#related-info a.photo              { padding: 15px 0px 5px 33px; } 
+#generic-info a.author            { padding: 15px 0px 5px 33px; } 
+#generic-info a.director          { padding: 15px 0px 5px 33px; } 
+#related-info a.local             { padding: 15px 0px 5px 33px; } 
+#related-info a.prize             { padding: 15px 0px 5px 33px; } 
+#related-info a.movie             { padding: 15px 0px 5px 33px; } 
+#related-info a.sound_document    { padding: 15px 0px 5px 33px; } 
+#related-info a.writen_document   { padding: 15px 0px 5px 33px; } 
+#related-info a.photo             { padding: 15px 0px 5px 33px; } 
 
-#show-movie a.author               { background: url(/images/bg_author-icon.png)            no-repeat -14px -3px;}
-#show-movie a.director 	           { background: url(/images/bg_director-icon.png)          no-repeat -13px -3px;} 
-#related-info a.local              { background: url(/images/bg_local-icon.png)             no-repeat -13px -3px;} 
-#related-info a.prize              { background: url(/images/bg_prize-icon.png)             no-repeat -13px -3px;} 
-#related-info a.movie              { background: url(/images/bg_movie-icon.png)             no-repeat -13px -3px;} 
-#related-info a.sound_document     { background: url(/images/bg_sound_document-icon.png)    no-repeat -13px -3px;} 
-#related-info a.writen_document    { background: url(/images/bg_txt-icon.png)               no-repeat -13px -3px;} 
-#related-info a.photo              { background: url(/images/bg_photo-icon.png)             no-repeat -13px -3px;} 
+#generic-info a.author             { background: url(/images/bg_author-icon.png)            no-repeat -14px -3px;}
+#generic-info a.director 	  { background: url(/images/bg_director-icon.png)          no-repeat -13px -3px;} 
+#related-info a.local             { background: url(/images/bg_local-icon.png)             no-repeat -13px -3px;} 
+#related-info a.prize             { background: url(/images/bg_prize-icon.png)             no-repeat -13px -3px;} 
+#related-info a.movie             { background: url(/images/bg_movie-icon.png)             no-repeat -13px -3px;} 
+#related-info a.sound_document    { background: url(/images/bg_sound_document-icon.png)    no-repeat -13px -3px;} 
+#related-info a.writen_document   { background: url(/images/bg_txt-icon.png)               no-repeat -13px -3px;} 
+#related-info a.photo             { background: url(/images/bg_photo-icon.png)             no-repeat -13px -3px;} 
  
 /* = Resources List Structure
 -------------------------------------------------- */
@@ -180,8 +185,8 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 .resource-list tr.table-header            { background: url(/images/bg_hover-row.png) repeat-x}
 .resource-list tr.table-header            { background: none}
 .resource-list th                         { padding: 10px; text-align:left; }
-.resource-list td                         { border-collapse: collapse; border-right: 1px dashed #777; } 
-.resource-list td.main                    { border-left: 1px dashed #777; } 
+.resource-list td                         { border-collapse:collapse;border-left:1px dashed #777;vertical-align:middle;} 
+.resource-list td.main                    { border-left: none; } 
 .resource-list td.director                { width: 315px; } 
 .resource-list td.biography               { width: 388px; } 
 .resource-list td.genre                   { width: 135px; } 
@@ -191,10 +196,16 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 .resource-list     td.main a              { padding-left: 62px;}
 #movies-index-list td.main                { background: url(/images/bg_movie-icon.png)          no-repeat 5px -3px;}
 #sound_documents-index-list td.main       { background: url(/images/bg_sound_document-icon.png) no-repeat 5px -3px;}
-#written_documents-index-list td.main     { background: url(/images/bg_txt-icon.png)            no-repeat 5px -3px;}
+#writen_documents-index-list td.main      { background: url(/images/bg_txt-icon.png)            no-repeat 5px -3px;}
 #photos-index-list td.main                { background: url(/images/bg_photo-icon.png)          no-repeat 5px -3px;}
 #authors-index-list td.main               { background: url(/images/bg_author-icon.png)         no-repeat 5px -4px;}
 #directors-index-list td.main             { background: url(/images/bg_director-icon.png)       no-repeat 5px -3px;}
+
+
+#photos-index-list td.main a                  { width: 64px; padding:0;} 
+#photos-index-list td.main                       { width: 64px; padding:0;} 
+#photos-index-list th.main a                      { width: 64px; padding:0;} 
+#photos-index-list th.main                    { width: 64px; padding:0;} 
                                                                                                   
 /* = About Page Structure                                                                          
 -------------------------------------------------- */                                              

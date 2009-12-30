@@ -1,7 +1,7 @@
 <% content_for :page_title, truncate(@writen_document.title,46,"...") %>
 <% content_for :body_id,    "show-writen_document" %>
 
-<div id='generic-info'>
+<div id='generic-info' class='selfclear'>
   <div id='item-visuals'>
     <div id='item-presenter'>
     </div>
@@ -17,71 +17,74 @@
     <%= render_related (@writen_document.authors.size > 1 ? 'authors' : 'author'), (@writen_document.authors.map do | item | 
           { :title => item.name, :path => author_path(item) } 
     end) %> 
-    <%= render_field_div "Género", @writen_document.document_type.name if @writen_document.document_type%>
+    <%= render_field(@writen_document, 'edition_year')%>
+    <%= render_field_div "Tipo", @writen_document.document_type.name if @writen_document.document_type %>
     <%= render_field_div "Temática", render_category_and_subs(@writen_document) %>
-    <%= render_field(@writen_document,'synopsis')%>
-  </div>
+  </div> 
+</div>
+
+<div id='more-info' style="clear:both;">
+  <h3>Sinopse</h3>
+  <p> <%= !@writen_document.synopsis.blank? && @writen_document.synopsis || "<span class='empty-data'>(sem informação)</span>" %> </p>
 </div>
 
 
-<div id='related-info'>
-  <h3>Relacionado com este documento escrito</h3>
-  <%= render_related 'locals', (@writen_document.locals.map do | item | 
-        { :title => item.name, :path => local_path(item), :description => "" } 
-      end) %> 
-  <%= render_related 'prizes', (@writen_document.prizes.map do | item | 
-        { :title => item.title, :path => prize_path(item), :description => item.description_for(@writen_document) } 
-      end) %> 
-  <%= render_related 'movies', (@writen_document.movies.map do | item | 
-        { :title => item.title, :path => movie_path(item), :description => "" } 
-      end) %> 
-  <%= render_related 'sound_documents', (@writen_document.sound_documents.map  do | item | 
-        { :title => item.title, :path => sound_document_path(item), :description => "" } 
-      end) %> 
-  <%= render_related 'writen_documents', (@writen_document.writen_documents.map do | item | 
-        { :title => item.title, :path => writen_document_path(item), :description => "" } 
-      end) %> 
+
+<div id='related-info' class='selfclear'>
+  <h3>Relacionado com este filme</h3>
+
+  <div class='selfclear'>
+    <%= render_related 'locals', (@writen_document.locals.map do | item | 
+          { :title => item.name, :path => local_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'prizes', (@writen_document.prizes.map do | item | 
+          { :title => item.title, :path => prize_path(item), :description => item.description_for(@writen_document) } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'writen_documents', (@writen_document.writen_documents.map do | item | 
+          { :title => item.title, :path => writen_document_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'writen_documents', (@writen_document.writen_documents.map  do | item | 
+          { :title => item.title, :path => writen_document_path(item), :description => "" } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'writen_documents', (@writen_document.writen_documents.map do | item | 
+          { :title => item.title, :path => writen_document_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'photos', (@writen_document.photos.map do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+  </div>
 </div>	
 
 
 <div id='full-info'>
-  <h3>Ficha técnica</h3>
+  <h3>
+    Descrição e Análise 
+  </h3>
   
-  <div id='full-info-control'>
-
-  </div>
-
   <div id='full-info-fields'>
     <% elements= [
 	{ :render_type => 'normal'       , :attribute => "title"                                            } ,  
-     # 	{ :render_type => 'id_field'     , :attribute => "genre_id"                                         } ,  
+      	{ :render_type => 'id_field'     , :attribute => "document_type_id"                                 } ,  
       	{ :render_type => 'id_field'     , :attribute => "category_id"                                      } ,  
       	{ :render_type => 'subcategories', :attribute => "subcategories"                                    } ,  
       	{ :render_type => 'normal'       , :attribute => "synopsis"                                         } ,
       	{ :render_type => 'id_field'     , :attribute => "author_id"                                        } ,
-     # 	{ :render_type => 'id_field'     , :attribute => "director_id"                                      } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "producer"                                         } ,
-     # 	{ :render_type => 'normal'       , :attribute => "production_year"                                  } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "release_date"                                     } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "production_context"                               } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "distributor"                                      } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "duration"                                         } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "format"                                           } ,  
+      	{ :render_type => 'normal'       , :attribute => "editor"                                           } ,
+      	{ :render_type => 'normal'       , :attribute => "edition_year"                                     } ,  
+      	{ :render_type => 'normal'       , :attribute => "production_context"                               } ,  
+      	{ :render_type => 'normal'       , :attribute => "distributor"                                      } ,  
+      	{ :render_type => 'normal'       , :attribute => "format"                                           } ,  
       	{ :render_type => 'yes_or_no'    , :attribute => "free"                                             } ,  
       	{ :render_type => 'normal'       , :attribute => "rights"                                           } ,  
-      	{ :render_type => 'simple'       , :attribute => "Link"               , :value => movie_url(@writen_document) } ,  
-     # 	{ :render_type => 'none'         , :attribute => "youtube_link"                                     } ,  
+      	{ :render_type => 'simple'       , :attribute => "Link"               , :value => writen_document_url(@writen_document) } ,  
+      	{ :render_type => 'none'         , :attribute => "youtube_link"                                     } ,  
       	{ :render_type => 'normal'       , :attribute => "comments"                                         } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "main_event"                                       } ,
-     # 	{ :render_type => 'normal'       , :attribute => "cultural_context"                                 } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "image_sound"                                      } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "ccdc"                                             } ,
-     # 	{ :render_type => 'normal'       , :attribute => "reading"                                          } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "exploration"                                      } ,
-     # 	{ :render_type => 'normal'       , :attribute => "analisis"                                         } ,  
-     # 	{ :render_type => 'normal'       , :attribute => "proposals"                                        } ,  
-     # 	{ :render_type => 'none'         , :attribute => "created_at"                                       } ,  
-     # 	{ :render_type => 'none'         , :attribute => "updated_at"                                       } ,  
+      	{ :render_type => 'none'         , :attribute => "created_at"                                       } ,  
+      	{ :render_type => 'none'         , :attribute => "updated_at"                                       } ,  
       	{ :render_type => 'none'         , :attribute => "user_id"                                          } ,  
       	{ :render_type => 'none'         , :attribute => "status"                                           } 
     ] %>

@@ -1,31 +1,35 @@
 <% content_for :page_title do %>Lista de Documentos Escritos<% end %>
 
-<div id=writen-documents-index-list class=resource-list>
-  <p>
-    Em breve poderá encontrar novidades nesta secção.
+
+<div id=writen_documents-index-list class=resource-list>
+
+  <p><%=h "
+    A Base de Dados Imagens e Sonoridades das Migrações conta, neste momento, com #{WritenDocument.count} documentos escritos." %>
   </p>
-  <% if false%>
+
   <table>
 
-    <tr>
-      <th></th>
-      <th><%=h "Title".humanize %>          </th>
-      <th><%=h "Author".humanize %>         </th>
-      <th><%=h "document type".humanize %>          </th>
-      <th><%=h "Synopsis".humanize %>       </th>
+    <tr class="table-header">
+      <th class="main"> <%=h "Title".humanize %>          </th>
+      <th>              <%=h "Author".humanize %>       </th>
+      <th>              <%=h "Tipo".humanize %>         </th>
     </tr>
   
-    <% for resource in @writen_documents %>
-    <tr <%= cycle "", "class='odd'"%> href="<%= writen_document_path(resource) %>">
-      <td class="resource-pic"></td>
-      <td><%= link_to truncate(resource.title,60,"..."), writen_document_path(resource) %></td>
-      <td><%= link_to resource.author.name, author_path(resource.author) if resource.author %></td>
-      <td><%=h resource.document_type.name if resource.document_type %></td>
-      <td><%=h truncate(resource.synopsis,60,"...") %></td>
+    <% for writen_document in @writen_documents %>
+    <tr <%= cycle "", "class='odd'"%> href="<%= writen_document_path(writen_document)%>">
+      <td class="main">
+        <%= link_to h(truncate(writen_document.title,46,"...")), writen_document_path(writen_document), :title => writen_document.synopsis %>            
+      </td>
+      <td class="director">
+        <%= link_to h(truncate(authors_names(writen_document),43,"...") || ""), writen_document_path(writen_document), :title => writen_document.synopsis %> 
+      </td>
+      <td class="genre">
+        <%= link_to h(writen_document.document_type && truncate(writen_document.document_type.name,15,"...") || ""), writen_document_path(writen_document), :title => writen_document.synopsis %> 
+      </td>
     </tr>
     <% end %>
 
   </table>
-  <%end%>
 </div>
+
 

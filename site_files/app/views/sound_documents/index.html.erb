@@ -1,32 +1,33 @@
 <% content_for :page_title do %>Lista de Documentos Sonoros<% end %>
 
-<div id=sound-documents-index-list class=resource-list>
-  <p>
-    Em breve poderá encontrar novidades nesta secção.
+
+<div id=sound_documents-index-list class=resource-list>
+
+  <p><%=h "
+    A Base de Dados Imagens e Sonoridades das Migrações conta, neste momento, com #{SoundDocument.count} documentos sonoros." %>
   </p>
-  <% if false%>
+
   <table>
 
-    <tr>
-      <th></th>
-      <th><%=h "Title".humanize %>          </th>
-      <th><%=h "Author".humanize %>         </th>
-      <th><%=h "Director".humanize %>       </th>
-      <th><%=h "music genre".humanize %>          </th>
-      <th><%=h "Synopsis".humanize %>       </th>
+    <tr class="table-header">
+      <th class="main"> <%=h "Title".humanize %>          </th>
+      <th>              <%=h "Director".humanize %>       </th>
+      <th>              <%=h "Genre".humanize %>         </th>
     </tr>
   
-    <% for resource in @sound_documents %>
-    <tr <%= cycle "", "class='odd'"%> href="<%= sound_document_path(resource) %>">
-      <td class="resource-pic"></td>
-      <td><%= link_to truncate(resource.title,50,"..."), sound_document_path(resource) %></td>
-      <td><%= link_to resource.author.name, author_path(resource.author) if resource.author %></td>
-      <td><%= link_to resource.director.name, director_path(resource.director) if resource.director %></td>
-      <td><%=h resource.music_genre.name if resource.music_genre %></td>
-      <td><%=h truncate(resource.synopsis,50,"...") %></td>
+    <% for sound_document in @sound_documents %>
+    <tr <%= cycle "", "class='odd'"%> href="<%= sound_document_path(sound_document)%>">
+      <td class="main">
+        <%= link_to h(truncate(sound_document.title,46,"...")), sound_document_path(sound_document), :title => sound_document.synopsis %>            
+      </td>
+      <td class="director">
+        <%= link_to h(truncate(directors_names(sound_document),43,"...") || ""), sound_document_path(sound_document), :title => sound_document.synopsis %> 
+      </td>
+      <td class="genre">
+        <%= link_to h(sound_document.music_genre && truncate(sound_document.music_genre.name,15,"...") || ""), sound_document_path(sound_document), :title => sound_document.synopsis %> 
+      </td>
     </tr>
     <% end %>
 
   </table>
-  <%end%>
 </div>

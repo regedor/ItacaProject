@@ -23,6 +23,8 @@ class Admin::MoviesController < Admin::BaseController
         m.director_names                                                         ,
         m.fill_percentage                                                        ,
         m.updated_at                                                             ,
+        '<a href="' + movie_path(m) + '" > Ver </a>' +
+        "<span> | </span>" +
         '<a href="' + edit_member_path(m) + '" > Editar </a>' +
         "<span> | </span>" +
         '<a href="' + delete_member_path(m) + '" > Remover </a>'
@@ -31,6 +33,5 @@ class Admin::MoviesController < Admin::BaseController
     # Convert the hash to a json object
     render :text => return_data.to_json, :layout=>false
   end
-
 
 end

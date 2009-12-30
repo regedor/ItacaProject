@@ -1,53 +1,97 @@
-<p>
-  <b>Title:</b>
-  <%=h @photo.title %>
-</p>
+<% content_for :page_title, truncate(@photo.title,46,"...") %>
+<% content_for :body_id,    "show-photo" %>
 
-<p>
-  <b>Synopsis:</b>
-  <%=h @photo.synopsis %>
-</p>
+<div id='generic-info' class='selfclear'>
+  <div id='item-visuals'>
+    <div id='item-presenter'>
+    </div>
+    <div id='related-photos'>
+      <% @photo.photos.each do | photo | %>
+        <%= link_to image_tag(photo.versions[:preview].relative_path), photo_path(photo), :title => "" %>
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <b>Author:</b>
-  <%=h @photo.author_id %>
-</p>
+  <div id= 'fields'>
+    <%= render_field(@photo,'title')%>
+    <%= render_related (@photo.authors.size > 1 ? 'authors' : 'author'), (@photo.authors.map do | item | 
+          { :title => item.name, :path => author_path(item) } 
+    end) %> 
+    <%= render_field(@photo, 'production_year')%>
+    <%= render_field_div "Tipo", @photo.genre.name if @photo.genre %>
+    <%= render_field_div "Temática", render_category_and_subs(@photo) %>
+  </div> 
+</div>
 
-<p>
-  <b>Editor:</b>
-  <%=h @photo.editor %>
-</p>
-
-<p>
-  <b>Production year:</b>
-  <%=h @photo.production_year %>
-</p>
-
-<p>
-  <b>Comments:</b>
-  <%=h @photo.comments %>
-</p>
-
-<p>
-  <b>Production context:</b>
-  <%=h @photo.production_context %>
-</p>
-
-<p>
-  <b>Distributor:</b>
-  <%=h @photo.distributor %>
-</p>
-
-<p>
-  <b>Format:</b>
-  <%=h @photo.format %>
-</p>
-
-<p>
-  <b>Rights:</b>
-  <%=h @photo.rights %>
-</p>
+<div id='more-info' style="clear:both;">
+  <h3>Sinopse</h3>
+  <p> <%= !@photo.synopsis.blank? && @photo.synopsis || "<span class='empty-data'>(sem informação)</span>" %> </p>
+</div>
 
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+
+<div id='related-info' class='selfclear'>
+  <h3>Relacionado com este filme</h3>
+
+  <div class='selfclear'>
+    <%= render_related 'locals', (@photo.locals.map do | item | 
+          { :title => item.name, :path => local_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'prizes', (@photo.prizes.map do | item | 
+          { :title => item.title, :path => prize_path(item), :description => item.description_for(@photo) } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'photos', (@photo.photos.map do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'photos', (@photo.photos.map  do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'photos', (@photo.photos.map do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'photos', (@photo.photos.map do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+  </div>
+</div>	
+
+
+<div id='full-info'>
+  <h3>
+    Descrição e Análise 
+  </h3>
+  
+  <div id='full-info-fields'>
+    <% elements= [
+	{ :render_type => 'normal'       , :attribute => "title"                                            } ,  
+      	{ :render_type => 'id_field'     , :attribute => "category_id"                                      } ,  
+      	{ :render_type => 'subcategories', :attribute => "subcategories"                                    } ,  
+      	{ :render_type => 'normal'       , :attribute => "synopsis"                                         } ,
+      	{ :render_type => 'id_field'     , :attribute => "author_id"                                        } ,
+      	{ :render_type => 'normal'       , :attribute => "editor"                                           } ,
+      	{ :render_type => 'normal'       , :attribute => "production_year"                                     } ,  
+      	{ :render_type => 'normal'       , :attribute => "production_context"                               } ,  
+      	{ :render_type => 'normal'       , :attribute => "distributor"                                      } ,  
+      	{ :render_type => 'normal'       , :attribute => "format"                                           } ,  
+      	{ :render_type => 'yes_or_no'    , :attribute => "free"                                             } ,  
+      	{ :render_type => 'normal'       , :attribute => "rights"                                           } ,  
+      	{ :render_type => 'simple'       , :attribute => "Link"               , :value => photo_url(@photo) } ,  
+      	{ :render_type => 'none'         , :attribute => "youtube_link"                                     } ,  
+      	{ :render_type => 'normal'       , :attribute => "comments"                                         } ,  
+      	{ :render_type => 'none'         , :attribute => "created_at"                                       } ,  
+      	{ :render_type => 'none'         , :attribute => "updated_at"                                       } ,  
+      	{ :render_type => 'none'         , :attribute => "user_id"                                          } ,  
+      	{ :render_type => 'none'         , :attribute => "status"                                           } 
+    ] %>
+    <table>
+      <% elements.each do | element |  %>
+        <%= render_full_info_element element, @photo, (cycle "", "odd") if render_full_info_element element, @photo%>
+      <% end %>
+    </table>	    
+  </div>  
+</div>
+

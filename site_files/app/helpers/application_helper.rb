@@ -88,6 +88,8 @@ module ApplicationHelper
   end
 
   def render_youtube(url)
+    query = URI.parse(url).query
+    url = CGI.parse(query)["v"][0] if query
     ' <object width="425" height="344">
         <param name="movie" value="http://www.youtube.com/v/'+url+'&fs=1&rel=0&color2=0x666666&color1=0x54abd6"></param>
         <param name="allowFullScreen" value="true"></param>
@@ -100,6 +102,8 @@ module ApplicationHelper
         </embed>
       </object>
     ' unless url.blank?
+  rescue
+    ""
   end
 
 end

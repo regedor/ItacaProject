@@ -1,28 +1,36 @@
 <% content_for :page_title do %>Lista de Fotos<% end %>
 
+
 <div id=photos-index-list class=resource-list>
-  <p>
-    Em breve poderá encontrar novidades nesta secção.
+
+  <p><%=h "
+    A Base de Dados Imagens e Sonoridades das Migrações conta, neste momento, com #{Photo.count} fotos." %>
   </p>
-  <% if false%>
+
   <table>
 
-    <tr>
-      <th></th>
-      <th><%=h "Title".humanize %>          </th>
-      <th><%=h "Author".humanize %>         </th>
-      <th><%=h "Synopsis".humanize %>       </th>
+    <tr class="table-header">
+      <th class="main"> <%=h "" %>                </th>
+      <th>              <%=h "Title".humanize %>  </th>
+      <th>              <%=h "Author".humanize %> </th>
     </tr>
   
-    <% for resource in @photos %>
-    <tr <%= cycle "", "class='odd'"%> href="<%= photo_path(resource) %>">
-      <td class="resource-pic"></td>
-      <td><%= link_to truncate(resource.title,60,"..."), photo_path(resource) %></td>
-      <td><%= link_to resource.author.name, author_path(resource.author) if resource.author %></td>
-      <td><%=h truncate(resource.synopsis,60,"...") %></td>
+    <% for photo in @photos %>
+    <tr <%= cycle "", "class='odd'"%> href="<%= photo_path(photo)%>">
+      <td class="main">
+        <% if photo.filename -%>
+        <%= link_to image_tag(photo.versions[:preview].relative_path), photo_path(photo), :title => photo.synopsis %> 
+        <% end -%>
+      </td>
+      <td class="title">
+        <%= link_to h(truncate(photo.title,46,"...")), photo_path(photo), :title => photo.synopsis %>            
+      </td>
+      <td class="director">
+        <%= link_to h(truncate(authors_names(photo),43,"...") || ""), photo_path(photo), :title => photo.synopsis %> 
+      </td>
     </tr>
     <% end %>
 
   </table>
-  <%end%>
 </div>
+

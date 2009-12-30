@@ -44,4 +44,14 @@ class SoundDocument < ActiveRecord::Base
     Author.all :conditions => 
       {:id => [self.director_id,self.director_2_id,self.director_3_id,self.director_4_id,self.director_5_id]}
   end
+
+
+  #######################
+  # Instace methods
+  def fill_percentage
+    unit = 100.0 / self.attributes.size
+    percentage = self.attributes.values.map{|v| if v.blank? then 0 else unit end}.sum
+    "#{percentage.round}%"
+  end
+
 end

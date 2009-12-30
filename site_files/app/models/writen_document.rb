@@ -50,4 +50,17 @@ class WritenDocument < ActiveRecord::Base
       {:id => [self.author_id,self.author_2_id,self.author_3_id,self.author_4_id,self.author_5_id]}
   end
 
+
+  #######################
+  # Instace methods
+  def fill_percentage
+    unit = 100.0 / self.attributes.size
+    percentage = self.attributes.values.map{|v| if v.blank? then 0 else unit end}.sum
+    "#{percentage.round}%"
+  end
+
+  def author_names
+    self.authors.map(&:name).join ", "
+  end
+
 end

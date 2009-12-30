@@ -1,44 +1,106 @@
-<p>
-  <b>Title:</b>
-  <%=h @sound_document.title %>
-</p>
+<% content_for :page_title, truncate(@sound_document.title,46,"...") %>
+<% content_for :body_id,    "show-sound_document" %>
 
-<p>
-  <b>Synopsis:</b>
-  <%=h @sound_document.synopsis %>
-</p>
+<div id='generic-info' class='selfclear'>
+  <div id='item-visuals'>
+    <div id='item-presenter'>
+      <%= render_youtube @sound_document.youtube_link %>
+    </div>
+    <div id='related-photos'>
+      <% @sound_document.photos.each do | photo | %>
+        <%= link_to image_tag(photo.versions[:preview].relative_path), photo_path(photo), :title => "" %>
+      <% end %>
+    </div>
+  </div>
 
-<p>
-  <b>Production year:</b>
-  <%=h @sound_document.production_year %>
-</p>
+  <div id= 'fields'>
+    <%= render_field(@sound_document,'title')%>
+    <%= render_related (@sound_document.authors.size > 1 ? 'authors' : 'author'), (@sound_document.authors.map do | item | 
+          { :title => item.name, :path => author_path(item) } 
+    end) %> 
+    <%= render_related (@sound_document.directors.size > 1 ? 'directors' : 'director'), (@sound_document.directors.map do | item | 
+          { :title => item.name, :path => director_path(item) } 
+    end) %> 
+    <%= render_field(@sound_document, 'production_year')%>
+    <%= render_field_div "Género", @sound_document.music_genre.name if @sound_document.music_genre %>
+    <%= render_field_div "Temática", render_category_and_subs(@sound_document) %>
+    <%= render_field(@sound_document, 'duration')%>
+  </div> 
+</div>
 
-<p>
-  <b>Release date:</b>
-  <%=h @sound_document.release_date %>
-</p>
+<div id='more-info' style="clear:both;">
+  <h3>Sinopse</h3>
+  <p> <%= !@sound_document.synopsis.blank? && @sound_document.synopsis || "<span class='empty-data'>(sem informação)</span>" %> </p>
+</div>
 
-<p>
-  <b>Comments:</b>
-  <%=h @sound_document.comments %>
-</p>
 
-<p>
-  <b>Production context:</b>
-  <%=h @sound_document.production_context %>
-</p>
 
-<p>
-  <b>Distributor:</b>
-  <%=h @sound_document.distributor %>
-</p>
+<div id='related-info' class='selfclear'>
+  <h3>Relacionado com este filme</h3>
 
-<p>
-  <b>Duration:</b>
-  <%=h @sound_document.duration %>
-</p>
+  <div class='selfclear'>
+    <%= render_related 'locals', (@sound_document.locals.map do | item | 
+          { :title => item.name, :path => local_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'prizes', (@sound_document.prizes.map do | item | 
+          { :title => item.title, :path => prize_path(item), :description => item.description_for(@sound_document) } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'sound_documents', (@sound_document.sound_documents.map do | item | 
+          { :title => item.title, :path => sound_document_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'sound_documents', (@sound_document.sound_documents.map  do | item | 
+          { :title => item.title, :path => sound_document_path(item), :description => "" } 
+    end) %> 
+  </div>
+  <div class='selfclear'>
+    <%= render_related 'writen_documents', (@sound_document.writen_documents.map do | item | 
+          { :title => item.title, :path => writen_document_path(item), :description => "" } 
+    end) %> 
+    <%= render_related 'photos', (@sound_document.photos.map do | item | 
+          { :title => item.title, :path => photo_path(item), :description => "" } 
+    end) %> 
+  </div>
+</div>	
 
-<p>
-  <b>Format:</b>
-  <%=h @sound_document.format %>
-</p>
+
+<div id='full-info'>
+  <h3>
+    Descrição e Análise 
+  </h3>
+  
+  <div id='full-info-fields'>
+    <% elements= [
+	{ :render_type => 'normal'       , :attribute => "title"                                            } ,  
+      	{ :render_type => 'id_field'     , :attribute => "music_genre_id"                                   } ,  
+      	{ :render_type => 'id_field'     , :attribute => "category_id"                                      } ,  
+      	{ :render_type => 'subcategories', :attribute => "subcategories"                                    } ,  
+      	{ :render_type => 'normal'       , :attribute => "synopsis"                                         } ,
+      	{ :render_type => 'id_field'     , :attribute => "author_id"                                        } ,
+      	{ :render_type => 'id_field'     , :attribute => "director_id"                                      } ,  
+      	{ :render_type => 'normal'       , :attribute => "producer"                                         } ,
+      	{ :render_type => 'normal'       , :attribute => "production_year"                                  } ,  
+      	{ :render_type => 'normal'       , :attribute => "release_date"                                     } ,  
+      	{ :render_type => 'normal'       , :attribute => "production_context"                               } ,  
+      	{ :render_type => 'normal'       , :attribute => "distributor"                                      } ,  
+      	{ :render_type => 'normal'       , :attribute => "duration"           , :at_end => " min"           } , 
+      	{ :render_type => 'normal'       , :attribute => "format"                                           } ,  
+      	{ :render_type => 'yes_or_no'    , :attribute => "free"                                             } ,  
+      	{ :render_type => 'normal'       , :attribute => "rights"                                           } ,  
+      	{ :render_type => 'simple'       , :attribute => "Link"               , :value => sound_document_url(@sound_document) } ,  
+      	{ :render_type => 'none'         , :attribute => "youtube_link"                                     } ,  
+      	{ :render_type => 'normal'       , :attribute => "comments"                                         } ,  
+      	{ :render_type => 'none'         , :attribute => "created_at"                                       } ,  
+      	{ :render_type => 'none'         , :attribute => "updated_at"                                       } ,  
+      	{ :render_type => 'none'         , :attribute => "user_id"                                          } ,  
+      	{ :render_type => 'none'         , :attribute => "status"                                           } 
+    ] %>
+    <table>
+      <% elements.each do | element |  %>
+        <%= render_full_info_element element, @sound_document, (cycle "", "odd") if render_full_info_element element, @sound_document%>
+      <% end %>
+    </table>	    
+  </div>  
+</div>
+

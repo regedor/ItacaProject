@@ -6,7 +6,10 @@ $(document).ready(function () {
     var th = $(this);
     th.attr('width',th.width());
   });
-  table.flexigrid();
+  table.flexigrid({
+    height: 'auto', //default height
+    width: 'auto'
+  });
 
   //    showToggleBtn: true,
 //    colModel: col_formats,

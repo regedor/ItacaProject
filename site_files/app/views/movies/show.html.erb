@@ -68,10 +68,10 @@
 <div id='full-info'>
   <h3>
     Descrição e Análise 
-    <%= link_to image_tag("page_white_acrobat.png"), 
+  </h3>
+    <%= link_to image_tag("page_white_acrobat.png")+" Download PDF", 
 	        movie_path(@movie, :format => 'pdf'),
                 :title => "Download da descrição e analise em formato PDF"%>
-  </h3>
   
   <div id='full-info-fields'>
     <% elements= [
