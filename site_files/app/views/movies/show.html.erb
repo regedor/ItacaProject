@@ -4,7 +4,7 @@
 <div id='generic-info' class='selfclear'>
   <div id='item-visuals'>
     <div id='item-presenter'>
-      <%= render_youtube @movie.youtube_link %>
+      <%= render_youtube @movie.video_embed %>
     </div>
     <div id='related-photos'>
       <% @movie.photos.each do | photo | %>
@@ -24,6 +24,9 @@
     <%= render_field(@movie, 'production_year')%>
     <%= render_field_div "Género", @movie.genre.name if @movie.genre %>
     <%= render_field_div "Temática", render_category_and_subs(@movie) %>
+    <%= render_related (@movie.countries.size > 1 ? 'countries' : 'country'), (@movie.countries.map do | item | 
+          { :title => item.name, :path => nil } 
+    end) %> 
     <%= render_field(@movie, 'duration')%>
   </div> 
 </div>

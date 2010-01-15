@@ -174,6 +174,7 @@ class String
       :add_photos                  => "Adicionar fotos",
       :add_locals                  => "Adicionar locais",
       :add_prizes                  => "Adicionar prémios",
+      :add_countries               => "Adicionar Países",
       :remove_all_writen_documents => "Remover todos os documentos escritos",
       :remove_all_sound_documents  => "Remover todos os documentos sonoros",
       :remove_all_photos           => "Remover todas as fotos",

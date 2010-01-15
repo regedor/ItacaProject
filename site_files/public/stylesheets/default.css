@@ -148,6 +148,8 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #related-info p                   { margin-bottom: 1.0em;} 
 #generic-info h4.author           { margin-bottom: 0.75em;} 
 #generic-info h4.director         { margin-bottom: 0.75em;} 
+#generic-info h4.country          { margin-bottom: 0.75em;} 
+
 #related-info h4.local            { margin-bottom: 0.75em;} 
 #related-info h4.prize            { margin-bottom: 0.75em;} 
 #related-info h4.movie            { margin-bottom: 0.75em;} 
@@ -157,6 +159,8 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 
 #generic-info a.author            { padding: 15px 0px 5px 33px; } 
 #generic-info a.director          { padding: 15px 0px 5px 33px; } 
+#generic-info span.country           { padding: 15px 0px 5px 33px; } 
+
 #related-info a.local             { padding: 15px 0px 5px 33px; } 
 #related-info a.prize             { padding: 15px 0px 5px 33px; } 
 #related-info a.movie             { padding: 15px 0px 5px 33px; } 
@@ -164,8 +168,10 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #related-info a.writen_document   { padding: 15px 0px 5px 33px; } 
 #related-info a.photo             { padding: 15px 0px 5px 33px; } 
 
-#generic-info a.author             { background: url(/images/bg_author-icon.png)            no-repeat -14px -3px;}
+#generic-info a.author            { background: url(/images/bg_author-icon.png)            no-repeat -14px -3px;}
 #generic-info a.director 	  { background: url(/images/bg_director-icon.png)          no-repeat -13px -3px;} 
+#generic-info span.country           { background: url(/images/bg_local-icon.png)             no-repeat -13px -3px;} 
+
 #related-info a.local             { background: url(/images/bg_local-icon.png)             no-repeat -13px -3px;} 
 #related-info a.prize             { background: url(/images/bg_prize-icon.png)             no-repeat -13px -3px;} 
 #related-info a.movie             { background: url(/images/bg_movie-icon.png)             no-repeat -13px -3px;} 

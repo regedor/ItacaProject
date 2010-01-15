@@ -4,7 +4,7 @@
 <div id='generic-info' class='selfclear'>
   <div id='item-visuals'>
     <div id='item-presenter'>
-      <%= render_youtube @sound_document.youtube_link %>
+      <%= render_youtube @sound_document.video_embed %>
     </div>
     <div id='related-photos'>
       <% @sound_document.photos.each do | photo | %>
@@ -24,6 +24,9 @@
     <%= render_field(@sound_document, 'production_year')%>
     <%= render_field_div "Género", @sound_document.music_genre.name if @sound_document.music_genre %>
     <%= render_field_div "Temática", render_category_and_subs(@sound_document) %>
+    <%= render_related (@sound_document.countries.size > 1 ? 'countries' : 'country'), (@sound_document.countries.map do | item | 
+          { :title => item.name, :path => nil } 
+    end) %> 
     <%= render_field(@sound_document, 'duration')%>
   </div> 
 </div>

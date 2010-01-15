@@ -20,6 +20,7 @@ class WritenDocument < ActiveRecord::Base
   associated_nn :with => 'photos',           :through => 'writen_document_photos'
   associated_nn :with => 'locals',           :through => 'writen_document_locals'
   associated_nn :with => 'prizes',           :through => 'writen_document_prizes'
+  associated_nn :with => 'countries',        :through => 'country_writen_documents'
 
   has_many :writen_documents, :finder_sql =>
     'SELECT writen_documents.* ' +

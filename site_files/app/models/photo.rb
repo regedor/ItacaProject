@@ -22,6 +22,7 @@ class Photo < ActiveRecord::Base
   associated_nn :with =>  nil,               :through => 'photo_photos'
   associated_nn :with => 'locals',           :through => 'photo_locals'
   associated_nn :with => 'prizes',           :through => 'photo_prizes'
+  associated_nn :with => 'countries',        :through => 'country_photos'
 
 
   has_many :photos, :finder_sql =>

@@ -23,6 +23,7 @@ class SoundDocument < ActiveRecord::Base
   associated_nn :with => 'photos',           :through => 'sound_document_photos'
   associated_nn :with => 'locals',           :through => 'sound_document_locals'
   associated_nn :with => 'prizes',           :through => 'sound_document_prizes'
+  associated_nn :with => 'countries',  :through => 'country_sound_documents'
 
   has_many :sound_documents, :finder_sql =>
     'SELECT sound_documents.* ' +

@@ -20,6 +20,9 @@
     <%= render_field(@photo, 'production_year')%>
     <%= render_field_div "Tipo", @photo.genre.name if @photo.genre %>
     <%= render_field_div "Temática", render_category_and_subs(@photo) %>
+    <%= render_related (@photo.countries.size > 1 ? 'countries' : 'country'), (@photo.countries.map do | item | 
+          { :title => item.name, :path => nil } 
+    end) %> 
   </div> 
 </div>
 

@@ -42,7 +42,13 @@ module ApplicationHelper
       list.each do | item |
         out += "<li>"
         out += "<p>"
-        out += link_to( h(truncate(item[:title],50,"...")), item[:path], :title => item[:description], :class => name.singularize)
+        if item[:path] 
+          out += link_to( h(truncate(item[:title],50,"...")), item[:path], :title => item[:description], :class => name.singularize)
+        else
+          out += "<span class=#{name.singularize}>"
+          out += h(truncate(item[:title],50,"..."))
+          out += "</span>"
+        end
         out += "</p>"
         out += "</li>"
       end
@@ -87,23 +93,24 @@ module ApplicationHelper
     "<div class='field'> <h4>#{field.humanize}</h4> <p>#{item.send field}</p></div>" unless item.send(field).blank?
   end
 
-  def render_youtube(url)
-    query = URI.parse(url).query
-    url = CGI.parse(query)["v"][0] if query
-    ' <object width="425" height="344">
-        <param name="movie" value="http://www.youtube.com/v/'+url+'&fs=1&rel=0&color2=0x666666&color1=0x54abd6"></param>
-        <param name="allowFullScreen" value="true"></param>
-        <param name="allowscriptaccess" value="always"></param>
-        <embed src="http://www.youtube.com/v/' + url +'&fs=1&rel=0&color1=0x006699&color2=0x54abd6" 
-               type="application/x-shockwave-flash" 
-               allowscriptaccess="always" 
-               allowfullscreen="true" 
-               width="425" height="344">
-        </embed>
-      </object>
-    ' unless url.blank?
-  rescue
-    ""
+  def render_youtube(code)
+    code.gsub(/width=".+?"/,'width="425"').gsub(/height=".+?"/,'height="344"')
+  #    query = URI.parse(url).query
+  #    url = CGI.parse(query)["v"][0] if query
+  #    ' <object width="425" height="344">
+  #        <param name="movie" value="http://www.youtube.com/v/'+url+'&fs=1&rel=0&color2=0x666666&color1=0x54abd6"></param>
+  #        <param name="allowFullScreen" value="true"></param>
+  #        <param name="allowscriptaccess" value="always"></param>
+  #        <embed src="http://www.youtube.com/v/' + url +'&fs=1&rel=0&color1=0x006699&color2=0x54abd6" 
+  #               type="application/x-shockwave-flash" 
+  #               allowscriptaccess="always" 
+  #               allowfullscreen="true" 
+  #               width="425" height="344">
+  #        </embed>
+  #      </object>
+  #    ' unless url.blank?
+  #  rescue
+  #    ""
   end
 
 end

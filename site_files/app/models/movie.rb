@@ -25,6 +25,7 @@ class Movie < ActiveRecord::Base
   associated_nn :with => 'photos',           :through => 'movie_photos'
   associated_nn :with => 'locals',           :through => 'movie_locals'
   associated_nn :with => 'prizes',           :through => 'movie_prizes'
+  associated_nn :with => 'countries',        :through => 'country_movies'
 
   has_many :movies, :finder_sql =>
       'SELECT movies.* ' +
@@ -58,13 +59,4 @@ class Movie < ActiveRecord::Base
     self.directors.map(&:name).join ", "
   end
 
-  #######################
-  # Class Methods
-  def self.headers_to_admin_list
-    ['Título','Realizador','Percentagem de Preenchimento']
-  end
-
-  def self.fields_to_admin_list
-    ['title', 'director_names', 'fill_percentage']
-  end
 end

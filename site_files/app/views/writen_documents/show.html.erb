@@ -20,6 +20,9 @@
     <%= render_field(@writen_document, 'edition_year')%>
     <%= render_field_div "Tipo", @writen_document.document_type.name if @writen_document.document_type %>
     <%= render_field_div "Temática", render_category_and_subs(@writen_document) %>
+    <%= render_related (@writen_document.countries.size > 1 ? 'countries' : 'country'), (@writen_document.countries.map do | item | 
+          { :title => item.name, :path => nil } 
+    end) %> 
   </div> 
 </div>
 
