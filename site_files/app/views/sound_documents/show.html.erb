@@ -4,7 +4,7 @@
 <div id='generic-info' class='selfclear'>
   <div id='item-visuals'>
     <div id='item-presenter'>
-      <%= render_youtube @sound_document.video_embed %>
+      <%= render_youtube @sound_document.video_embed if @sound_document.video_embed %>
     </div>
     <div id='related-photos'>
       <% @sound_document.photos.each do | photo | %>
