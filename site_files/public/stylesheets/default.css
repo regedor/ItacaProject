@@ -64,8 +64,9 @@ h4                                  { font-size: 1.6em; color: #68f;}
 #about h5                           { margin-top: 1em; margin-bottom:0.1em; font-size: 1.4em; color: #68f;}
 #about small                        { font-size: 0.9em; }
 
-#footer a {font-weight:bold;}
-.empty-data { font-style:italic; color: #345;}
+#footer a                           {font-weight:bold;}
+.empty-data                         { font-style:italic; color: #345;}
+#search_filters .search_field label { font-size: 1.2em; }
 
 /* = General Structure
 -------------------------------------------------- */
@@ -197,6 +198,13 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 .resource-list td.biography               { width: 388px; } 
 .resource-list td.genre                   { width: 135px; } 
 .resource-list td a                       { display: block; padding: 1em 10px; }
+.resource-list #search_filters               { padding: 20px; background: #1e242d;}
+.resource-list #search_filters .search_field { display: inline-block; margin-bottom: 0.0em; margin-right:20px;}
+.resource-list #search_filters .search_field select        { width: 145px;}
+.resource-list #search_filters input         { width: 104px;}
+.resource-list #search_filters .search_field input         { width: 225px;}
+.resource-list #search_filters label         { display: table-caption; margin-bottom: 0.5em; }
+.resource-list #search_filters p         { margin: 0; padding: 0; } 
 
 .resource-list     th.main                { padding-left: 62px;}
 .resource-list     td.main a              { padding-left: 62px;}
@@ -208,10 +216,10 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #directors-index-list td.main             { background: url(/images/bg_director-icon.png)       no-repeat 5px -3px;}
 
 
-#photos-index-list td.main a                  { width: 64px; padding:0;} 
-#photos-index-list td.main                       { width: 64px; padding:0;} 
-#photos-index-list th.main a                      { width: 64px; padding:0;} 
-#photos-index-list th.main                    { width: 64px; padding:0;} 
+#photos-index-list td.main a              { width: 64px; padding:0;} 
+#photos-index-list td.main                { width: 64px; padding:0;} 
+#photos-index-list th.main a              { width: 64px; padding:0;} 
+#photos-index-list th.main                { width: 64px; padding:0;} 
                                                                                                   
 /* = About Page Structure                                                                          
 -------------------------------------------------- */                                              

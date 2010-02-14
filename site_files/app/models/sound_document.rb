@@ -25,6 +25,38 @@ class SoundDocument < ActiveRecord::Base
   associated_nn :with => 'prizes',           :through => 'sound_document_prizes'
   associated_nn :with => 'countries',  :through => 'country_sound_documents'
 
+  named_scope :author_filter, lambda { |*args| args.first.blank? ? {} : { :conditions => 
+    ["author_id = ? OR author_2_id = ? OR author_3_id = ? OR author_4_id = ? OR author_5_id = ?", 
+      args.first,args.first,args.first,args.first,args.first] } 
+  }
+
+  named_scope :director_filter, lambda { |*args| args.first.blank? ? {} : { :conditions => 
+    ["director_id = ? OR director_2_id = ? OR director_3_id = ? OR director_4_id = ? OR director_5_id = ?", 
+      args.first,args.first,args.first,args.first,args.first] } 
+  }
+
+  named_scope :music_genre_filter, lambda { |*args| args.first.blank? ? {} : { :conditions => 
+    { :music_genre_id => args.first }}
+  } 
+
+  named_scope :keywords_filter, lambda { |*args| 
+    if (args.first.nil? || (tokens=args.first.split).empty? ) 
+      {} 
+    else
+      tokens.map! { |w| "%#{w.downcase}%" } 
+      { :conditions => (tokens*6).unshift([
+          ( ["(lower(title              ) like ? )"] * tokens.size ).join(" and "),
+          ( ["(lower(synopsis           ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(producer           ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(production_context ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(comments           ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(distributor        ) like ? )"] * tokens.size ).join(" and ")
+        ].join(" or "))
+      } 
+    end
+  } 
+
+
   has_many :sound_documents, :finder_sql =>
     'SELECT sound_documents.* ' +
     'FROM sound_documents INNER JOIN sound_document_sound_documents' + 

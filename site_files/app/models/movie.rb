@@ -32,6 +32,46 @@ class Movie < ActiveRecord::Base
       'FROM movies INNER JOIN movie_movies ON movies.id = movie_movies.movie2_id ' +
       'WHERE (movie_movies.movie_id = #{id})'
 
+  named_scope :author_filter, lambda { |*args| args.first.blank? ? {} : { :conditions => 
+    ["author_id = ? OR author_2_id = ? OR author_3_id = ? OR author_4_id = ? OR author_5_id = ?", 
+      args.first,args.first,args.first,args.first,args.first] } 
+  }
+
+  named_scope :director_filter, lambda { |*args| args.first.blank? ? {} : { :conditions => 
+    ["director_id = ? OR director_2_id = ? OR director_3_id = ? OR director_4_id = ? OR director_5_id = ?", 
+      args.first,args.first,args.first,args.first,args.first] } 
+  }
+
+  named_scope :genre_filter, lambda { |*args| args.first.blank? ? {} : { :conditions => 
+    { :genre_id => args.first }}
+  } 
+
+  named_scope :keywords_filter, lambda { |*args| 
+    if (args.first.nil? || (tokens=args.first.split).empty? ) 
+      {} 
+    else
+      tokens.map! { |w| "%#{w.downcase}%" } 
+      { :conditions => (tokens*14).unshift([
+          ( ["(lower(title              ) like ? )"] * tokens.size ).join(" and "),
+          ( ["(lower(synopsis           ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(producer           ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(main_event         ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(cultural_context   ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(image_sound        ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(ccdc               ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(reading            ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(exploration        ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(analisis           ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(proposals          ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(production_context ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(comments           ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(distributor        ) like ? )"] * tokens.size ).join(" and ")
+        ].join(" or "))
+      } 
+    end
+  } 
+
+
   def subcategories
     Subcategory.all :conditions => 
       {:id => [self.subcategory_1_id,self.subcategory_2_id,self.subcategory_3_id,self.subcategory_4_id]}

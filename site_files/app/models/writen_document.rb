@@ -22,6 +22,37 @@ class WritenDocument < ActiveRecord::Base
   associated_nn :with => 'prizes',           :through => 'writen_document_prizes'
   associated_nn :with => 'countries',        :through => 'country_writen_documents'
 
+  named_scope :author_filter, lambda { |*args| args.first.blank? ? {} : { :conditions => 
+    ["author_id = ? OR author_2_id = ? OR author_3_id = ? OR author_4_id = ? OR author_5_id = ?", 
+      args.first,args.first,args.first,args.first,args.first] } 
+  }
+
+  named_scope :document_type_filter, lambda { |*args| args.first.blank? ? {} : { :conditions => 
+    { :document_type_id => args.first }}
+  } 
+
+  named_scope :category_filter, lambda { |*args| args.first.blank? ? {} : { :conditions => 
+    { :category_id => args.first }}
+  } 
+
+  named_scope :keywords_filter, lambda { |*args| 
+    if (args.first.nil? || (tokens=args.first.split).empty? ) 
+      {} 
+    else
+      tokens.map! { |w| "%#{w.downcase}%" } 
+      { :conditions => (tokens*6).unshift([
+          ( ["(lower(title              ) like ? )"] * tokens.size ).join(" and "),
+          ( ["(lower(synopsis           ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(editor             ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(production_context ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(comments           ) like ? )"] * tokens.size ).join(" and "), 
+          ( ["(lower(distributor        ) like ? )"] * tokens.size ).join(" and ")
+        ].join(" or "))
+      } 
+    end
+  } 
+
+
   has_many :writen_documents, :finder_sql =>
     'SELECT writen_documents.* ' +
     'FROM writen_documents INNER JOIN writen_document_writen_documents' + 
