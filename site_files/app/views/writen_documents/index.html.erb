@@ -39,12 +39,12 @@
       A listagem de documentos escritos pode ser limitada através de uma pesquisa.
       Introduza os parametros e carregue em pesquisar.
     <% else %>
-    <% if @writen_documents.count == 0 %>
+    <% if @writen_documents.size == 0 %>
       Não foram encontrados documentos escritos.
-    <% elsif @writen_documents.count == 1 %>
+    <% elsif @writen_documents.size == 1 %>
       Foi encontrado 1 documento escrito.
     <% else %>
-      Foram encontrados <%= @writen_documents.count %> documentos escritos.
+      Foram encontrados <%= @writen_documents.size %> documentos escritos.
     <% end %> 
     Para desfazer a pesquisa click <%= link_to 'aqui', writen_documents_path %>.
     <% end %>

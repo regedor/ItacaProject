@@ -38,12 +38,12 @@
       A listagem de filmes pode ser limitada através de uma pesquisa.
       Introduza os parametros e carregue em pesquisar.
     <% else %>
-    <% if @movies.count == 0 %>
+    <% if @movies.size == 0 %>
       Não foram encontrados filmes.
-    <% elsif @movies.count == 1 %>
+    <% elsif @movies.size == 1 %>
       Foi encontrado 1 filme.
     <% else %>
-      Foram encontrados <%= @movies.count %> filmes.
+      Foram encontrados <%= @movies.size %> filmes.
     <% end %> 
     Para desfazer a pesquisa click <%= link_to 'aqui', movies_path %>.
     <% end %>

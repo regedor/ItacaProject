@@ -39,12 +39,12 @@
       A listagem de documentos sonoros pode ser limitada através de uma pesquisa.
       Introduza os parametros e carregue em pesquisar.
     <% else %>
-    <% if @sound_documents.count == 0 %>
+    <% if @sound_documents.size == 0 %>
       Não foram encontrados documentos sonoros.
-    <% elsif @sound_documents.count == 1 %>
+    <% elsif @sound_documents.size == 1 %>
       Foi encontrado 1 documento sonoro.
     <% else %>
-      Foram encontrados <%= @sound_documents.count %> documentos sonoros.
+      Foram encontrados <%= @sound_documents.size %> documentos sonoros.
     <% end %> 
     Para desfazer a pesquisa click <%= link_to 'aqui', sound_documents_path %>.
     <% end %>
