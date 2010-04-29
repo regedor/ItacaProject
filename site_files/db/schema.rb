@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090421221701) do
+ActiveRecord::Schema.define(:version => 20091231043538) do
 
   create_table "author_photos", :force => true do |t|
     t.integer  "author_id"
@@ -39,6 +39,34 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
   create_table "countries", :force => true do |t|
     t.string   "name",       :limit => 32
     t.string   "code",       :limit => 3
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "country_movies", :force => true do |t|
+    t.integer  "country_id"
+    t.integer  "movie_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "country_photos", :force => true do |t|
+    t.integer  "country_id"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "country_sound_documents", :force => true do |t|
+    t.integer  "country_id"
+    t.integer  "sound_document_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "country_writen_documents", :force => true do |t|
+    t.integer  "country_id"
+    t.integer  "writen_document_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -168,6 +196,7 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.integer  "director_3_id"
     t.integer  "director_4_id"
     t.integer  "director_5_id"
+    t.text     "video_embed"
   end
 
   create_table "music_genres", :force => true do |t|
@@ -323,6 +352,7 @@ ActiveRecord::Schema.define(:version => 20090421221701) do
     t.integer  "director_3_id"
     t.integer  "director_4_id"
     t.integer  "director_5_id"
+    t.text     "video_embed"
   end
 
   create_table "subcategories", :force => true do |t|

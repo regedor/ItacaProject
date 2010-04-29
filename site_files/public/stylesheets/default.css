@@ -122,13 +122,16 @@ body               { background:  #0a1117 url(/images/bg_body-bottom.gif) repeat
 #related-info .related-items         { float: left; width: 50%;}
 #full-info, 
 #related-info,
+#user-comments,
 #more-info                           { background: url(/images/bg_division-bar.gif) repeat-x top;
                                        margin : 20px -20px 0px -20px; padding: 0 20px 0 20px; }
 #full-info h3, 
 #related-info h3,
+#user-comments h3,
 #more-info h3                         { padding-top: 22px; padding-bottom: 15px; position:relative}
 #full-info h3, 
 #related-info h3,
+#user-comments h3,
 #more-info h3                         { top:-0.5em; }
 #related-info                         { padding-right:0;}
 #show-movie           #item-presenter { background: url(/images/bg_big-pic-movie.gif) no-repeat center -20px; }
