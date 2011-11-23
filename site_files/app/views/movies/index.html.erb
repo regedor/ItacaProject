@@ -11,13 +11,13 @@
     <div class="search_field">
       <%= label :author_id, 'Author' %>
       <%= select_tag 'author_id', options_for_select(
-            [["-- Todos --",'']] + Author.find(:all, :order => 'name').map { |o| [o.name, o.id] },
+                                               [["-- Todos --",'']] + Author.find(:all, :select => "name, id", :order => 'name').map { |o| [o.name, o.id] },
             params[:author_id].to_i) %>
     </div>
     <div class="search_field">
       <%= label :director_id, 'Director' %>
       <%= select_tag 'director_id', options_for_select(
-            [["-- Todos --",'']] + Director.find(:all, :order => 'name').map { |o| [o.name, o.id] },
+            [["-- Todos --",'']] + Director.find(:all, :select => "name, id", :order => 'name').map { |o| [o.name, o.id] },
             params[:director_id].to_i) %>
     </div>
     <div class="search_field">
