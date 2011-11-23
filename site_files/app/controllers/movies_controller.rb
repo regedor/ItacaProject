@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
                       ).director_filter params[:director_id]
                       ).genre_filter    params[:genre_id]
                       ).keywords_filter params[:keywords]
-                      ).all :select => "id, title, director_2_id, director_3_id, director_4_id, director_5_id,  director_id, genere_id, synopsis", :order => 'lower(title) ASC'
+                      ).all :select => "id, title, director_2_id, director_3_id, director_4_id, director_5_id,  director_id, genre_id, synopsis", :order => 'lower(title) ASC'
   end
 
   # GET /movies/1
