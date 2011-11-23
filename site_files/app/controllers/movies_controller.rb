@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  caches_page [:index, :show]
+  caches_page :index, :show
   # GET /movies
   # GET /movies.xml
   def index
