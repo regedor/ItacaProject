@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  caches_page :index, :show
+  caches_page :index, :show, :if => Proc.new { |c| params=c.request.params; !(params[:author_id] || params[:director_id] || params[:genre_id] || params[:keywords]).nil? }
   # GET /movies
   # GET /movies.xml
   def index
