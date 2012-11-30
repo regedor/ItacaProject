@@ -7,6 +7,8 @@ site_files/rcov
 site_files/db/development.sqlite3
 site_files/db/schema.rb
 site_files/public/assets
+site_files/config/environments/production.rb
+site_files/config/database.yml
 *.swp
 .*.sw*
 .DS_Store
